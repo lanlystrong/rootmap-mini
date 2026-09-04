@@ -47,3 +47,37 @@ test('发送失败保留队列待下次;队列超 1000 丢最旧', () => {
     assert.equal(store['rm_events_pending_v1'].length, 1); // 保留
   }).finally(() => clearWx());
 });
+test('OVERLAP:飞行中 flush 串行合并——不重发且尾部不丢', async () => {
+  const store = installWx();
+  try {
+    api.setSession('tok', { id: 1, username: 'u' });
+    const calls = [];
+    const resolvers = [];
+    api.postEvents = (arg) => { calls.push(arg); return new Promise((res) => resolvers.push(res)); };
+    reporter.recordStudy('a');
+    const f1 = reporter.flush();               // 发送 ['a'] 在飞
+    reporter.recordStudy('b');                 // 飞行中追加到队尾
+    const f2 = reporter.flush();               // 飞行中再 flush → 合并,不得第二个 POST 并发
+    assert.equal(calls.length, 1, '飞行期间不得发起第二个 POST');
+    resolvers[0]({ accepted: 1, ignored: 0 }); // 首个发送成功
+    await f1;
+    // 首个成功后只清掉已发送前缀 ['a'],飞行中追加的 ['b'] 由 follow-up 补发
+    assert.equal(calls.length, 2, 'settle 后 follow-up flush 再发一次收尾');
+    assert.equal(calls[0].length, 1); assert.equal(calls[0][0].wordId, 'a');
+    assert.equal(calls[1].length, 1); assert.equal(calls[1][0].wordId, 'b');
+    assert.equal(store['rm_events_pending_v1'].length, 1, '飞行中追加的 b 应保留在队');
+    resolvers[1]({ accepted: 1, ignored: 0 }); // follow-up 发送成功
+    await f2;
+    assert.equal(store['rm_events_pending_v1'].length, 0, '全部发送后队列清空');
+  } finally { clearWx(); }
+});
+test('OVERFLOW:队列超 1000 丢最旧,保留 w1..w1000 FIFO 有序', () => {
+  const store = installWx();
+  try {
+    for (let i = 0; i <= 1000; i++) reporter.recordStudy('w' + i); // 1001 条,无 session 仅入队
+    const q = store['rm_events_pending_v1'];
+    assert.equal(q.length, 1000, '队列封顶 1000');
+    assert.equal(q[0].wordId, 'w1', '最旧 w0 已被丢');
+    assert.equal(q[999].wordId, 'w1000', '最新 w1000 保留,FIFO 有序');
+  } finally { clearWx(); }
+});

@@ -40,6 +40,7 @@ npm run server       # 启动,监听 http://127.0.0.1:3000
 | 变量 | 默认 | 说明 |
 | --- | --- | --- |
 | `PORT` | `3000` | 监听端口。示例:`PORT=4000 npm run server` |
+| `HOST` | `127.0.0.1` | 监听地址,默认仅回环(明文 HTTP 安全档位)。需对外暴露时设 `HOST=0.0.0.0` |
 | `DB_PATH` | `server/data/rootmap.db` | SQLite 文件路径(目录不存在会自动创建)。示例:`DB_PATH=server/data/dev.db npm run server` |
 
 > `server/data/` 目录整体已 gitignore,运行产生的 `*.db*` 文件不会入库。
@@ -48,7 +49,7 @@ npm run server       # 启动,监听 http://127.0.0.1:3000
 
 ```bash
 npm run test:server   # 服务端单测(node --test,13 个:auth/content/events/stats/http 冒烟)
-npm test              # 全量(含小程序侧内容不变量/日期/SRS/store/stats,31 个)
+npm test              # 全量(含小程序侧内容不变量/日期/SRS/store/stats/api/reporter,40 个)
 npm run validate      # 全量内容校验,期望:✓ 内容通过: 30 roots / 66 affixes / 201 words
 ```
 
@@ -105,13 +106,15 @@ npm run validate      # 全量内容校验,期望:✓ 内容通过: 30 roots / 6
 
 ## 与小程序联调(三步)
 
-小程序侧当前仍以本地数据渲染,「我的页」登录/云端统计属后续客户端接入任务;本机联调姿势:
+小程序侧已在本分支接通服务端:「我的页」(`pages/profile`)内置服务端 登录/注册/登出
+(`miniprogram/utils/api.js`)并展示**云端统计卡**(仅登录时拉取,不影响本地进度);学习/复习事件
+仍由 `miniprogram/utils/reporter.js` 按离线队列上报。本机联调姿势:
 
 1. **本机起服务**:仓库根目录执行 `npm run server`(默认 `http://127.0.0.1:3000`)。
 2. **关闭域名校验**:微信开发者工具 → 右上角「详情」→「本地设置」→ **勾选「不校验合法域名、web-view(业务域名)、TLS 版本以及 HTTPS 证书」**。
    因为本服务是 `http://127.0.0.1` 明文 HTTP,不勾选会被小程序拦截。
 3. **我的页注册 / 登录**:使用游客 appid(touristappid)即可编译运行;进「我的」页用
-   username + password 注册(注册即登录)或登录,之后即可调用受保护的 events / stats 接口。
+   username + password 注册(注册即登录)或登录,之后即可看到云端统计卡并上报事件。
 
 > 本机无微信开发者工具环境,小程序侧 UI 联调(登录框、云端统计卡渲染、断网不阻塞学习等)
 > **待用户在 DevTools 内人工验证**,不在本仓库伪造结果。
