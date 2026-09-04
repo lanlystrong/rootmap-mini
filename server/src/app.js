@@ -2,7 +2,8 @@ const express = require('express');
 const { createDb } = require('./db');
 const { loadContent } = require('./content');
 const { contentRouter } = require('./contentRouter');
-const { authRouter } = require('./authRouter');
+const { authRouter, authRequired } = require('./authRouter');
+const { eventsRouter } = require('./eventsRouter');
 const { notFound, errorHandler } = require('./middleware');
 
 function createApp({ dbPath = ':memory:' } = {}) {
@@ -13,7 +14,8 @@ function createApp({ dbPath = ':memory:' } = {}) {
   app.use(express.json({ limit: '1mb' }));
   app.use('/api/content', contentRouter(content));
   app.use('/api/auth', authRouter(db));
-  // 后续任务各自动挂载:/api/events(Task 3)、/api/stats(Task 4)
+  app.use('/api/events', authRequired(db), eventsRouter(db, content));
+  // 后续任务各自动挂载:/api/stats(Task 4)
   app.use(notFound);
   app.use(errorHandler);
   return { app, db, content };
