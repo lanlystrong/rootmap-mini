@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "breakdown-bar": "/components/BreakdownBar/index",
+    "chip": "/components/Chip/index"
+  }
+}

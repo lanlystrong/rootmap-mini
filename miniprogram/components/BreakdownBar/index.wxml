@@ -1,0 +1,7 @@
+<view class="bp">
+  <block wx:for="{{segs}}" wx:key="_k">
+    <text wx:if="{{item.gap}}" class="bp-gap"></text>
+    <text wx:else class="bp-part {{item.cls}}" data-ref="{{item.ref}}" data-type="{{item.type}}"
+      bindtap="onTapPart">{{item.text}}</text>
+  </block>
+</view>

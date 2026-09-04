@@ -1,0 +1,85 @@
+/* AffixPop — 前后缀详情半屏弹层。 */
+.affix-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.affix-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.affix-sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  max-height: 72vh;
+  overflow-y: auto;
+  background: #FFFFFF;
+  border-radius: 28rpx 28rpx 0 0;
+  padding: 28rpx 28rpx calc(28rpx + env(safe-area-inset-bottom));
+}
+
+.affix-head {
+  min-height: 56rpx;
+}
+
+.affix-ttl {
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.affix-text {
+  font-size: 40rpx;
+  font-weight: 800;
+  margin-right: 16rpx;
+}
+
+.affix-text.is-pre { color: #06B6D4; }
+.affix-text.is-suf { color: #8B5CF6; }
+
+.affix-zh {
+  font-size: 30rpx;
+}
+
+.affix-x {
+  font-size: 34rpx;
+  padding: 0 8rpx;
+}
+
+.affix-note {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 1.6;
+}
+
+.affix-wlabel {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+}
+
+.affix-wlist {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8rpx;
+}
+
+.affix-w {
+  background: #F1F5F9;
+  color: #334155;
+  border-radius: 999rpx;
+  padding: 10rpx 24rpx;
+  font-size: 26rpx;
+  margin: 0 12rpx 12rpx 0;
+}

@@ -1,0 +1,51 @@
+/* WordStudyCard — 学单词页词头条白卡。 */
+.wsc {
+  margin-bottom: 20rpx;
+  padding: 28rpx 24rpx 24rpx;
+}
+
+.wsc-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.wsc-word {
+  font-size: 56rpx;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.wsc-badge {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  align-self: flex-start;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #10B981;
+  background: #ECFDF5;
+  border: 1rpx solid rgba(16, 185, 129, 0.4);
+  border-radius: 999rpx;
+  padding: 4rpx 16rpx;
+}
+
+.wsc-phon {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 26rpx;
+}
+
+.wsc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+}
+
+.wsc-tag {
+  margin: 0 12rpx 0 0;
+}
+
+.wsc-break {
+  margin-top: 22rpx;
+  padding-top: 18rpx;
+  border-top: 1rpx solid #F1F5F9;
+}

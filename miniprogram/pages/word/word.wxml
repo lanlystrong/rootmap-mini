@@ -1,1 +1,87 @@
-<view class="stub">建设中</view>
+<view class="w-page" wx:if="{{w && view}}">
+  <!-- 1. 词头条:大字 + 音标 + tags + 已在词库角标 + 可交互拆解 -->
+  <word-study-card word="{{w}}" inPool="{{inPool}}" bind:tapbreak="onBreak"></word-study-card>
+
+  <!-- 2. 释义列表(首义项在前,en 仅在首义项时展示) -->
+  <view class="card w-senses" wx:if="{{view.senses.length}}">
+    <view class="w-sense" wx:for="{{view.senses}}" wx:for-item="s" wx:for-index="si" wx:key="_k">
+      <text class="w-pos t-3">{{s.pos}}</text>
+      <text class="w-zh t-2">{{s.zh}}</text>
+      <text class="w-en t-3" wx:if="{{si === 0 && s.en}}">{{s.en}}</text>
+    </view>
+  </view>
+
+  <!-- 3. 联想分组(每组有内容才渲染) -->
+  <assoc-section wx:if="{{view.familyList.length}}" title="同根词族"
+    count="{{view.familyList.length}}" open="{{groupOpen.family}}" data-k="family"
+    bind:toggle="toggleGroup">
+    <view class="w-chips">
+      <chip wx:for="{{view.familyList}}" wx:key="id" class="w-chip" text="{{item.word}}"
+        cls="chip-blue" data-id="{{item.id}}" bind:chipsel="goWord"></chip>
+    </view>
+  </assoc-section>
+
+  <assoc-section wx:if="{{view.derivList.length}}" title="派生词形"
+    count="{{view.derivList.length}}" open="{{groupOpen.deriv}}" data-k="deriv"
+    bind:toggle="toggleGroup">
+    <view class="w-chips">
+      <chip wx:for="{{view.derivList}}" wx:key="id" class="w-chip" text="{{item.word}}"
+        cls="chip-blue" data-id="{{item.id}}" bind:chipsel="goWord"></chip>
+    </view>
+  </assoc-section>
+
+  <assoc-section wx:if="{{view.synList.length}}" title="同义"
+    count="{{view.synList.length}}" open="{{groupOpen.syn}}" data-k="syn"
+    bind:toggle="toggleGroup">
+    <view class="w-chips">
+      <view class="w-chip-item" wx:for="{{view.synList}}" wx:key="id">
+        <chip text="{{item.word}}" cls="chip-green" data-id="{{item.id}}"
+          bind:chipsel="goWord"></chip>
+        <text class="w-chip-mark mark-syn">同义</text>
+      </view>
+    </view>
+  </assoc-section>
+
+  <assoc-section wx:if="{{view.antList.length}}" title="反义"
+    count="{{view.antList.length}}" open="{{groupOpen.ant}}" data-k="ant"
+    bind:toggle="toggleGroup">
+    <view class="w-chips">
+      <view class="w-chip-item" wx:for="{{view.antList}}" wx:key="id">
+        <chip text="{{item.word}}" cls="chip-blue" data-id="{{item.id}}"
+          bind:chipsel="goWord"></chip>
+        <text class="w-chip-mark mark-ant">反义</text>
+      </view>
+    </view>
+  </assoc-section>
+
+  <assoc-section wx:if="{{view.confuseList.length}}" title="形近易混"
+    count="{{view.confuseList.length}}" open="{{groupOpen.confuse}}" data-k="confuse"
+    bind:toggle="toggleGroup">
+    <view class="w-conf" wx:for="{{view.confuseList}}" wx:key="id">
+      <view class="w-cfword">{{item.word}}</view>
+      <view class="w-cfdiff t-3">{{item.diff}}</view>
+    </view>
+  </assoc-section>
+
+  <assoc-section wx:if="{{view.storyText}}" title="词源助记"
+    open="{{groupOpen.story}}" data-k="story" bind:toggle="toggleGroup">
+    <view class="w-story t-2">{{view.storyText}}</view>
+  </assoc-section>
+
+  <!-- 4. 例句(前 2 条) -->
+  <example-list examples="{{view.examples}}"></example-list>
+
+  <!-- 5. 底部固定操作条(给滚动内容留 padding) -->
+  <view class="w-actions">
+    <view class="w-act {{isFirst ? 'act-off' : ''}} btn-ghost" bindtap="lookBack">再看看</view>
+    <view class="w-act btn-primary" bindtap="onMainAction">{{inPool ? '完成 · 返回' : '记住了'}}</view>
+  </view>
+
+  <!-- 6. 前后缀半屏弹层 -->
+  <affix-pop show="{{!!popAffix}}" affix="{{popAffix}}" words="{{popWords}}"
+    bind:close="onAffixClose"></affix-pop>
+</view>
+
+<view class="w-page" wx:elif="{{emptyFamily}}">
+  <empty-state class="es" text="该词不属于任何词根家族,暂无可学内容"></empty-state>
+</view>

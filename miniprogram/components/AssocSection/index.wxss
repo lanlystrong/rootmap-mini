@@ -1,0 +1,29 @@
+/* AssocSection — 联想分组折叠卡(白卡观感同 app.wxss .card)。 */
+.assoc {
+  margin-bottom: 20rpx;
+  padding: 22rpx 24rpx;
+}
+
+.assoc-head {
+  min-height: 44rpx;
+}
+
+.assoc-title {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.assoc-count {
+  font-size: 24rpx;
+  margin-left: 8rpx;
+}
+
+.assoc-arrow {
+  font-size: 22rpx;
+}
+
+.assoc-body {
+  border-top: 1rpx solid #F1F5F9;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+}

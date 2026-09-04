@@ -1,0 +1,18 @@
+<view class="affix-pop" wx:if="{{show}}">
+  <view class="affix-mask" bindtap="onClose"></view>
+  <view class="affix-sheet" catchtouchmove="noop">
+    <view class="affix-head flex-between">
+      <view class="flex-row affix-ttl">
+        <text class="affix-text {{affix.type === 'prefix' ? 'is-pre' : 'is-suf'}}">{{affix.text}}</text>
+        <text class="affix-zh t-1">{{affix.zh}}</text>
+      </view>
+      <text class="affix-x t-3" bindtap="onClose">✕</text>
+    </view>
+    <view class="affix-note t-3" wx:if="{{affix.note}}">{{affix.note}}</view>
+    <view class="affix-wlabel t-3" wx:if="{{words.length}}">含该词缀的词</view>
+    <view class="affix-wlist">
+      <text class="affix-w" wx:for="{{words}}" wx:key="*this">{{item}}</text>
+    </view>
+    <empty-state wx:if="{{!words.length}}" text="暂无关联词"></empty-state>
+  </view>
+</view>

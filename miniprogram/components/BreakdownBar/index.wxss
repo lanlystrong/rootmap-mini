@@ -1,0 +1,23 @@
+/* BreakdownBar — 词素着色拆解条。前缀青 / 词根蓝 / 后缀紫;type='none' 段仅留窄隙。 */
+.bp {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.bp-part {
+  font-size: 28rpx;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-right: 10rpx;
+}
+
+.bp-gap {
+  display: inline-block;
+  width: 8rpx;
+  flex-shrink: 0;
+}
+
+.bp-pre  { color: #06B6D4; }
+.bp-root { color: #3B82F6; }
+.bp-suf  { color: #8B5CF6; }

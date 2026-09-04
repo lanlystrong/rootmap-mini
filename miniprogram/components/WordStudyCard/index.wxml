@@ -1,0 +1,17 @@
+<view class="card wsc" wx:if="{{word}}">
+  <view class="wsc-head flex-between">
+    <view class="wsc-main">
+      <view class="flex-row">
+        <text class="wsc-word t-1">{{word.word}}</text>
+        <text class="wsc-badge" wx:if="{{inPool}}">已在词库</text>
+      </view>
+      <text class="wsc-phon t-3">{{word.phonetic}}</text>
+      <view class="wsc-tags" wx:if="{{word.tags && word.tags.length}}">
+        <chip wx:for="{{word.tags}}" wx:key="*this" class="wsc-tag" text="{{item}}"></chip>
+      </view>
+    </view>
+  </view>
+  <view class="wsc-break" wx:if="{{word.breakdown && word.breakdown.length}}">
+    <breakdown-bar parts="{{word.breakdown}}" interactive="{{true}}" bind:tapbreak="onTapBreak"></breakdown-bar>
+  </view>
+</view>

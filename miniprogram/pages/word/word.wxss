@@ -1,9 +1,122 @@
-/* 学单词 stub — Task 12 填充 */
-.stub {
+/* 学单词页 — Task 12 */
+.w-page {
+  padding: 24rpx 24rpx 240rpx;
+  box-sizing: border-box;
+}
+
+.es {
+  display: block;
+  width: 100%;
+}
+
+/* ===== 释义列表 ===== */
+.w-senses {
+  margin-bottom: 20rpx;
+}
+
+.w-sense {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60vh;
-  color: #94A3B8;
-  font-size: 28rpx;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-bottom: 8rpx;
+}
+
+.w-sense:last-child {
+  margin-bottom: 0;
+}
+
+.w-pos {
+  width: 56rpx;
+  flex-shrink: 0;
+  color: #3B82F6;
+  font-size: 22rpx;
+}
+
+.w-zh {
+  font-size: 30rpx;
+}
+
+.w-en {
+  width: 100%;
+  margin-top: 2rpx;
+  font-size: 22rpx;
+}
+
+/* ===== 联想 chips ===== */
+.w-chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.w-chip {
+  margin: 0 12rpx 0 0;
+}
+
+.w-chip-item {
+  position: relative;
+  display: inline-flex;
+  margin: 0 16rpx 8rpx 0;
+}
+
+.w-chip-mark {
+  position: absolute;
+  top: -12rpx;
+  right: -14rpx;
+  font-size: 18rpx;
+  line-height: 1;
+  color: #FFFFFF;
+  border-radius: 999rpx;
+  padding: 4rpx 8rpx;
+  z-index: 1;
+}
+
+.mark-syn { background: #10B981; }
+.mark-ant { background: #EF4444; }
+
+/* ===== 形近易混 ===== */
+.w-conf {
+  padding: 6rpx 0;
+}
+
+.w-cfword {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #3B82F6;
+}
+
+.w-cfdiff {
+  margin-top: 2rpx;
+  font-size: 22rpx;
+  line-height: 1.6;
+}
+
+/* ===== 词源助记 ===== */
+.w-story {
+  font-size: 26rpx;
+  line-height: 1.8;
+}
+
+/* ===== 底部固定操作条 ===== */
+.w-actions {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  padding: 16rpx 24rpx;
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  background: rgba(248, 250, 252, 0.95);
+}
+
+.w-act {
+  flex: 1;
+  height: 88rpx;
+}
+
+.w-act + .w-act {
+  margin-left: 20rpx;
+}
+
+.w-act.act-off {
+  opacity: 0.45;
 }

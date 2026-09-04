@@ -2,9 +2,6 @@ const { getContent } = require('../../utils/content');
 const { familyProgressOf } = require('../../utils/stats');
 const { makeWxStore } = require('../../utils/store');
 
-// 迷你拆解配色类:type -> class(样式写在页面 wxss)。type==='none' 的段已在此过滤(不显示文字)。
-const SEG_CLS = { prefix: 'seg-pre', root: 'seg-root', suffix: 'seg-suf' };
-
 Page({
   data: {
     root: null,
@@ -43,9 +40,7 @@ Page({
       phonetic: w.phonetic,
       learned: Object.prototype.hasOwnProperty.call(cards, w.id),
       showSenses: false,
-      segs: (w.breakdown || [])
-        .filter(b => b.type !== 'none')
-        .map((b, i) => ({ part: b.part, cls: SEG_CLS[b.type] || 'seg-root', _k: i })),
+      parts: w.breakdown || [],
       senses: (w.senses || []).map((s, i) => ({ ...s, _k: i })),
     }));
 

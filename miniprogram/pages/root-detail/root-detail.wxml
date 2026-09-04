@@ -36,9 +36,7 @@
       </view>
       <text class="rd-phon t-3">{{item.phonetic}}</text>
     </view>
-    <view class="rd-segs" wx:if="{{item.segs.length}}">
-      <text class="rd-seg {{seg.cls}}" wx:for="{{item.segs}}" wx:for-item="seg" wx:key="_k">{{seg.part}}</text>
-    </view>
+    <breakdown-bar wx:if="{{item.parts.length}}" parts="{{item.parts}}" interactive="{{false}}"></breakdown-bar>
     <view class="rd-senses" wx:if="{{item.showSenses}}">
       <view class="rd-sense" wx:for="{{item.senses}}" wx:for-item="s" wx:for-index="si" wx:key="_k">
         <text class="rd-pos t-3">{{s.pos}}</text>

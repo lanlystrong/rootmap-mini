@@ -1,0 +1,12 @@
+<view class="card assoc">
+  <view class="assoc-head flex-between" bindtap="onToggle">
+    <view class="flex-row">
+      <text class="assoc-title t-2">{{title}}</text>
+      <text class="assoc-count t-3" wx:if="{{count}}">({{count}})</text>
+    </view>
+    <text class="assoc-arrow t-3">{{open ? '收起 ▴' : '展开 ▾'}}</text>
+  </view>
+  <view class="assoc-body" wx:if="{{open}}">
+    <slot></slot>
+  </view>
+</view>

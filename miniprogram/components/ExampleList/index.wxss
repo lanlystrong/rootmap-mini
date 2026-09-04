@@ -1,0 +1,25 @@
+/* ExampleList — 例句白卡。 */
+.ex {
+  margin-bottom: 20rpx;
+  padding: 24rpx;
+}
+
+.ex-ttl {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.ex-item {
+  margin-top: 14rpx;
+}
+
+.ex-en {
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+.ex-zh {
+  font-size: 24rpx;
+  line-height: 1.6;
+  margin-top: 2rpx;
+}

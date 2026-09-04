@@ -1,0 +1,7 @@
+<view class="card ex" wx:if="{{examples.length}}">
+  <view class="ex-ttl t-2">例句</view>
+  <view class="ex-item" wx:for="{{examples}}" wx:key="_k">
+    <view class="ex-en t-2">{{item.en}}</view>
+    <view class="ex-zh t-3">{{item.zh}}</view>
+  </view>
+</view>

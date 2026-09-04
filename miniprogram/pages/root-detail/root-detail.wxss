@@ -106,22 +106,6 @@
   font-size: 24rpx;
 }
 
-/* 行内迷你拆解着色(占位,Tasks 12 BreakdownBar 接管) */
-.rd-segs {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.rd-seg {
-  font-size: 26rpx;
-  line-height: 1.5;
-  margin-right: 6rpx;
-}
-
-.rd-seg.seg-pre { color: #06B6D4; }
-.rd-seg.seg-root { color: #3B82F6; }
-.rd-seg.seg-suf { color: #8B5CF6; }
-
 /* 展开区 */
 .rd-senses {
   border-top: 1rpx solid #F1F5F9;
