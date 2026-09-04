@@ -85,6 +85,7 @@ Page({
   },
 
   grade(e) {
+    if (this.data.phase !== 'reviewing') return;
     const q = Number(e.currentTarget.dataset.q); // 1 忘了 / 3 模糊 / 5 记得
     const store = this._store;
     const queue = this.data.queue;
