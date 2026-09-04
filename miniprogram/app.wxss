@@ -1,0 +1,118 @@
+/**
+ * 词根地图 app.wxss — 设计令牌(spec §8)+ 通用类。
+ * 这些 class 是全局共享样式界面,Task 11-14 各页面均消费。
+ * 令牌色值:
+ *   主渐变      #3B82F6 → #4F46E5(学习)
+ *   复习/完成   #10B981  | 忘了/警示 #EF4444 | 模糊 #F59E0B
+ *   文字        标题 #0F172A / 正文 #334155 / 次要 #64748B
+ *   背景 #F8FAFC,卡片白;大圆角 + pill 按钮 + 轻投影。
+ */
+
+/* ===== 基础 ===== */
+page {
+  background: #F8FAFC;
+  color: #334155;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+/* 微信原生 <button> 默认边框/背景清除,交由 .btn-* 全权控制 */
+button {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  line-height: inherit;
+}
+button::after {
+  border: none;
+}
+
+/* ===== 卡片 ===== */
+.card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(15, 23, 42, 0.06);
+  padding: 24rpx;
+}
+
+/* ===== 主色渐变背景(学习/CTA)===== */
+.grad {
+  background: linear-gradient(135deg, #3B82F6, #4F46E5);
+  color: #FFFFFF;
+}
+
+/* ===== 文字灰阶 ===== */
+.t-1 { color: #0F172A; }  /* 标题 */
+.t-2 { color: #334155; }  /* 正文 */
+.t-3 { color: #64748B; }  /* 次要/辅助 */
+
+/* ===== 语义状态色(复习三键等)===== */
+.c-green { color: #10B981; }  /* 记得/完成 */
+.c-red   { color: #EF4444; }  /* 忘了/警示 */
+.c-amber { color: #F59E0B; }  /* 模糊 */
+
+/* ===== 胶囊 ===== */
+.pill {
+  border-radius: 999rpx;
+}
+
+/* ===== 按钮(pill 风格,自包含,可直接用于 <button>/<view>)===== */
+.btn-primary,
+.btn-ghost,
+.btn-danger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 88rpx;
+  padding: 0 48rpx;
+  border-radius: 999rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3B82F6, #4F46E5);
+  color: #FFFFFF;
+}
+
+.btn-ghost {
+  background: #FFFFFF;
+  color: #3B82F6;
+  border: 1rpx solid rgba(59, 130, 246, 0.35);
+}
+
+.btn-danger {
+  background: #EF4444;
+  color: #FFFFFF;
+}
+
+/* ===== Chip 小标签 ===== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8rpx 20rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  line-height: 1.4;
+  background: #F1F5F9;
+  color: #64748B;
+}
+
+/* ===== 布局 ===== */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

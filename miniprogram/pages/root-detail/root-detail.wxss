@@ -1,0 +1,9 @@
+/* 词根详情 stub — Task 11 填充 */
+.stub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: #94A3B8;
+  font-size: 28rpx;
+}

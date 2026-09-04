@@ -1,0 +1,9 @@
+/* 我的 stub — Task 13/14 填充 */
+.stub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: #94A3B8;
+  font-size: 28rpx;
+}

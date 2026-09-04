@@ -1,0 +1,9 @@
+/* 学单词 stub — Task 12 填充 */
+.stub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: #94A3B8;
+  font-size: 28rpx;
+}
