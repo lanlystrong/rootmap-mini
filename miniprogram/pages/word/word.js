@@ -1,6 +1,7 @@
 const { getContent } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { todayISO } = require('../../utils/date');
+const reporter = require('../../utils/reporter');
 
 const GROUP_KEYS = ['family', 'deriv', 'syn', 'ant', 'confuse', 'story'];
 
@@ -132,6 +133,7 @@ Page({
     const cards = store.getProgress().cards;
     if (!Object.prototype.hasOwnProperty.call(cards, word.id)) {
       store.markStudied(word.id, todayISO());
+      reporter.recordStudy(word.id); reporter.flush();
     }
     this.next();
   },

@@ -1,6 +1,7 @@
 const { getContent } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { todayISO } = require('../../utils/date');
+const reporter = require('../../utils/reporter');
 
 // 复习会话状态机: idle → reviewing → done
 // 复习进度/自评只走 store.applyReview(SM-2 变体封装在 utils/srs),本页不实现算法。
@@ -91,7 +92,8 @@ Page({
     const queue = this.data.queue;
     const today = todayISO();
     const id = queue[this.data.i];
-    if (store && id) store.applyReview(id, q, today);
+    const applied = store && id ? store.applyReview(id, q, today).applied : false;
+    if (applied) { reporter.recordReview(id, q); reporter.flush(); }
     const ni = this.data.i + 1;
     if (ni >= queue.length) {
       // 已到期的词可能因本轮自评被重新推后 → 完成汇总按最新 dueWords 为准
