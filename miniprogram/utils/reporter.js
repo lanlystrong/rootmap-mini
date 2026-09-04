@@ -18,14 +18,13 @@ function record(type, wordId, q) {
   list.push(ev);
   if (list.length > MAX_Q) list.splice(0, list.length - MAX_Q);
   saveQ(list);
-  flush();
 }
 
 function flush() {
   if (!hasWx() || !api.isAuthed()) return Promise.resolve();
   const list = readQ();
   if (!list.length) return Promise.resolve();
-  return api.postEvents({ events: list })
+  return api.postEvents(list)
     .then(() => { saveQ([]); })
     .catch(() => { /* offline/失败保留队列 */ });
 }

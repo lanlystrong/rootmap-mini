@@ -29,9 +29,13 @@ test('未登录 flush 不动队;登录成功 flush 清队', async () => {
     await reporter.flush();                                   // 未登录:队列保留
     assert.equal(store['rm_events_pending_v1'].length, 1);
     api.setSession('tok', { id: 1, username: 'u' });          // 手动登录态
-    api.postEvents = async () => ({ accepted: 1, ignored: 0 });
+    let postedArg;
+    api.postEvents = async (arg) => { postedArg = arg; return { accepted: 1, ignored: 0 }; };
     await reporter.flush();
     assert.equal(store['rm_events_pending_v1'].length, 0);
+    assert.ok(Array.isArray(postedArg), 'postEvents 收到原始事件数组(未二次包装)');
+    assert.equal(postedArg.length, 1);
+    assert.equal(postedArg[0].type, 'study');
   } finally { clearWx(); }
 });
 test('发送失败保留队列待下次;队列超 1000 丢最旧', () => {
