@@ -202,3 +202,137 @@
   font-size: 22rpx;
   line-height: 1.7;
 }
+
+/* ===== 服务端登录卡 + 云端统计卡(Task 7)===== */
+.pf-cloud-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #E2E8F0;
+  font-size: 30rpx;
+  color: #0F172A;
+}
+
+.pf-cloud-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 28rpx;
+}
+
+.pf-cloud-btn {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+}
+
+.btn-primary.pf-cloud-btn {
+  background: #3B82F6;
+  color: #fff;
+}
+
+.pf-cloud-ghost {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  color: #3B82F6;
+  border: 2rpx solid #3B82F6;
+  box-sizing: border-box;
+}
+
+.pf-hint {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #64748B;
+  line-height: 1.6;
+}
+
+.pf-cloud-err {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #EF4444;
+}
+
+.pf-cloud-loading {
+  font-size: 24rpx;
+  color: #64748B;
+}
+
+.pf-ov {
+  display: flex;
+  margin-top: 16rpx;
+}
+
+.pf-ov-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.pf-ov-num {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.pf-ov-txt {
+  font-size: 24rpx;
+}
+
+.pf-gd {
+  display: flex;
+  gap: 6rpx;
+  margin: 28rpx 0 8rpx;
+  height: 12rpx;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.pf-gd-bar {
+  height: 100%;
+}
+
+.pf-gd-1 { background: #EF4444; }
+.pf-gd-3 { background: #F59E0B; }
+.pf-gd-5 { background: #10B981; }
+
+.pf-subhead {
+  margin-top: 28rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.pf-rrow {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 18rpx 0;
+  border-bottom: 2rpx solid #F1F5F9;
+}
+
+.pf-rrow:last-child {
+  border-bottom: none;
+}
+
+.pf-rt {
+  min-width: 96rpx;
+  font-size: 30rpx;
+}
+
+.pf-rz {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 24rpx;
+}
+
+.pf-rn {
+  font-size: 24rpx;
+}
