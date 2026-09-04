@@ -1,0 +1,92 @@
+const words = [
+  { id: 'uniform', word: 'uniform', phonetic: '/ˈjuːnɪfɔːm/',
+    senses: [{ pos: 'n.', zh: '制服;校服', en: 'special clothes worn by all members of a group or organization' },
+             { pos: 'adj.', zh: '统一的;一致的', en: 'the same in all parts or among all members' }],
+    breakdown: [
+      { part: 'uni', type: 'prefix', zh: '单一', refId: 'affix-uni' },
+      { part: 'form', type: 'root', zh: '形状/形成', refId: 'root-form' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'All the students wear a school uniform.', zh: '所有学生都穿校服。' },
+      { en: 'The buildings are of uniform height.', zh: '这些建筑高度一致。' },
+    ],
+    assoc: { story: 'uni(一)+form(形状)= 同一种形状 → 制服;统一的。' } },
+  { id: 'reform', word: 'reform', phonetic: '/rɪˈfɔːm/',
+    senses: [{ pos: 'v.', zh: '改革;改进', en: 'to improve a system or law by making changes to it' },
+             { pos: 'n.', zh: '改革;改良', en: 'a change made to improve a system or law' }],
+    breakdown: [
+      { part: 're', type: 'prefix', zh: '再次/重新', refId: 'affix-re' },
+      { part: 'form', type: 'root', zh: '形状/形成', refId: 'root-form' },
+    ],
+    tags: ['cet4'],
+    examples: [
+      { en: 'The government promised to reform the tax system.', zh: '政府承诺改革税收制度。' },
+      { en: 'The reform has brought real benefits.', zh: '这场改革带来了切实的好处。' },
+    ],
+    assoc: { story: 're(重新)+form(塑形)= 重新塑形 → 改革。' } },
+  { id: 'formal', word: 'formal', phonetic: '/ˈfɔːml/',
+    senses: [{ pos: 'adj.', zh: '正式的;正规的', en: 'following official rules and accepted ways of doing things' },
+             { pos: 'adj.', zh: '形式上的', en: 'connected with form, not with real content' }],
+    breakdown: [
+      { part: 'form', type: 'root', zh: '形状/形式', refId: 'root-form' },
+      { part: 'al', type: 'suffix', zh: '…的', refId: 'affix-al' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'We sent a formal letter to the manager.', zh: '我们给经理发了一封正式函件。' },
+      { en: 'The dinner was a formal occasion.', zh: '那场晚宴是一个正式场合。' },
+    ],
+    assoc: { story: 'form(形式)+al = 讲究形式、按规矩来 → 正式的。' } },
+  { id: 'informal', word: 'informal', phonetic: '/ɪnˈfɔːml/',
+    senses: [{ pos: 'adj.', zh: '非正式的;随意的', en: 'relaxed and friendly, not following strict rules or forms' }],
+    breakdown: [
+      { part: 'in', type: 'prefix', zh: '不/非', refId: 'affix-in-neg' },
+      { part: 'form', type: 'root', zh: '形状/形式', refId: 'root-form' },
+      { part: 'al', type: 'suffix', zh: '…的', refId: 'affix-al' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'Use informal English when you talk to friends.', zh: '和朋友交谈时使用非正式英语。' },
+      { en: 'It was just an informal meeting.', zh: '那只是一次非正式的会面。' },
+    ],
+    assoc: { story: 'in(不)+formal(正式)= 不讲究形式 → 非正式的。' } },
+  { id: 'formation', word: 'formation', phonetic: '/fɔːˈmeɪʃn/',
+    senses: [{ pos: 'n.', zh: '形成;构成', en: 'the process of making or forming something' },
+             { pos: 'n.', zh: '编队;队形', en: 'a particular arrangement of people, aircraft or ships' }],
+    breakdown: [
+      { part: 'form', type: 'root', zh: '形成', refId: 'root-form' },
+      { part: 'ation', type: 'suffix', zh: '名词后缀', refId: 'affix-ation' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The formation of good habits starts early.', zh: '好习惯的形成始于幼年。' },
+      { en: 'The planes flew in V formation.', zh: '飞机以 V 字队形飞行。' },
+    ],
+    assoc: { story: 'form(形成)+ation(名词后缀)= 形成的过程或结果。' } },
+  { id: 'transform', word: 'transform', phonetic: '/trænsˈfɔːm/',
+    senses: [{ pos: 'v.', zh: '使改观;使转化', en: 'to change something completely, usually improving it' }],
+    breakdown: [
+      { part: 'trans', type: 'prefix', zh: '转移/变化', refId: 'affix-trans' },
+      { part: 'form', type: 'root', zh: '形状', refId: 'root-form' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'Computers have transformed the way we work.', zh: '电脑改变了我们的工作方式。' },
+      { en: 'The old factory was transformed into a museum.', zh: '旧工厂被改造成了博物馆。' },
+    ],
+    assoc: { story: 'trans(转变)+form(形状)= 改变形态 → 使改观、改造。' } },
+  { id: 'inform', word: 'inform', phonetic: '/ɪnˈfɔːm/',
+    senses: [{ pos: 'v.', zh: '通知;告知', en: 'to tell someone about something, especially officially' }],
+    breakdown: [
+      { part: 'in', type: 'prefix', zh: '向内/使', refId: 'affix-in' },
+      { part: 'form', type: 'root', zh: '成形', refId: 'root-form' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'Please inform us of any change of address.', zh: '地址如有变更请通知我们。' },
+      { en: 'We were informed that the flight was delayed.', zh: '我们接到通知,航班延误了。' },
+    ],
+    assoc: { story: 'in(进入)+form(成形)= 使(信息)在头脑中成形 → 告知、通知。' } },
+];
+module.exports = words;

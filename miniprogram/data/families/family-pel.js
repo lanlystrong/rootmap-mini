@@ -1,0 +1,92 @@
+const words = [
+  { id: 'compel', word: 'compel', phonetic: '/kəmˈpel/',
+    senses: [{ pos: 'v.', zh: '强迫;迫使', en: 'to force someone to do something' }],
+    breakdown: [
+      { part: 'com', type: 'prefix', zh: '加强', refId: 'affix-com' },
+      { part: 'pel', type: 'root', zh: '推', refId: 'root-pel' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The law compels parents to send their children to school.', zh: '法律强制父母送子女上学。' },
+      { en: 'I felt compelled to tell the truth.', zh: '我觉得不得不说出真相。' },
+    ],
+    assoc: { story: 'com(加强)+pel(推)= 强力推着走 → 强迫。' } },
+  { id: 'expel', word: 'expel', phonetic: '/ɪkˈspel/',
+    senses: [{ pos: 'v.', zh: '开除;驱逐', en: 'to officially make someone leave a school, organization or country' }],
+    breakdown: [
+      { part: 'ex', type: 'prefix', zh: '向外', refId: 'affix-ex' },
+      { part: 'pel', type: 'root', zh: '推', refId: 'root-pel' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'He was expelled from school for fighting.', zh: '他因打架被学校开除。' },
+      { en: 'The government decided to expel the foreign spy.', zh: '政府决定驱逐这名外国间谍。' },
+    ],
+    assoc: { story: 'ex(向外)+pel(推)= 推出去 → 开除、驱逐。' } },
+  { id: 'propel', word: 'propel', phonetic: '/prəˈpel/',
+    senses: [{ pos: 'v.', zh: '推进;驱动', en: 'to push or move something forward' }],
+    breakdown: [
+      { part: 'pro', type: 'prefix', zh: '向前', refId: 'affix-pro' },
+      { part: 'pel', type: 'root', zh: '推', refId: 'root-pel' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The boat is propelled by an electric motor.', zh: '这条船由电动机驱动。' },
+      { en: 'His ambition propelled him to success.', zh: '他的抱负推动他走向成功。' },
+    ],
+    assoc: { story: 'pro(向前)+pel(推)= 向前推 → 推进、驱动。' } },
+  { id: 'repel', word: 'repel', phonetic: '/rɪˈpel/',
+    senses: [{ pos: 'v.', zh: '击退;驱除', en: 'to force someone or something to move away' },
+             { pos: 'v.', zh: '使厌恶;排斥', en: 'to make someone feel disgust or strong dislike' }],
+    breakdown: [
+      { part: 're', type: 'prefix', zh: '往回', refId: 'affix-re' },
+      { part: 'pel', type: 'root', zh: '推', refId: 'root-pel' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The army repelled the attack.', zh: '军队击退了进攻。' },
+      { en: 'The smell of the fish repelled me.', zh: '那鱼腥味让我恶心。' },
+    ],
+    assoc: { story: 're(往回)+pel(推)= 往回推 → 击退、排斥。' } },
+  { id: 'impulse', word: 'impulse', phonetic: '/ˈɪmpʌls/',
+    senses: [{ pos: 'n.', zh: '冲动;一时的念头', en: 'a sudden strong wish to do something without thinking' },
+             { pos: 'n.', zh: '脉冲;推动力', en: 'a short electrical signal; a force that pushes something' }],
+    breakdown: [
+      { part: 'im', type: 'prefix', zh: '向内', refId: 'affix-im' },
+      { part: 'puls', type: 'root', zh: '推', refId: 'root-pel' },
+      { part: 'e', type: 'none' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'She bought the dress on impulse.', zh: '她一时冲动买了那条裙子。' },
+      { en: 'Nerve impulses carry messages to the brain.', zh: '神经冲动把信息传递给大脑。' },
+    ],
+    assoc: { story: 'im(向内)+puls(推)+e = 心里被猛地一推 → 冲动;脉冲。' } },
+  { id: 'pulse', word: 'pulse', phonetic: '/pʌls/',
+    senses: [{ pos: 'n.', zh: '脉搏', en: 'the regular beat of blood through your body that you feel at the wrist or neck' },
+             { pos: 'n.', zh: '脉冲', en: 'a short regular electrical signal' }],
+    breakdown: [
+      { part: 'puls', type: 'root', zh: '推', refId: 'root-pel' },
+      { part: 'e', type: 'none' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The doctor felt his pulse.', zh: '医生给他把脉。' },
+      { en: 'Her pulse was weak after the operation.', zh: '手术后她的脉搏很弱。' },
+    ],
+    assoc: { story: 'puls(推)+e = 心脏推动血液的搏动 → 脉搏。' } },
+  { id: 'compulsory', word: 'compulsory', phonetic: '/kəmˈpʌlsəri/',
+    senses: [{ pos: 'adj.', zh: '强制的;义务的', en: 'required by law or a rule; that must be done' }],
+    breakdown: [
+      { part: 'com', type: 'prefix', zh: '加强', refId: 'affix-com' },
+      { part: 'puls', type: 'root', zh: '推', refId: 'root-pel' },
+      { part: 'ory', type: 'suffix', zh: '…的', refId: 'affix-ory' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'English is a compulsory course in most schools.', zh: '在多数学校,英语是必修课。' },
+      { en: 'Nine-year compulsory education is carried out in China.', zh: '中国实行九年义务教育。' },
+    ],
+    assoc: { story: 'com(加强)+puls(推)+ory = 强力推行的 → 强制的、义务的。' } },
+];
+module.exports = words;

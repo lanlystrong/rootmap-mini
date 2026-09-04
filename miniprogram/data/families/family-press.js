@@ -1,0 +1,92 @@
+const words = [
+  { id: 'pressure', word: 'pressure', phonetic: '/ˈpreʃə/',
+    senses: [{ pos: 'n.', zh: '压力;压强', en: 'the force produced when something presses on a surface' },
+             { pos: 'n.', zh: '心理压力;催促', en: 'the worry caused by too much work or responsibility' }],
+    breakdown: [
+      { part: 'press', type: 'root', zh: '压', refId: 'root-press' },
+      { part: 'ure', type: 'suffix', zh: '名词后缀', refId: 'affix-ure' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'The pressure of the water can damage the pipe.', zh: '水压会损坏管道。' },
+      { en: 'He is under a lot of pressure at work.', zh: '他工作压力很大。' },
+    ],
+    assoc: { story: 'press(压)+ure = 被压的状态 → 压力。' } },
+  { id: 'express', word: 'express', phonetic: '/ɪkˈspres/',
+    senses: [{ pos: 'v.', zh: '表达;表露', en: 'to show or tell what you think or feel' },
+             { pos: 'adj.', zh: '快递的;特快的', en: 'fast, for sending things or people quickly' }],
+    breakdown: [
+      { part: 'ex', type: 'prefix', zh: '向外', refId: 'affix-ex' },
+      { part: 'press', type: 'root', zh: '压', refId: 'root-press' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'She expressed her thanks to everyone.', zh: '她向大家表达了感谢。' },
+      { en: 'It is hard to express my feelings in words.', zh: '我很难用言语表达自己的感受。' },
+    ],
+    assoc: { story: 'ex(出)+press(压)= 把心里话压出来 → 表达。' } },
+  { id: 'impress', word: 'impress', phonetic: '/ɪmˈpres/',
+    senses: [{ pos: 'v.', zh: '给…留下深刻印象;使钦佩', en: 'to make someone feel admiration or respect' }],
+    breakdown: [
+      { part: 'im', type: 'prefix', zh: '向内/往…上', refId: 'affix-im' },
+      { part: 'press', type: 'root', zh: '压', refId: 'root-press' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'Her talent impressed the judges.', zh: '她的才华给评委留下了深刻印象。' },
+      { en: 'He is always trying to impress his boss.', zh: '他总想给老板留下好印象。' },
+    ],
+    assoc: { story: 'im(往…上)+press(压)= 压进脑海 → 留下深刻印象。' } },
+  { id: 'compress', word: 'compress', phonetic: '/kəmˈpres/',
+    senses: [{ pos: 'v.', zh: '压缩;压紧', en: 'to press something into a smaller space' }],
+    breakdown: [
+      { part: 'com', type: 'prefix', zh: '共同/聚拢', refId: 'affix-com' },
+      { part: 'press', type: 'root', zh: '压', refId: 'root-press' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'Compress the files before sending them by email.', zh: '用电子邮件发送前先把文件压缩。' },
+      { en: 'The gas is compressed into a small tank.', zh: '气体被压进一个小罐中。' },
+    ],
+    assoc: { story: 'com(聚拢)+press(压)= 压到一起 → 压缩。' } },
+  { id: 'depress', word: 'depress', phonetic: '/dɪˈpres/',
+    senses: [{ pos: 'v.', zh: '使沮丧;使消沉', en: 'to make someone feel very sad' },
+             { pos: 'v.', zh: '使萧条;抑制', en: 'to reduce economic activity or prices' }],
+    breakdown: [
+      { part: 'de', type: 'prefix', zh: '向下', refId: 'affix-de' },
+      { part: 'press', type: 'root', zh: '压', refId: 'root-press' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'Wet weather always depresses me.', zh: '阴雨天总让我心情低落。' },
+      { en: 'High taxes can depress economic growth.', zh: '高税收会抑制经济增长。' },
+    ],
+    assoc: { story: 'de(向下)+press(压)= 往下压 → 使消沉、使萧条。' } },
+  { id: 'suppress', word: 'suppress', phonetic: '/səˈpres/',
+    senses: [{ pos: 'v.', zh: '镇压;压制', en: 'to stop something such as a rebellion by force' },
+             { pos: 'v.', zh: '抑制;忍住', en: 'to stop yourself from showing a feeling' }],
+    breakdown: [
+      { part: 'sup', type: 'prefix', zh: '在下', refId: 'affix-sub' },
+      { part: 'press', type: 'root', zh: '压', refId: 'root-press' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The army was sent to suppress the rebellion.', zh: '军队被派去镇压叛乱。' },
+      { en: 'She could not suppress a smile.', zh: '她忍不住笑了。' },
+    ],
+    assoc: { story: 'sup(sub- 在下,在 p 前变体)+press(压)= 从下面压住 → 镇压、抑制。' } },
+  { id: 'oppress', word: 'oppress', phonetic: '/əˈpres/',
+    senses: [{ pos: 'v.', zh: '压迫;欺压', en: 'to treat people cruelly and take away their freedom' },
+             { pos: 'v.', zh: '使压抑;使烦恼', en: 'to make someone feel worried or uncomfortable' }],
+    breakdown: [
+      { part: 'op', type: 'prefix', zh: '相对/对立', refId: 'affix-ob' },
+      { part: 'press', type: 'root', zh: '压', refId: 'root-press' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The people were oppressed by the dictator.', zh: '人民遭受独裁者的压迫。' },
+      { en: 'A sense of failure oppressed him.', zh: '失败感压得他透不过气来。' },
+    ],
+    assoc: { story: 'op(ob- 相对,在 p 前变体)+press(压)= 压向(人)→ 压迫。' } },
+];
+module.exports = words;

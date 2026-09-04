@@ -11,6 +11,16 @@ const familyMit = require('./families/family-mit');
 const familyStruct = require('./families/family-struct');
 const familyTract = require('./families/family-tract');
 const familyVert = require('./families/family-vert');
+const familyForm = require('./families/family-form');
+const familyPress = require('./families/family-press');
+const familyGrad = require('./families/family-grad');
+const familyCed = require('./families/family-ced');
+const familyPend = require('./families/family-pend');
+const familyPos = require('./families/family-pos');
+const familyTend = require('./families/family-tend');
+const familyCept = require('./families/family-cept');
+const familyVen = require('./families/family-ven');
+const familyPel = require('./families/family-pel');
 module.exports = {
   roots,
   affixes,
@@ -25,5 +35,15 @@ module.exports = {
     ...familyStruct,
     ...familyTract,
     ...familyVert,
+    ...familyForm,
+    ...familyPress,
+    ...familyGrad,
+    ...familyCed,
+    ...familyPend,
+    ...familyPos,
+    ...familyTend,
+    ...familyCept,
+    ...familyVen,
+    ...familyPel,
   ],
 };

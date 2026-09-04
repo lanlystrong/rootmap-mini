@@ -1,6 +1,6 @@
 const affixes = [
   // —— 前缀 ——
-  { id: 'affix-in',  text: 'in-',  type: 'prefix', zh: '向内/进入', note: '在 b/m/p 前写作 im-;另有否定义,如 inactive(不活跃)。' },
+  { id: 'affix-in',  text: 'in-',  type: 'prefix', zh: '向内/进入', note: '在 b/m/p 前写作 im-,如 import(进口);表「不/非」的否定义另立词缀。' },
   { id: 'affix-im',  text: 'im-',  type: 'prefix', zh: '向内/进入', note: 'in- 在 b/m/p 前的变体,如 import(进口)。' },
   { id: 'affix-re',  text: 're-',  type: 'prefix', zh: '再次/向后', note: '如 report(带回消息→报告)、revise(再看一遍→修订)。' },
   { id: 'affix-pro', text: 'pro-', type: 'prefix', zh: '向前/预先', note: '如 prospect(向前看→前景)、produce(向前带出→生产)。' },
@@ -14,14 +14,19 @@ const affixes = [
   { id: 'affix-pre', text: 'pre-', type: 'prefix', zh: '在…前/预先', note: '如 predict(提前说→预言)、prescribe(预先写好→开处方)。' },
   { id: 'affix-per', text: 'per-', type: 'prefix', zh: '贯穿/透过/每', note: '如 perspective(透过…看→视角)、permit(放行→允许)。' },
   { id: 'affix-retro', text: 'retro-', type: 'prefix', zh: '向后/追溯', note: '如 retrospect(回头看→回顾)。' },
-  { id: 'affix-ad',  text: 'ad-',  type: 'prefix', zh: '朝向/加强', note: '常按后接辅音同化:attract(at-)、advise(ad-)、admit(ad-)。' },
-  { id: 'affix-sub', text: 'sub-', type: 'prefix', zh: '在下/次级/接近', note: '在 p 前写作 sup-,如 support(自下托起→支持)。' },
+  { id: 'affix-ad',  text: 'ad-',  type: 'prefix', zh: '朝向/加强', note: '常按后接辅音同化:attract(at-)、attend(at-)、access(ac-)、aggressive(ag-)。' },
+  { id: 'affix-sub', text: 'sub-', type: 'prefix', zh: '在下/次级/接近', note: '在 p 前写作 sup-,如 support、suppress;c 前写作 suc-,如 succeed;个别词作 sus-,如 suspend。' },
   { id: 'affix-trans', text: 'trans-', type: 'prefix', zh: '横穿/转移/变化', note: '如 transport(运送)、transmit(传送)。' },
   { id: 'affix-intro', text: 'intro-', type: 'prefix', zh: '向内/进入', note: '如 introduce(带进来→介绍/引进)。' },
   { id: 'affix-infra', text: 'infra-', type: 'prefix', zh: '在下/基础', note: '如 infrastructure(建在下面的结构→基础设施)。' },
   { id: 'affix-di',  text: 'di-',  type: 'prefix', zh: '分开/离开', note: 'dis- 在部分辅音前的变体,如 diverse(转向各方→多样的)。' },
   { id: 'affix-uni', text: 'uni-', type: 'prefix', zh: '单一', note: '如 universe(转成一体→宇宙)。' },
   { id: 'affix-manu', text: 'manu-', type: 'prefix', zh: '手', note: '源自拉丁语 manus「手」,如 manuscript(手写稿)。' },
+  { id: 'affix-in-neg', text: 'in-', type: 'prefix', zh: '不/非/无', note: '否定前缀,加在形容词等前;在 l/r/m/p/b 前可同化为 il-/ir-/im-,如 informal(非正式)、independent(独立的,不依附于人)。' },
+  { id: 'affix-ob', text: 'ob-', type: 'prefix', zh: '朝向/相对/反对', note: '在 p 前写作 op-,如 oppose(反对)、oppress(压迫)。' },
+  { id: 'affix-up', text: 'up-', type: 'prefix', zh: '向上/增高', note: '如 upgrade(往上一级→升级)、update(更新)。' },
+  { id: 'affix-post', text: 'post-', type: 'prefix', zh: '在…之后', note: '如 postpone(放到后面→推迟)、postwar(战后的)。' },
+  { id: 'affix-inter', text: 'inter-', type: 'prefix', zh: '在…之间/相互', note: '如 intercept(在途中拿住→拦截)、intervene(来到两者之间→介入)。' },
   // —— 后缀 ——
   { id: 'affix-ator', text: '-ator', type: 'suffix', zh: '…者/…物(名词)', note: '如 spectator(看的人→观众)。' },
   { id: 'affix-ion', text: '-ion', type: 'suffix', zh: '名词后缀(表行为/状态/结果)', note: '含 -tion/-sion 拼写,如 vision、production。' },
@@ -35,5 +40,10 @@ const affixes = [
   { id: 'affix-ure', text: '-ure', type: 'suffix', zh: '名词后缀(表行为/结果)', note: '如 structure(建造的结果→结构)。' },
   { id: 'affix-or',  text: '-or',  type: 'suffix', zh: '…者/…物(名词)', note: '如 tractor(拉东西的机器→拖拉机)。' },
   { id: 'affix-ise', text: '-ise', type: 'suffix', zh: '动词后缀', note: '美式常写作 -ize,如 advertise。' },
+  { id: 'affix-al', text: '-al', type: 'suffix', zh: '…的(形容词)/名词', note: '如 formal(正式的)、informal(非正式的)。' },
+  { id: 'affix-ation', text: '-ation', type: 'suffix', zh: '名词后缀(表行为/状态/结果)', note: '如 formation(形成)、information(信息)。' },
+  { id: 'affix-ent', text: '-ent', type: 'suffix', zh: '…的(形容词)/…者(名词)', note: '如 dependent(依赖的)、component(部件)。' },
+  { id: 'affix-ful', text: '-ful', type: 'suffix', zh: '充满…的(形容词)', note: '如 successful(成功的)、careful(小心的)。' },
+  { id: 'affix-ory', text: '-ory', type: 'suffix', zh: '…的/起…作用的(形容词),亦作名词', note: '如 compulsory(强制的)、laboratory(实验室)。' },
 ];
 module.exports = affixes;
