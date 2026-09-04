@@ -1,0 +1,4 @@
+{ "description": "词根地图 - 词根构词英语单词学习小程序",
+  "compileType": "miniprogram", "appid": "touristappid", "projectname": "rootmap-mini",
+  "miniprogramRoot": "miniprogram/", "libVersion": "latest",
+  "setting": { "urlCheck": false, "es6": true, "postcss": true, "minified": true, "newFeature": true } }
