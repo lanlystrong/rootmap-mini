@@ -1021,19 +1021,19 @@ function record(type, wordId, q) {
   list.push(ev);
   if (list.length > MAX_Q) list.splice(0, list.length - MAX_Q);
   saveQ(list);
-  flush();
 }
 
 function flush() {
   if (!hasWx() || !api.isAuthed()) return Promise.resolve();
   const list = readQ();
   if (!list.length) return Promise.resolve();
-  return api.postEvents({ events: list })
+  return api.postEvents(list)
     .then(() => { saveQ([]); })
     .catch(() => { /* offline/失败保留队列 */ });
 }
 module.exports = { recordStudy: (id) => record('study', id), recordReview: (id, q) => record('review', id, q), flush };
 ```
+> 注(T6 评审裁定):`record*` **仅入队持久化,不自发 flush**;发送点是各页面的显式 `flush()`(埋点处)与未来 onShow。`flush()` 送 `api.postEvents(list)`(api 已包 `body:{events:[...]}`),不得二次包裹。曾因 record 自 flush + 页面 flush 双发、及 `{events:{events}}` 双重包裹 400,已按此修。
 
 - [ ] **Step 5: 埋点(两处)**
 
