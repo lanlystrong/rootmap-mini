@@ -1,0 +1,82 @@
+const words = [
+  { id: 'dictionary', word: 'dictionary', phonetic: '/ˈdɪkʃənri/',
+    senses: [{ pos: 'n.', zh: '词典;字典', en: 'a book or app that lists words and explains their meanings' }],
+    breakdown: [
+      { part: 'dict', type: 'root', zh: '说', refId: 'root-dict' },
+      { part: 'ion', type: 'suffix', zh: '名词后缀', refId: 'affix-ion' },
+      { part: 'ary', type: 'suffix', zh: '…的/…之物', refId: 'affix-ary' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'Look up the word in a dictionary.', zh: '在词典里查一下这个词。' },
+      { en: 'This dictionary has about 60,000 entries.', zh: '这本词典约有六万个词条。' },
+    ],
+    assoc: { story: 'dict(说)+ion+ary = 记录「人们怎么说」的书 → 词典。' } },
+  { id: 'dictate', word: 'dictate', phonetic: '/dɪkˈteɪt/',
+    senses: [{ pos: 'v.', zh: '口述;听写', en: 'to say words aloud for someone else to write down' },
+             { pos: 'v.', zh: '强行规定;支配', en: 'to control or influence something completely' }],
+    breakdown: [
+      { part: 'dict', type: 'root', zh: '说', refId: 'root-dict' },
+      { part: 'ate', type: 'suffix', zh: '动词后缀', refId: 'affix-ate' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'She dictated the letter to her secretary.', zh: '她向秘书口述了那封信。' },
+      { en: 'You cannot dictate how I live my life.', zh: '你不能支配我怎样生活。' },
+    ],
+    assoc: {} },
+  { id: 'predict', word: 'predict', phonetic: '/prɪˈdɪkt/',
+    senses: [{ pos: 'v.', zh: '预言;预测', en: 'to say what will happen in the future' }],
+    breakdown: [
+      { part: 'pre', type: 'prefix', zh: '预先', refId: 'affix-pre' },
+      { part: 'dict', type: 'root', zh: '说', refId: 'root-dict' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'It is hard to predict the weather.', zh: '天气很难预测。' },
+      { en: 'Experts predict a rise in house prices.', zh: '专家预测房价将会上涨。' },
+    ],
+    assoc: { story: 'pre(预先)+dict(说)= 提前说出 → 预言、预测。' } },
+  { id: 'indicate', word: 'indicate', phonetic: '/ˈɪndɪkeɪt/',
+    senses: [{ pos: 'v.', zh: '表明;显示', en: 'to show that something is true or exists' },
+             { pos: 'v.', zh: '指出;指示', en: 'to point to something' }],
+    breakdown: [
+      { part: 'in', type: 'prefix', zh: '朝向/使', refId: 'affix-in' },
+      { part: 'dic', type: 'root', zh: '说', refId: 'root-dict' },
+      { part: 'ate', type: 'suffix', zh: '动词后缀', refId: 'affix-ate' },
+    ],
+    tags: ['cet4'],
+    examples: [
+      { en: 'The results indicate that the plan works.', zh: '结果显示该计划可行。' },
+      { en: 'A red light indicates that you should stop.', zh: '红灯表示你应该停下。' },
+    ],
+    assoc: {} },
+  { id: 'contradict', word: 'contradict', phonetic: '/ˌkɒntrəˈdɪkt/',
+    senses: [{ pos: 'v.', zh: '反驳;驳斥', en: 'to say that what someone says is wrong' },
+             { pos: 'v.', zh: '与…相矛盾', en: 'to be opposite to something' }],
+    breakdown: [
+      { part: 'contra', type: 'prefix', zh: '相反', refId: 'affix-contra' },
+      { part: 'dict', type: 'root', zh: '说', refId: 'root-dict' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'He always contradicts everything I say.', zh: '他总是反驳我说的每一句话。' },
+      { en: 'The report contradicts the official figures.', zh: '这份报告与官方数字相矛盾。' },
+    ],
+    assoc: { story: 'contra(相反)+dict(说)= 反着说 → 反驳。' } },
+  { id: 'dedicate', word: 'dedicate', phonetic: '/ˈdedɪkeɪt/',
+    senses: [{ pos: 'v.', zh: '献身于;把…用于', en: 'to give all your attention and effort to something' },
+             { pos: 'v.', zh: '题献(给某人)', en: 'to say a book or song is written in honor of someone' }],
+    breakdown: [
+      { part: 'de', type: 'prefix', zh: '加强', refId: 'affix-de' },
+      { part: 'dic', type: 'root', zh: '说', refId: 'root-dict' },
+      { part: 'ate', type: 'suffix', zh: '动词后缀', refId: 'affix-ate' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'She dedicated her life to helping the poor.', zh: '她将一生奉献给帮助穷人。' },
+      { en: 'The book is dedicated to my mother.', zh: '这本书题献给我的母亲。' },
+    ],
+    assoc: {} },
+];
+module.exports = words;

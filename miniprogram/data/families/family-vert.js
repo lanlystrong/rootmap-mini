@@ -1,0 +1,82 @@
+const words = [
+  { id: 'convert', word: 'convert', phonetic: '/kənˈvɜːt/',
+    senses: [{ pos: 'v.', zh: '转变;转换', en: 'to change something into a different form or use' }],
+    breakdown: [
+      { part: 'con', type: 'prefix', zh: '加强', refId: 'affix-con' },
+      { part: 'vert', type: 'root', zh: '转', refId: 'root-vert' },
+    ],
+    tags: ['cet4'],
+    examples: [
+      { en: 'They converted the old factory into a museum.', zh: '他们把旧工厂改成了博物馆。' },
+      { en: 'This software converts files to PDF.', zh: '这个软件能把文件转换成 PDF。' },
+    ],
+    assoc: { story: 'con(加强)+vert(转)= 转成另一种形态 → 转变、转换。' } },
+  { id: 'version', word: 'version', phonetic: '/ˈvɜːʃn/',
+    senses: [{ pos: 'n.', zh: '版本', en: 'a form of something that is slightly different from others' },
+             { pos: 'n.', zh: '说法;描述', en: 'one person’s account of what happened' }],
+    breakdown: [
+      { part: 'vers', type: 'root', zh: '转', refId: 'root-vert' },
+      { part: 'ion', type: 'suffix', zh: '名词后缀', refId: 'affix-ion' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'This is the latest version of the app.', zh: '这是该应用的最新版本。' },
+      { en: 'The two men gave different versions of the accident.', zh: '两人对这起事故说法不一。' },
+    ],
+    assoc: { story: 'vers(转)+ion = 转述出来的样式 → 版本、说法。',
+      confusing: [{ id: 'vision', diff: 'version 是「版本/说法」,词根 vers(转);vision 是「视觉/愿景」,词根 vis(看)。两者都以 -sion 结尾,读音与含义都不同。' }] } },
+  { id: 'reverse', word: 'reverse', phonetic: '/rɪˈvɜːs/',
+    senses: [{ pos: 'v.', zh: '颠倒;彻底改变', en: 'to change something to the opposite of what it was' },
+             { pos: 'v.', zh: '倒(车)', en: 'to make a vehicle go backwards' }],
+    breakdown: [
+      { part: 're', type: 'prefix', zh: '向后', refId: 'affix-re' },
+      { part: 'vers', type: 'root', zh: '转', refId: 'root-vert' },
+      { part: 'e', type: 'none' },
+    ],
+    tags: ['cet4'],
+    examples: [
+      { en: 'The new policy may reverse the trend.', zh: '新政策可能会逆转这一趋势。' },
+      { en: 'He reversed the car into the garage.', zh: '他把车倒进车库。' },
+    ],
+    assoc: { story: 're(向后)+vers(转)+e = 向后转 → 颠倒、倒退。' } },
+  { id: 'diverse', word: 'diverse', phonetic: '/daɪˈvɜːs/',
+    senses: [{ pos: 'adj.', zh: '多种多样的;不同的', en: 'very different from each other; varied' }],
+    breakdown: [
+      { part: 'di', type: 'prefix', zh: '分开', refId: 'affix-di' },
+      { part: 'vers', type: 'root', zh: '转', refId: 'root-vert' },
+      { part: 'e', type: 'none' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The city has a diverse population.', zh: '这座城市人口多元。' },
+      { en: 'Students come from diverse backgrounds.', zh: '学生们来自不同的背景。' },
+    ],
+    assoc: { story: 'di(dis- 变体,分开)+vers(转)+e = 转向各方 → 多样的。' } },
+  { id: 'universe', word: 'universe', phonetic: '/ˈjuːnɪvɜːs/',
+    senses: [{ pos: 'n.', zh: '宇宙;天地万物', en: 'all of space and everything in it' }],
+    breakdown: [
+      { part: 'uni', type: 'prefix', zh: '单一', refId: 'affix-uni' },
+      { part: 'vers', type: 'root', zh: '转', refId: 'root-vert' },
+      { part: 'e', type: 'none' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'How big is the universe?', zh: '宇宙有多大？' },
+      { en: 'He believes there is life elsewhere in the universe.', zh: '他相信宇宙中其他地方存在生命。' },
+    ],
+    assoc: { story: 'uni(一)+vers(转)+e = 万物转成一个整体 → 宇宙。' } },
+  { id: 'advertise', word: 'advertise', phonetic: '/ˈædvətaɪz/',
+    senses: [{ pos: 'v.', zh: '为…做广告;宣传', en: 'to tell people about a product or service to make them buy it' }],
+    breakdown: [
+      { part: 'ad', type: 'prefix', zh: '朝向', refId: 'affix-ad' },
+      { part: 'vert', type: 'root', zh: '转', refId: 'root-vert' },
+      { part: 'ise', type: 'suffix', zh: '动词后缀', refId: 'affix-ise' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'The company advertises its products on TV.', zh: '该公司在电视上为其产品做广告。' },
+      { en: 'They advertised for a new secretary.', zh: '他们登广告招聘一名新秘书。' },
+    ],
+    assoc: { story: 'ad(朝向)+vert(转)+ise = 把人们注意转到商品上 → 做广告。' } },
+];
+module.exports = words;

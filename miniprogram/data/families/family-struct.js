@@ -1,0 +1,83 @@
+const words = [
+  { id: 'construct', word: 'construct', phonetic: '/kənˈstrʌkt/',
+    senses: [{ pos: 'v.', zh: '建造;构筑', en: 'to build or make something large' },
+             { pos: 'v.', zh: '创立;构思', en: 'to create an idea or system by combining parts' }],
+    breakdown: [
+      { part: 'con', type: 'prefix', zh: '共同', refId: 'affix-con' },
+      { part: 'struct', type: 'root', zh: '建造', refId: 'root-struct' },
+    ],
+    tags: ['cet4'],
+    examples: [
+      { en: 'The bridge was constructed in 1990.', zh: '这座桥建于 1990 年。' },
+      { en: 'The students constructed a model plane.', zh: '学生们制作了一个飞机模型。' },
+    ],
+    assoc: { story: 'con(共同)+struct(堆建)= 把材料堆到一起 → 建造。' } },
+  { id: 'structure', word: 'structure', phonetic: '/ˈstrʌktʃə/',
+    senses: [{ pos: 'n.', zh: '结构;构造', en: 'the way in which the parts of something are arranged' },
+             { pos: 'n.', zh: '建筑物;结构体', en: 'a building or other large object that has been built' }],
+    breakdown: [
+      { part: 'struct', type: 'root', zh: '建造', refId: 'root-struct' },
+      { part: 'ure', type: 'suffix', zh: '名词后缀', refId: 'affix-ure' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'The structure of the building is very strong.', zh: '这座建筑的结构非常坚固。' },
+      { en: 'We studied the structure of DNA.', zh: '我们研究过 DNA 的结构。' },
+    ],
+    assoc: {} },
+  { id: 'instruct', word: 'instruct', phonetic: '/ɪnˈstrʌkt/',
+    senses: [{ pos: 'v.', zh: '指示;命令', en: 'to officially tell someone to do something' },
+             { pos: 'v.', zh: '教授;指导', en: 'to teach someone a skill or subject' }],
+    breakdown: [
+      { part: 'in', type: 'prefix', zh: '使/向内', refId: 'affix-in' },
+      { part: 'struct', type: 'root', zh: '建造', refId: 'root-struct' },
+    ],
+    tags: ['cet4'],
+    examples: [
+      { en: 'The teacher instructed us to read the text.', zh: '老师指示我们读课文。' },
+      { en: 'He instructs students in English.', zh: '他教学生英语。' },
+    ],
+    assoc: { derivatives: ['instruction'],
+      story: 'in(使)+struct(建造)= 在头脑里建起知识 → 教导、指示。' } },
+  { id: 'instruction', word: 'instruction', phonetic: '/ɪnˈstrʌkʃn/',
+    senses: [{ pos: 'n.', zh: '指示;说明', en: 'clear directions on how to do something' },
+             { pos: 'n.', zh: '教学;指导', en: 'the act of teaching someone' }],
+    breakdown: [
+      { part: 'in', type: 'prefix', zh: '使/向内', refId: 'affix-in' },
+      { part: 'struct', type: 'root', zh: '建造', refId: 'root-struct' },
+      { part: 'ion', type: 'suffix', zh: '名词后缀', refId: 'affix-ion' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'Follow the instructions on the box.', zh: '按照盒子上的说明操作。' },
+      { en: 'She gave us clear instructions.', zh: '她给了我们明确的指示。' },
+    ],
+    assoc: {} },
+  { id: 'destruction', word: 'destruction', phonetic: '/dɪˈstrʌkʃn/',
+    senses: [{ pos: 'n.', zh: '破坏;毁灭', en: 'the act of damaging something so badly that it no longer exists' }],
+    breakdown: [
+      { part: 'de', type: 'prefix', zh: '去除/反转', refId: 'affix-de' },
+      { part: 'struct', type: 'root', zh: '建造', refId: 'root-struct' },
+      { part: 'ion', type: 'suffix', zh: '名词后缀', refId: 'affix-ion' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The earthquake caused great destruction.', zh: '地震造成了巨大的破坏。' },
+      { en: 'War brings death and destruction.', zh: '战争带来死亡与毁灭。' },
+    ],
+    assoc: { confusing: [{ id: 'instruction', diff: 'destruction(破坏)前缀 de- 表「去除」= 把建好的拆掉;instruction(说明/指示)前缀 in- 表「使进入」,词义方向相反。' }] } },
+  { id: 'infrastructure', word: 'infrastructure', phonetic: '/ˈɪnfrəstrʌktʃə/',
+    senses: [{ pos: 'n.', zh: '基础设施', en: 'basic systems such as roads, power and water that a country needs' }],
+    breakdown: [
+      { part: 'infra', type: 'prefix', zh: '在下/基础', refId: 'affix-infra' },
+      { part: 'struct', type: 'root', zh: '建造', refId: 'root-struct' },
+      { part: 'ure', type: 'suffix', zh: '名词后缀', refId: 'affix-ure' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'The government is investing in infrastructure.', zh: '政府正在投资基础设施。' },
+      { en: 'Poor infrastructure slows down economic growth.', zh: '落后的基础设施拖慢了经济增长。' },
+    ],
+    assoc: { story: 'infra(在下)+struct(建)+ure = 支撑在上层建筑之下的设施 → 基础设施。' } },
+];
+module.exports = words;

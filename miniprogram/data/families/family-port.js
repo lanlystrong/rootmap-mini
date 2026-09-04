@@ -1,0 +1,80 @@
+const words = [
+  { id: 'import', word: 'import', phonetic: '/ɪmˈpɔːt/',
+    senses: [{ pos: 'v.', zh: '进口;输入', en: 'to bring goods into a country from abroad' },
+             { pos: 'n.', zh: '进口(的商品)', en: 'goods brought into a country' }],
+    breakdown: [
+      { part: 'im', type: 'prefix', zh: '向内', refId: 'affix-im' },
+      { part: 'port', type: 'root', zh: '搬运', refId: 'root-port' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'The country imports most of its oil.', zh: '该国进口大部分石油。' },
+      { en: 'These goods are imported from China.', zh: '这些货物从中国进口。' },
+    ],
+    assoc: { antonyms: ['export'] } },
+  { id: 'export', word: 'export', phonetic: '/ɪkˈspɔːt/',
+    senses: [{ pos: 'v.', zh: '出口;输出', en: 'to send goods to another country for sale' },
+             { pos: 'n.', zh: '出口(的商品)', en: 'goods sent to another country' }],
+    breakdown: [
+      { part: 'ex', type: 'prefix', zh: '向外', refId: 'affix-ex' },
+      { part: 'port', type: 'root', zh: '搬运', refId: 'root-port' },
+    ],
+    tags: ['cet4'],
+    examples: [
+      { en: 'Japan exports cars to many countries.', zh: '日本向许多国家出口汽车。' },
+      { en: 'Coffee is one of Brazil’s main exports.', zh: '咖啡是巴西的主要出口商品之一。' },
+    ],
+    assoc: { antonyms: ['import'] } },
+  { id: 'transport', word: 'transport', phonetic: '/trænˈspɔːt/',
+    senses: [{ pos: 'v.', zh: '运输;运送', en: 'to carry goods or people from one place to another' },
+             { pos: 'n.', zh: '运输;交通工具', en: 'the moving of goods or people; a vehicle or system for this' }],
+    breakdown: [
+      { part: 'trans', type: 'prefix', zh: '转移/横穿', refId: 'affix-trans' },
+      { part: 'port', type: 'root', zh: '搬运', refId: 'root-port' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'The goods were transported by train.', zh: '货物由火车运输。' },
+      { en: 'My car is my only means of transport.', zh: '汽车是我唯一的交通工具。' },
+    ],
+    assoc: { story: 'trans(从一处到另一处)+port(搬)= 搬运过去 → 运输。' } },
+  { id: 'report', word: 'report', phonetic: '/rɪˈpɔːt/',
+    senses: [{ pos: 'v.', zh: '报告;报道', en: 'to give people information about something' },
+             { pos: 'n.', zh: '报告;报道', en: 'a spoken or written account of something' }],
+    breakdown: [
+      { part: 're', type: 'prefix', zh: '回来', refId: 'affix-re' },
+      { part: 'port', type: 'root', zh: '搬运', refId: 'root-port' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'She reported the accident to the police.', zh: '她向警方报告了这起事故。' },
+      { en: 'Have you read the news report?', zh: '你看了这篇新闻报道吗？' },
+    ],
+    assoc: { story: 're(回)+port(带)= 把消息带回来 → 报告、报道。' } },
+  { id: 'support', word: 'support', phonetic: '/səˈpɔːt/',
+    senses: [{ pos: 'v.', zh: '支持;拥护', en: 'to agree with and encourage someone or something' },
+             { pos: 'v.', zh: '支撑;供养', en: 'to hold something up; to provide money for someone' }],
+    breakdown: [
+      { part: 'sup', type: 'prefix', zh: '自下', refId: 'affix-sub' },
+      { part: 'port', type: 'root', zh: '搬运', refId: 'root-port' },
+    ],
+    tags: ['cet4', '高频'],
+    examples: [
+      { en: 'I will always support your decision.', zh: '我会一直支持你的决定。' },
+      { en: 'He works hard to support his family.', zh: '他努力工作养家。' },
+    ],
+    assoc: { story: 'sup(sub- 在 p 前的变体,自下)+port(搬/托)= 从下面托住 → 支撑、支持。' } },
+  { id: 'portable', word: 'portable', phonetic: '/ˈpɔːtəbl/',
+    senses: [{ pos: 'adj.', zh: '便携的;手提式的', en: 'easy to carry or move' }],
+    breakdown: [
+      { part: 'port', type: 'root', zh: '搬运', refId: 'root-port' },
+      { part: 'able', type: 'suffix', zh: '可…的', refId: 'affix-able' },
+    ],
+    tags: ['cet6'],
+    examples: [
+      { en: 'I bought a small portable speaker.', zh: '我买了一个小巧的便携音箱。' },
+      { en: 'This portable charger is very light.', zh: '这个便携充电器很轻。' },
+    ],
+    assoc: { story: 'port(搬)+able(可…的)= 可以搬着走的 → 便携的。' } },
+];
+module.exports = words;
