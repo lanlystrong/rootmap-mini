@@ -1,0 +1,42 @@
+.root-card {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 176rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.rc-head {
+  margin-bottom: 8rpx;
+}
+
+.rc-root {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #3B82F6;
+  line-height: 1.2;
+}
+
+.rc-variants {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8rpx;
+}
+
+.rc-chip {
+  margin: 0 8rpx 8rpx 0;
+}
+
+.rc-zh {
+  font-size: 28rpx;
+}
+
+.rc-meaning {
+  font-size: 24rpx;
+  line-height: 1.5;
+  margin-top: 2rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

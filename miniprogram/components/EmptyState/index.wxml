@@ -1,0 +1,4 @@
+<view class="empty">
+  <view class="empty-ico">◎</view>
+  <text class="empty-txt">{{text}}</text>
+</view>

@@ -1,0 +1,19 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 96rpx 40rpx;
+}
+
+.empty-ico {
+  font-size: 72rpx;
+  line-height: 1;
+  color: #CBD5E1;
+  margin-bottom: 20rpx;
+}
+
+.empty-txt {
+  font-size: 26rpx;
+  color: #94A3B8;
+}

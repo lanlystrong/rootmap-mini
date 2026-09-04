@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "词根家族"
+  "navigationBarTitleText": "词根家族",
+  "usingComponents": {
+    "chip": "/components/Chip/index",
+    "progress-ring": "/components/ProgressRing/index",
+    "empty-state": "/components/EmptyState/index"
+  }
 }

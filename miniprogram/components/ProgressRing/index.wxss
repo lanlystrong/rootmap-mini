@@ -1,0 +1,23 @@
+.pr {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.pr-inner {
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.pr-txt {
+  color: #334155;
+  font-weight: 600;
+  line-height: 1;
+}

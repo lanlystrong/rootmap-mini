@@ -1,0 +1,53 @@
+.affix-row {
+  padding: 22rpx 24rpx;
+}
+
+.affix-head {
+  min-height: 44rpx;
+}
+
+.affix-main {
+  flex-wrap: wrap;
+}
+
+.affix-text {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-right: 16rpx;
+}
+
+.affix-text.is-pre { color: #06B6D4; }
+.affix-text.is-suf { color: #8B5CF6; }
+
+.affix-zh {
+  font-size: 28rpx;
+}
+
+.affix-arrow {
+  font-size: 22rpx;
+}
+
+.affix-note {
+  font-size: 24rpx;
+  line-height: 1.5;
+  margin-top: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.affix-words {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #F1F5F9;
+}
+
+.affix-wchip {
+  margin: 0 8rpx 8rpx 0;
+}
+
+.affix-empty {
+  font-size: 24rpx;
+}

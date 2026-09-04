@@ -1,3 +1,9 @@
 {
-  "navigationBarTitleText": "词根地图"
+  "navigationBarTitleText": "词根地图",
+  "usingComponents": {
+    "root-card": "/components/RootCard/index",
+    "affix-row": "/components/AffixRow/index",
+    "chip": "/components/Chip/index",
+    "empty-state": "/components/EmptyState/index"
+  }
 }

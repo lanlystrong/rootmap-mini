@@ -1,1 +1,60 @@
-<view class="stub">建设中</view>
+<view class="rd-page" wx:if="{{root}}">
+  <!-- 头部:字根 + 词源故事 -->
+  <view class="card rd-hero">
+    <text class="rd-root">{{root.root}}</text>
+    <view class="rd-variants">
+      <chip wx:for="{{root.variants}}" wx:key="*this" class="rd-vchip" text="{{item}}" cls="chip-cyan"></chip>
+    </view>
+    <view class="rd-zh t-2">{{root.zh}}</view>
+    <view class="rd-meaning t-3">{{root.meaning}}</view>
+    <view class="rd-story" wx:if="{{root.story}}">
+      <view class="flex-between rd-story-head" bindtap="toggleStory">
+        <text class="t-2 rd-story-label">词源故事</text>
+        <text class="t-3 rd-story-arrow">{{expandedStory ? '收起 ▴' : '展开 ▾'}}</text>
+      </view>
+      <view class="rd-story-body t-3" wx:if="{{expandedStory}}">{{root.story}}</view>
+    </view>
+  </view>
+
+  <!-- 进度卡 -->
+  <view class="card rd-prog flex-between">
+    <view class="rd-prog-info">
+      <view class="t-2 rd-prog-title">本族进度</view>
+      <view class="t-3 rd-prog-sub">已学 {{prog.learned}}/{{prog.total}} · 熟悉 {{prog.familiar}}</view>
+    </view>
+    <progress-ring learned="{{prog.learned}}" total="{{prog.total}}" size="{{80}}"></progress-ring>
+  </view>
+
+  <!-- 家族单词列表 -->
+  <view class="rd-family-title t-2">本族单词 {{rows.length}} 个</view>
+  <view class="card rd-row"
+    wx:for="{{rows}}" wx:key="id" data-id="{{item.id}}" bindtap="toggleRow">
+    <view class="flex-between rd-wline">
+      <view class="flex-row rd-wleft">
+        <text class="rd-check c-green" wx:if="{{item.learned}}">✓</text>
+        <text class="rd-word t-1">{{item.word}}</text>
+      </view>
+      <text class="rd-phon t-3">{{item.phonetic}}</text>
+    </view>
+    <view class="rd-segs" wx:if="{{item.segs.length}}">
+      <text class="rd-seg {{seg.cls}}" wx:for="{{item.segs}}" wx:for-item="seg" wx:key="_k">{{seg.part}}</text>
+    </view>
+    <view class="rd-senses" wx:if="{{item.showSenses}}">
+      <view class="rd-sense" wx:for="{{item.senses}}" wx:for-item="s" wx:for-index="si" wx:key="_k">
+        <text class="rd-pos t-3">{{s.pos}}</text>
+        <text class="rd-szh t-2">{{s.zh}}</text>
+        <text class="rd-sen t-3" wx:if="{{si === 0 && s.en}}">{{s.en}}</text>
+      </view>
+      <view class="rd-golearn" catchtap="goWord" data-id="{{item.id}}">去学习 ›</view>
+    </view>
+  </view>
+
+  <!-- 底部固定 CTA -->
+  <view class="rd-footer">
+    <button class="btn-primary grad rd-cta" bindtap="startStudy">{{prog.learned >= prog.total ? '再次巩固本族' : '开始学习本族'}}</button>
+  </view>
+</view>
+
+<view class="rd-page" wx:else>
+  <empty-state class="es" text="未找到该词根"></empty-state>
+</view>

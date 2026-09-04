@@ -1,0 +1,1 @@
+<text class="chip {{cls}}" bindtap="onTap">{{text}}</text>

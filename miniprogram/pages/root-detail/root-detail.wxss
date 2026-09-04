@@ -1,9 +1,185 @@
-/* 词根详情 stub — Task 11 填充 */
-.stub {
+/* 词根详情页样式 — Task 11 */
+.rd-page {
+  padding: 24rpx 24rpx 220rpx;
+  box-sizing: border-box;
+}
+
+/* ===== 头部 ===== */
+.rd-hero {
+  margin-bottom: 24rpx;
+}
+
+.rd-root {
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #3B82F6;
+  line-height: 1.2;
+}
+
+.rd-variants {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60vh;
-  color: #94A3B8;
+  flex-wrap: wrap;
+  margin: 12rpx 0 8rpx;
+}
+
+.rd-vchip {
+  margin: 0 8rpx 8rpx 0;
+}
+
+.rd-zh {
+  font-size: 30rpx;
+}
+
+.rd-meaning {
+  font-size: 24rpx;
+  line-height: 1.5;
+  margin-top: 4rpx;
+}
+
+.rd-story {
+  margin-top: 20rpx;
+  border-top: 1rpx solid #F1F5F9;
+  padding-top: 16rpx;
+}
+
+.rd-story-head {
+  min-height: 40rpx;
+}
+
+.rd-story-label {
   font-size: 28rpx;
+  font-weight: 600;
+}
+
+.rd-story-arrow {
+  font-size: 22rpx;
+}
+
+.rd-story-body {
+  font-size: 24rpx;
+  line-height: 1.7;
+  margin-top: 12rpx;
+}
+
+/* ===== 进度卡 ===== */
+.rd-prog {
+  margin-bottom: 28rpx;
+}
+
+.rd-prog-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.rd-prog-sub {
+  font-size: 24rpx;
+  margin-top: 4rpx;
+}
+
+/* ===== 家族列表 ===== */
+.rd-family-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  margin: 4rpx 4rpx 16rpx;
+}
+
+.rd-row {
+  margin-bottom: 16rpx;
+}
+
+.rd-wline {
+  margin-bottom: 6rpx;
+}
+
+.rd-check {
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-right: 10rpx;
+}
+
+.rd-word {
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.rd-phon {
+  font-size: 24rpx;
+}
+
+/* 行内迷你拆解着色(占位,Tasks 12 BreakdownBar 接管) */
+.rd-segs {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.rd-seg {
+  font-size: 26rpx;
+  line-height: 1.5;
+  margin-right: 6rpx;
+}
+
+.rd-seg.seg-pre { color: #06B6D4; }
+.rd-seg.seg-root { color: #3B82F6; }
+.rd-seg.seg-suf { color: #8B5CF6; }
+
+/* 展开区 */
+.rd-senses {
+  border-top: 1rpx solid #F1F5F9;
+  margin-top: 12rpx;
+  padding-top: 12rpx;
+}
+
+.rd-sense {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-bottom: 6rpx;
+}
+
+.rd-pos {
+  font-size: 22rpx;
+  color: #3B82F6;
+  width: 44rpx;
+  flex-shrink: 0;
+}
+
+.rd-szh {
+  font-size: 26rpx;
+}
+
+.rd-sen {
+  font-size: 22rpx;
+  width: 100%;
+  margin-top: 2rpx;
+  color: #94A3B8;
+}
+
+.rd-golearn {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: #3B82F6;
+  font-weight: 600;
+  text-align: right;
+  padding: 8rpx 0;
+}
+
+/* ===== 底部固定 CTA ===== */
+.rd-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16rpx 24rpx;
+  padding-bottom: calc(16rpx + env(safe-area-inset-bottom));
+  background: rgba(248, 250, 252, 0.94);
+}
+
+.rd-cta {
+  width: 100%;
+}
+
+/* 空态 host */
+.es {
+  display: block;
+  width: 100%;
 }

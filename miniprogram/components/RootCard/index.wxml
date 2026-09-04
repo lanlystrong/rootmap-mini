@@ -1,0 +1,11 @@
+<view class="card root-card" wx:if="{{root}}" catchtap="onCardTap">
+  <view class="flex-between rc-head">
+    <text class="rc-root">{{root.root}}</text>
+    <progress-ring learned="{{root.learned}}" total="{{root.total}}" size="{{64}}"></progress-ring>
+  </view>
+  <view class="rc-variants">
+    <chip wx:for="{{root.variants}}" wx:key="*this" class="rc-chip" text="{{item}}" cls="chip-cyan"></chip>
+  </view>
+  <view class="rc-zh t-2">{{root.zh}}</view>
+  <view class="rc-meaning t-3">{{root.meaning}}</view>
+</view>

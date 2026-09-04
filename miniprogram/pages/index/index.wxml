@@ -1,1 +1,60 @@
-<view class="stub">建设中</view>
+<view class="page">
+  <!-- 顶部搜索框 -->
+  <view class="search-wrap">
+    <view class="search-box">
+      <input class="search-input" placeholder="搜索词根或单词…" placeholder-class="search-ph"
+        value="{{kw}}" bindinput="onSearchInput" confirm-type="search" />
+      <text class="search-clear" wx:if="{{kw}}" catchtap="clearSearch">✕</text>
+    </view>
+  </view>
+
+  <!-- 模式切换:词根 | 前后缀 -->
+  <view class="mode-bar">
+    <view class="mode-item {{mode === 'root' ? 'mode-on' : ''}}" data-mode="root" bindtap="switchMode">词根</view>
+    <view class="mode-item {{mode === 'affix' ? 'mode-on' : ''}}" data-mode="affix" bindtap="switchMode">前后缀</view>
+  </view>
+
+  <!-- 分支一:实时搜索命中视图 -->
+  <block wx:if="{{searching}}">
+    <view class="hit-sec" wx:if="{{rootHits.length}}">
+      <view class="hit-title t-3">词根</view>
+      <view class="card hit-item" wx:for="{{rootHits}}" wx:key="id" data-id="{{item.id}}" bindtap="goRoot">
+        <view class="flex-between">
+          <text class="hit-name t-1">{{item.root}}</text>
+          <text class="hit-zh t-3">{{item.zh}}</text>
+        </view>
+        <view class="hit-variants" wx:if="{{item.variants.length}}">
+          <chip wx:for="{{item.variants}}" wx:for-item="v" wx:key="*this" class="hit-chip" text="{{v}}" cls="chip-cyan"></chip>
+        </view>
+      </view>
+    </view>
+    <view class="hit-sec" wx:if="{{wordHits.length}}">
+      <view class="hit-title t-3">单词</view>
+      <view class="card hit-item" wx:for="{{wordHits}}" wx:key="id" data-id="{{item.id}}" bindtap="goWord">
+        <view class="flex-between">
+          <text class="hit-name t-1">{{item.word}}</text>
+          <text class="hit-phon t-3">{{item.phonetic}}</text>
+        </view>
+      </view>
+    </view>
+    <empty-state wx:if="{{!rootHits.length && !wordHits.length}}" class="es" text="没有找到匹配的词根或单词"></empty-state>
+  </block>
+
+  <!-- 分支二:词根 2 列网格 -->
+  <block wx:elif="{{mode === 'root'}}">
+    <view class="grid" wx:if="{{roots.length}}">
+      <root-card wx:for="{{roots}}" wx:key="id" class="grid-cell" root="{{item}}"
+        data-id="{{item.id}}" bind:select="goRoot"></root-card>
+    </view>
+    <empty-state wx:else class="es" text="暂无词根"></empty-state>
+  </block>
+
+  <!-- 分支三:前后缀列表 -->
+  <block wx:else>
+    <view class="affix-list" wx:if="{{affixes.length}}">
+      <affix-row wx:for="{{affixes}}" wx:key="id" class="affix-cell" affix="{{item}}"
+        words="{{item.words}}" bind:wordtap="onAffixWordTap"></affix-row>
+    </view>
+    <empty-state wx:else class="es" text="暂无词缀"></empty-state>
+  </block>
+</view>
