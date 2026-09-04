@@ -41,3 +41,21 @@ test('单批超 200 截断:truncated:true 且 accepted≤200', async () => {
     assert.equal(res.status, 200); assert.equal(res.data.accepted, 200); assert.equal(res.data.truncated, true);
   } finally { await s.close(); }
 });
+
+test('at 严格日历校验(不可滚转)+ wordId 必填;纯日期 at 仍接受', async () => {
+  const s = await startServer();
+  try {
+    const r = await jfetch(s.base, 'POST', '/api/auth/register', { body: { username: 'zoe', password: 'secret123' } });
+    const post = (events) => jfetch(s.base, 'POST', '/api/events', { auth: r.data.token, body: { events } });
+    // 非法日历日期:2/30、4/31、非闰年 2/29、T24:00:00 → 均 400(不可 Date 滚转后被接受)
+    for (const at of ['2026-02-30', '2026-04-31', '2026-02-29', '2026-09-04T24:00:00']) {
+      assert.equal((await post([{ type: 'study', wordId: 'spectator', at }])).status, 400, `at=${at}`);
+    }
+    // wordId 缺失/空 → 400
+    assert.equal((await post([{ type: 'study' }])).status, 400);
+    assert.equal((await post([{ type: 'review', wordId: '' }])).status, 400);
+    // 合法纯日期格式 at 仍被接受
+    const ok = await post([{ type: 'study', wordId: 'spectator', at: '2026-09-04' }]);
+    assert.equal(ok.status, 200); assert.equal(ok.data.accepted, 1); assert.equal(ok.data.ignored, 0);
+  } finally { await s.close(); }
+});
