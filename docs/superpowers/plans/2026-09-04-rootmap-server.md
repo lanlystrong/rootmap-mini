@@ -214,7 +214,7 @@ function createApp({ dbPath = ':memory:' } = {}) {
   app.disable('x-powered-by');
   app.use(express.json({ limit: '1mb' }));
   app.use('/api/content', contentRouter(content));
-  // Task 3 在此挂 /api/auth;Task 4 挂 /api/events;Task 5 挂 /api/stats
+  // 后续任务各自动挂载:/api/auth(Task 2)、/api/events(Task 3)、/api/stats(Task 4)
   app.use(notFound);
   app.use(errorHandler);
   return { app, db, content };
