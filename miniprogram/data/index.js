@@ -21,6 +21,16 @@ const familyTend = require('./families/family-tend');
 const familyCept = require('./families/family-cept');
 const familyVen = require('./families/family-ven');
 const familyPel = require('./families/family-pel');
+const familyVal = require('./families/family-val');
+const familyPhon = require('./families/family-phon');
+const familyGraph = require('./families/family-graph');
+const familyLog = require('./families/family-log');
+const familyLuc = require('./families/family-luc');
+const familyMan = require('./families/family-man');
+const familyMob = require('./families/family-mob');
+const familyNov = require('./families/family-nov');
+const familyNorm = require('./families/family-norm');
+const familyNumer = require('./families/family-numer');
 module.exports = {
   roots,
   affixes,
@@ -45,5 +55,15 @@ module.exports = {
     ...familyCept,
     ...familyVen,
     ...familyPel,
+    ...familyVal,
+    ...familyPhon,
+    ...familyGraph,
+    ...familyLog,
+    ...familyLuc,
+    ...familyMan,
+    ...familyMob,
+    ...familyNov,
+    ...familyNorm,
+    ...familyNumer,
   ],
 };
