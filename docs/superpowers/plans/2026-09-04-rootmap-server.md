@@ -724,8 +724,8 @@ function statsRouter(db, content) {
     const gradeDist = { q1: 0, q3: 0, q5: 0 };
     let studyEvents = 0, reviewEvents = 0;
     for (const row of rows) {
-      if (row.type === 'study') studyEvents = row.n;
-      else { reviewEvents = row.n; if (row.q) gradeDist['q' + row.q] = row.n; }
+      if (row.type === 'study') studyEvents += row.n;
+      else { reviewEvents += row.n; if (row.q) gradeDist['q' + row.q] = row.n; }
     }
     res.json({ totalStudied: distinct.n, studyEvents, reviewEvents, gradeDist, lapses: gradeDist.q1, accuracy: acc(gradeDist) });
   });
@@ -745,7 +745,7 @@ function statsRouter(db, content) {
       let e = map.get(row.d);
       if (!e) { e = { date: row.d, new: 0, reviews: 0, lapses: 0 }; map.set(row.d, e); }
       if (row.type === 'study') e.new = row.n;
-      else { e.reviews = row.n; if (row.q === 1) e.lapses = row.n; }
+      else { e.reviews += row.n; if (row.q === 1) e.lapses = row.n; }
     }
     const out = [];
     for (let i = 0; i < days; i++) {
