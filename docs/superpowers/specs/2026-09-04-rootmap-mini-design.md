@@ -198,7 +198,7 @@ initial 状态(学成"记住了"那一刻写入):
   dueDate = todayISO + intervalDays
 ```
 
-> 示例(初始后连续"记得"):due 第 2 天 →(间隔 1)→ 第 8 天(间隔 6)→ 第 23 天(间隔 15,ef≈2.6)→ ……间隔按 ×EF 增长。
+> 示例(初始后连续"记得"):学成次日 → 第 2 天复习(间隔 1)→ 第 8 天复习(间隔 6)→ 第 24 天复习(间隔 16,本次乘数 ef=2.6)→ 第 67 天复习(间隔 43,乘数 ef=2.7)→ ……间隔按 ×EF 增长,EF 随"记得"每次 +0.1。
 > "忘了"后:间隔重置 1 天并降 EF,reps 归零 → 重新走 1→6→×EF 上升坡。
 
 ### 复习会话行为
@@ -266,7 +266,7 @@ initial 状态(学成"记住了"那一刻写入):
 - **前后缀(~40 个)**:前缀 in-/im-/ir-/un-/re-/pre-/pro-/de-/dis-/con-/com-/ex-/e-/sub-/super-/trans-/inter-/anti-/auto-/bi-/co-/counter-/fore-/mis-/non-/over-/post-/semi-/tri-/under-;后缀 -tion/-sion/-ment/-ness/-ity/-able/-ible/-less/-ful/-ous/-ize/-ify/-er/-or/-ist/-ive/-al/-ic/-ance/-ence 等。
 - **单词(~250 个)**:自上述词根各派生 6~10 个高频词,全部落在 **CET-4/6 与通用高频**范畴。每个词必须满足 §5.1 不变量,配 1~2 条中英例句(例句地道、难度贴合)。
 
-内容以**结构化数据 + 自动校验**方式产出(不手抄):计划阶段编写 `scripts/build-seed.js`(内容清单为数据源)+ `scripts/validate-content.js`(校验不变量),把内容源编译成 `miniprogram/data/*.js`。这样关联字段错一处即失败,杜绝断裂引用。样例词条见附录 A。
+内容以**结构化数据 + 自动校验**方式产出(不手抄):内容按词根家族直接落为 `miniprogram/data/families/family-<root>.js` 数据模块,由 `scripts/validate-content.js` 强制 §5.1 的 6 条不变量;关联字段错一处即失败,杜绝断裂引用。样例词条见附录 A。全量内容经 `npm run validate` 门禁(全量扫描)+ `npm test` 用例(破坏性回归)双重把关。
 
 ## 11. 工程结构
 
@@ -278,15 +278,16 @@ e:\projects\rootmap-mini\
   docs\superpowers\specs\…design.md
   docs\superpowers\plans\…plan.md
   scripts\
-    validate-content.js          # 内容不变量校验(§5.1)
-    build-seed.js                # 内容源 → miniprogram/data/*.js
+    validate-content.js          # 内容不变量校验(§5.1),CLI 读 data/index.js 全量扫描
   tests\
     srs.test.js
     date.test.js
-    validate-content.test.js     # 用样例数据跑不变量
+    validate-content.test.js     # 用样例数据跑不变量(含人为破坏用例)
   miniprogram\
     app.js  app.json  app.wxss
-    data\  roots.js  affixes.js  words.js   # module.exports 数组
+    data\  index.js              # {roots, affixes, words} 汇总
+           roots.js  affixes.js  # module.exports 数组
+           families\family-<root>.js   # 每词根一族,module.exports = Word[]
     utils\ content.js  srs.js  store.js  date.js
     pages\ index\  root-detail\  word\  review\  profile\
     components\ RootCard\  WordStudyCard\  ReviewCard\  BreakdownBar\  …
@@ -295,7 +296,7 @@ e:\projects\rootmap-mini\
 ## 12. 测试与验证
 
 ### 自动化(`npm test`,node:test)
-- `srs.test.js`:连续"记得"间隔序列 1→6→15(≈39 递增)、EF 升降与下限 1.3、"忘了"归零重置、"模糊"通过且 EF 下调、dueDate 计算、跨日比较边界。
+- `srs.test.js`:连续"记得"间隔序列 1→6→16(→43 递增)、EF 升降与下限 1.3、"忘了"归零重置、"模糊"通过且 EF 下调、dueDate 计算、跨日比较边界。
 - `date.test.js`:addDays / isDue / 连续打卡判定(跨月/跨年)。
 - `validate-content.test.js`:抽样词条跑 §5.1 全部不变量(含人为破坏用例 → 应失败)。
 
