@@ -1,0 +1,41 @@
+<view class="rc" wx:if="{{word}}" bindtap="onTap">
+  <!-- 正面:仅词 + 音标(复习中防提示,绝不显示释义/构词/例句) -->
+  <block wx:if="{{!shown}}">
+    <view class="rc-main">
+      <text class="rc-word t-1">{{word.word}}</text>
+      <text class="rc-phon t-3" wx:if="{{word.phonetic}}">{{word.phonetic}}</text>
+    </view>
+    <view class="rc-hint">
+      <text class="rc-hint-txt">点击翻面 ▸</text>
+    </view>
+  </block>
+
+  <!-- 背面:答案(纯展示,不再响应翻面) -->
+  <block wx:else>
+    <view class="rc-sec" wx:if="{{word.senses && word.senses.length}}">
+      <view class="rc-sense" wx:for="{{word.senses}}" wx:for-item="s" wx:for-index="si" wx:key="_k">
+        <text class="rc-pos t-3">{{s.pos}}</text>
+        <text class="rc-zh t-2">{{s.zh}}</text>
+      </view>
+    </view>
+
+    <view class="rc-sec" wx:if="{{word.rootName}}">
+      <text class="rc-label t-3">构词</text>
+      <view class="rc-break-line">
+        <text class="rc-root">{{word.rootName}}</text>
+        <text class="rc-rootzh t-3">{{word.rootZh}}</text>
+      </view>
+    </view>
+
+    <view class="rc-sec" wx:if="{{word.firstExample}}">
+      <text class="rc-label t-3">例句</text>
+      <text class="rc-ex-en">{{word.firstExample.en}}</text>
+      <text class="rc-ex-zh t-3">{{word.firstExample.zh}}</text>
+    </view>
+
+    <view class="rc-fam" wx:if="{{word.rootName}}">
+      <text class="rc-label t-3">所属词根</text>
+      <text class="rc-fam-val t-2">{{word.rootName}} · {{word.rootZh}}</text>
+    </view>
+  </block>
+</view>

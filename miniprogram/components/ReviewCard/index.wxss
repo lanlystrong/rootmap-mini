@@ -1,0 +1,127 @@
+/* ReviewCard — 复习单词卡。白卡圆角(观感同 .card),本地自包含。 */
+.rc {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 460rpx;
+  padding: 56rpx 40rpx 40rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(15, 23, 42, 0.06);
+}
+
+/* ===== 正面 ===== */
+.rc-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 72rpx 0 40rpx;
+}
+
+.rc-word {
+  font-size: 72rpx;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  word-break: break-all;
+}
+
+.rc-phon {
+  display: block;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
+
+.rc-hint {
+  text-align: center;
+  padding-top: 8rpx;
+}
+
+.rc-hint-txt {
+  font-size: 26rpx;
+  color: #94A3B8;
+}
+
+/* ===== 背面 ===== */
+.rc-sec {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F1F5F9;
+}
+
+.rc-sec:first-child {
+  padding-top: 4rpx;
+}
+
+.rc-sense {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-bottom: 12rpx;
+}
+
+.rc-sense:last-child {
+  margin-bottom: 0;
+}
+
+.rc-pos {
+  width: 64rpx;
+  flex-shrink: 0;
+  font-size: 24rpx;
+}
+
+.rc-zh {
+  font-size: 34rpx;
+  font-weight: 600;
+}
+
+.rc-label {
+  display: block;
+  font-size: 22rpx;
+  margin-bottom: 8rpx;
+}
+
+.rc-break-line {
+  display: flex;
+  align-items: baseline;
+}
+
+.rc-root {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #3B82F6;
+}
+
+.rc-rootzh {
+  margin-left: 16rpx;
+  font-size: 28rpx;
+}
+
+.rc-ex-en {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #3B82F6;
+  line-height: 1.5;
+}
+
+.rc-ex-zh {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 26rpx;
+}
+
+.rc-fam {
+  display: flex;
+  align-items: center;
+  padding-top: 24rpx;
+}
+
+.rc-fam .rc-label {
+  margin: 0 16rpx 0 0;
+}
+
+.rc-fam-val {
+  font-size: 28rpx;
+}

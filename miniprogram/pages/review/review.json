@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "复习"
+  "navigationBarTitleText": "复习",
+  "usingComponents": {
+    "review-card": "/components/ReviewCard/index",
+    "empty-state": "/components/EmptyState/index"
+  }
 }

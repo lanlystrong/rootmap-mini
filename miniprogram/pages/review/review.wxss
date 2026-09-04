@@ -1,9 +1,115 @@
-/* 复习 stub — Task 13 填充 */
-.stub {
+/* 复习页 — Task 13 复习会话闭环 */
+.rv-page {
+  box-sizing: border-box;
+  padding: 24rpx 24rpx calc(48rpx + env(safe-area-inset-bottom));
+}
+
+.es {
+  display: block;
+  width: 100%;
+}
+
+/* ===== idle / done 汇总卡 ===== */
+.rv-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 72rpx 32rpx 56rpx;
+}
+
+.rv-num {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60vh;
-  color: #94A3B8;
-  font-size: 28rpx;
+  width: 176rpx;
+  height: 176rpx;
+  border-radius: 50%;
+  font-size: 80rpx;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 24rpx;
 }
+
+.rv-sum-txt {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.rv-cap {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+}
+
+.rv-ico {
+  font-size: 96rpx;
+  line-height: 1;
+  margin-bottom: 16rpx;
+}
+
+.rv-done-txt {
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.rv-start,
+.rv-finish,
+.rv-go {
+  width: 100%;
+  margin-top: 48rpx;
+}
+
+.rv-guide {
+  margin-top: 24rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+/* ===== 空态 CTA 间距 ===== */
+.rv-go {
+  margin-top: 8rpx;
+}
+
+/* ===== reviewing ===== */
+.rv-review {
+  padding-top: 8rpx;
+}
+
+.rv-progress {
+  text-align: center;
+  font-size: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.rv-hint {
+  text-align: center;
+  margin-top: 32rpx;
+  font-size: 24rpx;
+  color: #94A3B8;
+}
+
+.rv-actions {
+  display: flex;
+  margin-top: 36rpx;
+}
+
+.rv-act {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 100rpx;
+  border-radius: 999rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 1;
+  color: #FFFFFF;
+}
+
+.rv-act + .rv-act {
+  margin-left: 20rpx;
+}
+
+.rv-forgot { background: #EF4444; }  /* 忘了 q=1 */
+.rv-hazy   { background: #F59E0B; }  /* 模糊 q=3 */
+.rv-good   { background: #10B981; }  /* 记得 q=5 */
