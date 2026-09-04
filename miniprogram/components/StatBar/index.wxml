@@ -1,0 +1,12 @@
+<view class="sb">
+  <view class="sb-col" wx:for="{{bars}}" wx:key="_k">
+    <view class="sb-plot">
+      <block wx:if="{{item.any}}">
+        <view wx:if="{{item.newH > 0}}" class="sb-bar sb-new" style="height: {{item.newH}}%"></view>
+        <view wx:if="{{item.revH > 0}}" class="sb-bar sb-rev" style="height: {{item.revH}}%"></view>
+      </block>
+      <view wx:else class="sb-dot"></view>
+    </view>
+    <text class="sb-x {{item.today ? 'sb-x-today' : ''}}">{{item.label}}</text>
+  </view>
+</view>

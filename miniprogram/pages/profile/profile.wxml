@@ -1,1 +1,81 @@
-<view class="stub">建设中</view>
+<view class="pf-page">
+  <!-- ===== 顶部头部卡:连续打卡徽标 + 文案 ===== -->
+  <view class="card pf-head">
+    <view class="pf-badge {{stats.streak > 0 ? 'pf-badge-on' : ''}}">
+      <text class="pf-badge-fire">🔥</text>
+      <text class="pf-badge-txt">连续 {{stats.streak}} 天</text>
+    </view>
+    <text class="pf-headline t-3">{{stats.streak > 0 ? '坚持就是胜利,继续保持!' : '今天还没有学习记录,去学一个新词吧'}}</text>
+  </view>
+
+  <!-- ===== 统计卡 ×3 ===== -->
+  <view class="pf-stats">
+    <view class="card pf-stat">
+      <view class="pf-num grad">{{stats.dueToday}}</view>
+      <text class="pf-num-txt t-3">今日待复习</text>
+    </view>
+    <view class="card pf-stat">
+      <view class="pf-num">{{stats.learned}}</view>
+      <text class="pf-num-txt t-3">累计已学</text>
+    </view>
+    <view class="card pf-stat">
+      <view class="pf-num">{{stats.familiar}}</view>
+      <text class="pf-num-txt t-3">熟悉词</text>
+    </view>
+  </view>
+
+  <!-- ===== 近 14 天柱状 ===== -->
+  <view class="card pf-card">
+    <view class="pf-card-head">
+      <text class="pf-title t-1">近 14 天</text>
+      <view class="pf-legend">
+        <view class="pf-legend-item">
+          <view class="pf-dot pf-dot-new"></view>
+          <text class="pf-legend-txt t-3">新学</text>
+        </view>
+        <view class="pf-legend-item">
+          <view class="pf-dot pf-dot-rev"></view>
+          <text class="pf-legend-txt t-3">复习</text>
+        </view>
+      </view>
+    </view>
+    <stat-bar class="pf-sb" data="{{last14}}"></stat-bar>
+  </view>
+
+  <!-- ===== 设置 ===== -->
+  <view class="card pf-card">
+    <view class="pf-card-head">
+      <text class="pf-title t-1">设置</text>
+    </view>
+    <picker mode="selector" range="{{capOptions}}" value="{{capIndex}}" bindchange="onCapChange">
+      <view class="pf-row flex-between">
+        <text class="pf-label t-2">每日复习上限</text>
+        <view class="pf-val">
+          <text class="pf-val-txt t-1">{{capText}}</text>
+          <text class="pf-caret t-3">›</text>
+        </view>
+      </view>
+    </picker>
+    <view class="pf-divider"></view>
+    <view class="pf-row flex-between">
+      <text class="pf-label t-2">学习页默认展开联想</text>
+      <switch checked="{{settings.expandAssoc}}" color="#3B82F6" bindchange="onExpandChange" />
+    </view>
+  </view>
+
+  <!-- ===== 重置学习数据 ===== -->
+  <view class="pf-reset">
+    <view class="btn-danger pf-reset-btn" bindtap="onResetTap">重置学习数据</view>
+    <text class="pf-reset-hint t-3">将清空学习与复习进度,设置保留</text>
+  </view>
+
+  <!-- ===== 关于 ===== -->
+  <view class="card pf-about">
+    <view class="flex-between">
+      <text class="pf-about-name t-2">词根地图</text>
+      <text class="pf-about-ver t-3">v{{version}}</text>
+    </view>
+    <view class="pf-about-desc t-3">内置 {{counts.roots}} 词根 / {{counts.affixes}} 词缀 /
+      {{counts.words}} 单词 · 纯本地存储 · 无网络依赖</view>
+  </view>
+</view>

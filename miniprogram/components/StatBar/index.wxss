@@ -1,0 +1,55 @@
+/* StatBar — 近 14 天双色细柱(纯 view)。new 蓝 #3B82F6 / reviews 绿 #10B981。 */
+.sb {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+}
+
+.sb-col {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sb-plot {
+  position: relative;
+  width: 100%;
+  height: 160rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sb-bar {
+  width: 12rpx;
+  margin: 0 2rpx;
+  border-radius: 6rpx 6rpx 0 0;
+}
+
+.sb-new { background: #3B82F6; }
+.sb-rev { background: #10B981; }
+
+/* 当日无活动:仅留底部小圆点作基线 */
+.sb-dot {
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 50%;
+  background: #E2E8F0;
+  margin-bottom: 3rpx;
+}
+
+.sb-x {
+  margin-top: 10rpx;
+  font-size: 16rpx;
+  line-height: 1;
+  color: #94A3B8;
+}
+
+.sb-x-today {
+  color: #3B82F6;
+  font-weight: 600;
+}

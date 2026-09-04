@@ -1,9 +1,204 @@
-/* 我的 stub — Task 13/14 填充 */
-.stub {
+/* 我的页 — Task 14: 统计 / 近14天 / 设置 / 重置 / 关于 */
+.pf-page {
+  box-sizing: border-box;
+  padding: 24rpx 24rpx calc(48rpx + env(safe-area-inset-bottom));
+}
+
+/* ===== 头部:连续打卡徽标 + 文案 ===== */
+.pf-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20rpx;
+}
+
+.pf-badge {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 26rpx;
+  border-radius: 999rpx;
+  background: #F1F5F9;
+}
+
+.pf-badge-on {
+  background: linear-gradient(135deg, #3B82F6, #4F46E5);
+  box-shadow: 0 4rpx 12rpx rgba(59, 130, 246, 0.28);
+}
+
+.pf-badge-fire {
+  font-size: 32rpx;
+  line-height: 1;
+  margin-right: 10rpx;
+}
+
+.pf-badge-txt {
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #334155;
+}
+
+.pf-badge-on .pf-badge-txt {
+  color: #FFFFFF;
+}
+
+.pf-headline {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+}
+
+/* ===== 统计三卡 ===== */
+.pf-stats {
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.pf-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28rpx 8rpx 22rpx;
+  box-sizing: border-box;
+}
+
+.pf-stat + .pf-stat {
+  margin-left: 16rpx;
+}
+
+.pf-num {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60vh;
-  color: #94A3B8;
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 50%;
+  background: #F1F5F9;
+  color: #0F172A;
+  font-size: 40rpx;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pf-num.grad {
+  background: linear-gradient(135deg, #3B82F6, #4F46E5);
+  color: #FFFFFF;
+  box-shadow: 0 4rpx 12rpx rgba(59, 130, 246, 0.28);
+}
+
+.pf-num-txt {
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  text-align: center;
+}
+
+/* ===== 卡片通用 & 标题行 ===== */
+.pf-card {
+  margin-bottom: 20rpx;
+}
+
+.pf-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.pf-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.pf-legend {
+  display: flex;
+  align-items: center;
+}
+
+.pf-legend-item {
+  display: flex;
+  align-items: center;
+  margin-left: 16rpx;
+}
+
+.pf-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 4rpx;
+  margin-right: 6rpx;
+}
+
+.pf-dot-new { background: #3B82F6; }
+.pf-dot-rev { background: #10B981; }
+
+.pf-legend-txt {
+  font-size: 20rpx;
+}
+
+/* StatBar host */
+.pf-sb {
+  display: block;
+  width: 100%;
+}
+
+/* ===== 设置行 ===== */
+.pf-row {
+  min-height: 88rpx;
+}
+
+.pf-label {
   font-size: 28rpx;
+}
+
+.pf-val {
+  display: flex;
+  align-items: center;
+}
+
+.pf-val-txt {
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-right: 8rpx;
+}
+
+.pf-caret {
+  font-size: 32rpx;
+  line-height: 1;
+}
+
+.pf-divider {
+  height: 1rpx;
+  background: #F1F5F9;
+  margin: 8rpx 0;
+}
+
+/* ===== 重置 ===== */
+.pf-reset {
+  margin: 4rpx 0 24rpx;
+}
+
+.pf-reset-btn {
+  width: 100%;
+}
+
+.pf-reset-hint {
+  display: block;
+  text-align: center;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+}
+
+/* ===== 关于 ===== */
+.pf-about-name {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.pf-about-ver {
+  font-size: 24rpx;
+}
+
+.pf-about-desc {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  line-height: 1.7;
 }
