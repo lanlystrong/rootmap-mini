@@ -8,7 +8,7 @@
     <view class="rd-zh t-2">{{root.zh}}</view>
     <view class="rd-meaning t-3">{{root.meaning}}</view>
     <view class="rd-story" wx:if="{{root.story}}">
-      <view class="flex-between rd-story-head" bindtap="toggleStory">
+      <view class="flex-between rd-story-head" bindtap="toggleStory" hover-class="hover-dim">
         <text class="t-2 rd-story-label">词源故事</text>
         <text class="t-3 rd-story-arrow">{{expandedStory ? '收起 ▴' : '展开 ▾'}}</text>
       </view>
@@ -28,7 +28,7 @@
   <!-- 家族单词列表 -->
   <view class="rd-family-title t-2">本族单词 {{rows.length}} 个</view>
   <view class="card rd-row"
-    wx:for="{{rows}}" wx:key="id" data-id="{{item.id}}" bindtap="toggleRow">
+    wx:for="{{rows}}" wx:key="id" data-id="{{item.id}}" bindtap="toggleRow" hover-class="hover-dim">
     <view class="flex-between rd-wline">
       <view class="flex-row rd-wleft">
         <text class="rd-check c-green" wx:if="{{item.learned}}">✓</text>
@@ -43,13 +43,13 @@
         <text class="rd-szh t-2">{{s.zh}}</text>
         <text class="rd-sen t-3" wx:if="{{si === 0 && s.en}}">{{s.en}}</text>
       </view>
-      <view class="rd-golearn" catchtap="goWord" data-id="{{item.id}}">去学习 ›</view>
+      <view class="rd-golearn" catchtap="goWord" data-id="{{item.id}}" hover-class="hover-dim">去学习 ›</view>
     </view>
   </view>
 
   <!-- 底部固定 CTA -->
   <view class="rd-footer">
-    <button class="btn-primary grad rd-cta" bindtap="startStudy">{{prog.learned >= prog.total ? '再次巩固本族' : '开始学习本族'}}</button>
+    <button class="btn-primary grad rd-cta" bindtap="startStudy" hover-class="hover-dim">{{prog.learned >= prog.total ? '再次巩固本族' : '开始学习本族'}}</button>
   </view>
 </view>
 

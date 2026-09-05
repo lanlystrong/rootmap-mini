@@ -1,0 +1,66 @@
+<view class="hm-page">
+  <!-- ===== 顶部 hero:问候 + 连续打卡 ===== -->
+  <view class="hm-hero grad">
+    <view class="hm-hero-top">
+      <text class="hm-hero-title">你好,词根学习者</text>
+      <view class="hm-streak">
+        <text class="hm-streak-fire">🔥</text>
+        <text class="hm-streak-txt">{{streakText}}</text>
+      </view>
+    </view>
+    <text class="hm-hero-sub">词根联想 · 成组记单词</text>
+  </view>
+
+  <!-- ===== 今日待复习 ===== -->
+  <view class="card hm-card hm-due">
+    <view class="hm-due-left">
+      <text class="hm-label t-3">今日待复习</text>
+      <view class="hm-due-num">
+        <text class="hm-due-val t-1">{{dueToday}}</text>
+        <text class="hm-due-unit t-3">词</text>
+      </view>
+    </view>
+    <view class="btn-primary hm-due-btn" hover-class="hover-dim" bindtap="goDue">
+      {{dueToday > 0 ? '去复习' : '去学习'}}
+    </view>
+  </view>
+
+  <!-- ===== 继续学习 ===== -->
+  <view class="card hm-card hm-cont" hover-class="hover-dim" bindtap="continueStudy">
+    <view class="hm-cont-main">
+      <text class="hm-label t-3">继续学习</text>
+      <text class="hm-cont-text t-1">{{continueText}}</text>
+    </view>
+    <view class="hm-cont-btn">
+      <text class="hm-cont-btn-txt">{{continueBtn}}</text>
+      <text class="hm-cont-arrow t-3">›</text>
+    </view>
+  </view>
+
+  <!-- ===== 总体进度环 ===== -->
+  <view class="card hm-card hm-prog">
+    <progress-ring class="hm-ring" learned="{{learned}}" total="{{total}}" size="168"></progress-ring>
+    <view class="hm-prog-side">
+      <text class="hm-label t-3">总体进度</text>
+      <view class="hm-prog-num">
+        <text class="hm-prog-val t-1">{{learned}}</text>
+        <text class="hm-prog-unit t-3">/ {{total}} 已学</text>
+      </view>
+      <text class="hm-prog-sub t-3">熟悉 {{familiar}} 词 · 连续 {{streak}} 天</text>
+    </view>
+  </view>
+
+  <!-- ===== 快捷入口 ===== -->
+  <view class="hm-quick">
+    <view class="card hm-qitem" hover-class="hover-dim" bindtap="goLearn">
+      <text class="hm-qicon">🗺️</text>
+      <text class="hm-qtxt t-1">词根地图</text>
+      <text class="hm-qsub t-3">按词根浏览学习</text>
+    </view>
+    <view class="card hm-qitem" hover-class="hover-dim" bindtap="goReview">
+      <text class="hm-qicon">⏰</text>
+      <text class="hm-qtxt t-1">复习</text>
+      <text class="hm-qsub t-3">到期单词巩固</text>
+    </view>
+  </view>
+</view>

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "词根地图",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "root-card": "/components/RootCard/index",
     "affix-row": "/components/AffixRow/index",

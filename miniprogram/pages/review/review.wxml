@@ -5,7 +5,7 @@
       <view class="rv-num grad">{{dueTotal}}</view>
       <text class="rv-sum-txt t-2">今日待复习</text>
       <text class="rv-cap t-3" wx:if="{{cap > 0}}">(上限 {{cap}})</text>
-      <view class="rv-start btn-primary" bindtap="start">开始复习</view>
+      <view class="rv-start btn-primary" bindtap="start" hover-class="hover-dim">开始复习</view>
     </view>
     <view class="rv-guide t-3">翻面回想释义,再按「忘了 / 模糊 / 记得」自评</view>
   </view>
@@ -13,7 +13,7 @@
   <!-- ===== idle & 今天无到期 ===== -->
   <view wx:elif="{{phase === 'idle'}}" class="rv-idle">
     <empty-state class="es" text="今天没有到期的词,去词根地图学点新的"></empty-state>
-    <view class="rv-go btn-primary" bindtap="goHome">去学习</view>
+    <view class="rv-go btn-primary" bindtap="goHome" hover-class="hover-dim">去学习</view>
   </view>
 
   <!-- ===== reviewing ===== -->
@@ -24,9 +24,9 @@
     <!-- 未翻面:提示点击卡片;已翻面:三档自评 -->
     <view class="rv-hint t-3" wx:if="{{!shown}}">点击卡片翻面</view>
     <view class="rv-actions" wx:else>
-      <view class="rv-act rv-forgot" data-q="1" bindtap="grade">忘了</view>
-      <view class="rv-act rv-hazy" data-q="3" bindtap="grade">模糊</view>
-      <view class="rv-act rv-good" data-q="5" bindtap="grade">记得</view>
+      <view class="rv-act rv-forgot" data-q="1" bindtap="grade" hover-class="hover-dim">忘了</view>
+      <view class="rv-act rv-hazy" data-q="3" bindtap="grade" hover-class="hover-dim">模糊</view>
+      <view class="rv-act rv-good" data-q="5" bindtap="grade" hover-class="hover-dim">记得</view>
     </view>
   </view>
 
@@ -35,7 +35,7 @@
     <view class="card rv-summary">
       <view class="rv-ico c-green">✓</view>
       <text class="rv-done-txt t-2">本次复习 {{done.total}} 张,还剩 {{done.dueLeft}} 张待复习</text>
-      <view class="rv-finish btn-primary" bindtap="finish">完成</view>
+      <view class="rv-finish btn-primary" bindtap="finish" hover-class="hover-dim">完成</view>
     </view>
   </view>
 </view>

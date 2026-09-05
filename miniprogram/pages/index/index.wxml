@@ -3,22 +3,22 @@
   <view class="search-wrap">
     <view class="search-box">
       <input class="search-input" placeholder="搜索词根或单词…" placeholder-class="search-ph"
-        value="{{kw}}" bindinput="onSearchInput" confirm-type="search" />
-      <text class="search-clear" wx:if="{{kw}}" catchtap="clearSearch">✕</text>
+        value="{{kw}}" bindinput="onSearchInput" bindconfirm="onSearchConfirm" confirm-type="search" />
+      <text class="search-clear" wx:if="{{kw}}" catchtap="clearSearch" hover-class="hover-dim">✕</text>
     </view>
   </view>
 
   <!-- 模式切换:词根 | 前后缀 -->
   <view class="mode-bar">
-    <view class="mode-item {{mode === 'root' ? 'mode-on' : ''}}" data-mode="root" bindtap="switchMode">词根</view>
-    <view class="mode-item {{mode === 'affix' ? 'mode-on' : ''}}" data-mode="affix" bindtap="switchMode">前后缀</view>
+    <view class="mode-item {{mode === 'root' ? 'mode-on' : ''}}" data-mode="root" bindtap="switchMode" hover-class="hover-dim">词根</view>
+    <view class="mode-item {{mode === 'affix' ? 'mode-on' : ''}}" data-mode="affix" bindtap="switchMode" hover-class="hover-dim">前后缀</view>
   </view>
 
   <!-- 分支一:实时搜索命中视图 -->
   <block wx:if="{{searching}}">
     <view class="hit-sec" wx:if="{{rootHits.length}}">
       <view class="hit-title t-3">词根</view>
-      <view class="card hit-item" wx:for="{{rootHits}}" wx:key="id" data-id="{{item.id}}" bindtap="goRoot">
+      <view class="card hit-item" wx:for="{{rootHits}}" wx:key="id" data-id="{{item.id}}" bindtap="goRoot" hover-class="hover-dim">
         <view class="flex-between">
           <text class="hit-name t-1">{{item.root}}</text>
           <text class="hit-zh t-3">{{item.zh}}</text>
@@ -30,7 +30,7 @@
     </view>
     <view class="hit-sec" wx:if="{{wordHits.length}}">
       <view class="hit-title t-3">单词</view>
-      <view class="card hit-item" wx:for="{{wordHits}}" wx:key="id" data-id="{{item.id}}" bindtap="goWord">
+      <view class="card hit-item" wx:for="{{wordHits}}" wx:key="id" data-id="{{item.id}}" bindtap="goWord" hover-class="hover-dim">
         <view class="flex-between">
           <text class="hit-name t-1">{{item.word}}</text>
           <text class="hit-phon t-3">{{item.phonetic}}</text>
@@ -40,21 +40,57 @@
     <empty-state wx:if="{{!rootHits.length && !wordHits.length}}" class="es" text="没有找到匹配的词根或单词"></empty-state>
   </block>
 
-  <!-- 分支二:词根 2 列网格 -->
+  <!-- 分支二:词根 分组 + 折叠 + 进度筛选 -->
   <block wx:elif="{{mode === 'root'}}">
-    <view class="grid" wx:if="{{roots.length}}">
-      <root-card wx:for="{{roots}}" wx:key="id" class="grid-cell" root="{{item}}"
-        data-id="{{item.id}}" bind:select="goRoot"></root-card>
+    <!-- 进度筛选 chips -->
+    <view class="filter-bar">
+      <view class="filter-chip {{filter === 'all' ? 'filter-on' : ''}}" data-f="all" bindtap="setFilter" hover-class="hover-dim">全部</view>
+      <view class="filter-chip {{filter === 'new' ? 'filter-on' : ''}}" data-f="new" bindtap="setFilter" hover-class="hover-dim">未学</view>
+      <view class="filter-chip {{filter === 'learning' ? 'filter-on' : ''}}" data-f="learning" bindtap="setFilter" hover-class="hover-dim">学习中</view>
+      <view class="filter-chip {{filter === 'done' ? 'filter-on' : ''}}" data-f="done" bindtap="setFilter" hover-class="hover-dim">已掌握</view>
     </view>
-    <empty-state wx:else class="es" text="暂无词根"></empty-state>
+
+    <view class="expand-row" wx:if="{{rootGroups.length}}">
+      <text class="expand-toggle t-3" bindtap="toggleExpandAll" hover-class="hover-dim">{{expanded ? '收起全部 ▴' : '展开全部 ▾'}}</text>
+    </view>
+
+    <view class="group" wx:for="{{rootGroups}}" wx:key="key" wx:for-item="g">
+      <view class="group-head" bindtap="toggleRootGroup" data-key="{{g.key}}" hover-class="hover-dim">
+        <text class="group-label t-1">{{g.label}}</text>
+        <text class="group-count t-3">{{g.items.length}}</text>
+        <text class="group-progress t-3">{{g.learned}}/{{g.total}}</text>
+        <text class="group-chevron t-3">{{g.collapsed ? '▾' : '▴'}}</text>
+      </view>
+      <view class="grid" wx:if="{{!g.collapsed}}">
+        <root-card wx:for="{{g.items}}" wx:key="id" class="grid-cell" root="{{item}}"
+          data-id="{{item.id}}" bind:select="goRoot"></root-card>
+      </view>
+    </view>
+    <empty-state wx:if="{{!rootGroups.length}}" class="es" text="没有符合条件的词根"></empty-state>
   </block>
 
-  <!-- 分支三:前后缀列表 -->
+  <!-- 分支三:前后缀 分组 + 折叠 -->
   <block wx:else>
-    <view class="affix-list" wx:if="{{affixes.length}}">
-      <affix-row wx:for="{{affixes}}" wx:key="id" class="affix-cell" affix="{{item}}"
-        words="{{item.words}}" bind:wordtap="onAffixWordTap"></affix-row>
+    <view class="expand-row" wx:if="{{affixSections.length}}">
+      <text class="expand-toggle t-3" bindtap="toggleExpandAll" hover-class="hover-dim">{{expanded ? '收起全部 ▴' : '展开全部 ▾'}}</text>
     </view>
-    <empty-state wx:else class="es" text="暂无词缀"></empty-state>
+
+    <view class="affix-sec" wx:for="{{affixSections}}" wx:key="type" wx:for-item="sec">
+      <view class="affix-sec-head">
+        <text class="affix-sec-title t-1">{{sec.label}}</text>
+        <text class="affix-sec-count t-3">{{sec.groups.length}} 组</text>
+      </view>
+      <view class="affix-group" wx:for="{{sec.groups}}" wx:key="key" wx:for-item="g">
+        <view class="group-head" bindtap="toggleAffixGroup" data-key="{{g.key}}" hover-class="hover-dim">
+          <text class="group-label t-1">{{g.label}}</text>
+          <text class="group-count t-3">{{g.items.length}}</text>
+          <text class="group-chevron t-3">{{g.collapsed ? '▾' : '▴'}}</text>
+        </view>
+        <view class="affix-list" wx:if="{{!g.collapsed}}">
+          <affix-row wx:for="{{g.items}}" wx:key="id" class="affix-cell" affix="{{item}}"
+            words="{{item.words}}" bind:wordtap="onAffixWordTap"></affix-row>
+        </view>
+      </view>
+    </view>
   </block>
 </view>

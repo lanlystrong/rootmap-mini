@@ -1,4 +1,4 @@
-<view class="rc" wx:if="{{word}}" bindtap="onTap">
+<view class="rc" wx:if="{{word}}" bindtap="onTap" hover-class="hover-dim">
   <!-- 正面:仅词 + 音标(复习中防提示,绝不显示释义/构词/例句) -->
   <block wx:if="{{!shown}}">
     <view class="rc-main">

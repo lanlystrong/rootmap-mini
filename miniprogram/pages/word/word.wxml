@@ -73,8 +73,8 @@
 
   <!-- 5. 底部固定操作条(给滚动内容留 padding) -->
   <view class="w-actions">
-    <view class="w-act {{isFirst ? 'act-off' : ''}} btn-ghost" bindtap="lookBack">再看看</view>
-    <view class="w-act btn-primary" bindtap="onMainAction">{{inPool ? '完成 · 返回' : '记住了'}}</view>
+    <view class="w-act {{isFirst ? 'act-off' : ''}} btn-ghost" bindtap="lookBack" hover-class="hover-dim">再看看</view>
+    <view class="w-act btn-primary" bindtap="onMainAction" hover-class="hover-dim">{{inPool ? '完成 · 返回' : '记住了'}}</view>
   </view>
 
   <!-- 6. 前后缀半屏弹层 -->

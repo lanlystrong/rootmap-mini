@@ -1,4 +1,4 @@
-<view class="card root-card" wx:if="{{root}}" catchtap="onCardTap">
+<view class="card root-card" wx:if="{{root}}" catchtap="onCardTap" hover-class="hover-dim">
   <view class="flex-between rc-head">
     <text class="rc-root">{{root.root}}</text>
     <progress-ring learned="{{root.learned}}" total="{{root.total}}" size="{{64}}"></progress-ring>

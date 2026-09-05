@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/index/index",
     "pages/root-detail/root-detail",
     "pages/word/word",
@@ -16,11 +17,33 @@
     "color": "#64748B", "selectedColor": "#3B82F6",
     "backgroundColor": "#FFFFFF", "borderStyle": "white",
     "list": [
-      { "pagePath": "pages/index/index", "text": "学习" },
-      { "pagePath": "pages/review/review", "text": "复习" },
-      { "pagePath": "pages/profile/profile", "text": "我的" }
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "assets/tab-home.png",
+        "selectedIconPath": "assets/tab-home-on.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "学习",
+        "iconPath": "assets/tab-learn.png",
+        "selectedIconPath": "assets/tab-learn-on.png"
+      },
+      {
+        "pagePath": "pages/review/review",
+        "text": "复习",
+        "iconPath": "assets/tab-review.png",
+        "selectedIconPath": "assets/tab-review-on.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tab-profile.png",
+        "selectedIconPath": "assets/tab-profile-on.png"
+      }
     ]
   },
   "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"
 }

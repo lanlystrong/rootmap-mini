@@ -45,25 +45,22 @@ function validateEvents(events, wordSet) {
 
 function eventsRouter(db, content) {
   const r = express.Router();
-  const insert = db.prepare('INSERT INTO events(user_id,type,word_id,q,at) VALUES(?,?,?,?,?)');
-  r.post('/', (req, res) => {
+  r.post('/', async (req, res) => {
     const raw = (req.body && Array.isArray(req.body.events)) ? req.body.events : null;
     if (!raw) return res.status(400).json({ error: { code: 'bad_request', message: 'body 需 {events:[…]}' } });
     let events = raw; let truncated = false;
     if (events.length > MAX_BATCH) { events = events.slice(0, MAX_BATCH); truncated = true; }
     const v = validateEvents(events, content.wordSet);
     if (v.error) return res.status(400).json({ error: { code: 'bad_request', message: v.error } });
-    let accepted = 0;
-    db.exec('BEGIN');
-    try {
-      for (const it of v.items) {
-        if (it.ignore) continue;
-        insert.run(req.user.id, it.row.type, it.row.word_id, it.row.q, it.row.at);
-        accepted++;
-      }
-      db.exec('COMMIT');
-    } catch (e) { db.exec('ROLLBACK'); throw e; }
-    const out = { accepted, ignored: v.items.length - accepted };
+    const rows = v.items.filter((it) => !it.ignore);
+    if (rows.length) {
+      // 单条多值 INSERT:单语句原子落库,替代 SQLite 的显式 BEGIN/COMMIT。
+      const sql = 'INSERT INTO events(user_id,type,word_id,q,at) VALUES ' + rows.map(() => '(?,?,?,?,?)').join(',');
+      const params = [];
+      rows.forEach((it) => params.push(req.user.id, it.row.type, it.row.word_id, it.row.q, it.row.at));
+      await db.run(sql, params);
+    }
+    const out = { accepted: rows.length, ignored: v.items.length - rows.length };
     if (truncated) out.truncated = true;
     res.json(out);
   });

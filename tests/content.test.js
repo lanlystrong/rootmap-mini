@@ -27,3 +27,21 @@ test('未知 id 返回空结果不抛错', () => {
   assert.equal(idx.byId('nope'), undefined);
   assert.equal(idx.searchWord('zzz').length, 0);
 });
+
+test('groupedRoots 按 group 聚类,组内保持原序', () => {
+  const g = idx.groupedRoots();
+  assert.equal(g.length, 1);
+  assert.equal(g[0].key, '看 · 光 · 声');
+  assert.deepStrictEqual(g[0].items.map(r => r.id), ['root-spect']);
+});
+
+test('affixSections 拆前缀/后缀两大区块并子分组', () => {
+  const secs = idx.affixSections();
+  assert.deepStrictEqual(secs.map(s => s.type), ['prefix', 'suffix']);
+  const pre = secs[0];
+  assert.deepStrictEqual(pre.groups.map(g => g.key), ['方向 · 位置', '时间 · 次序']);
+  assert.deepStrictEqual(pre.groups[0].items.map(a => a.id), ['affix-in', 'affix-pro']);
+  const suf = secs[1];
+  assert.deepStrictEqual(suf.groups.map(g => g.key), ['表「…者 / …物」']);
+  assert.deepStrictEqual(suf.groups[0].items.map(a => a.id), ['affix-ator']);
+});

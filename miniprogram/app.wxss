@@ -110,6 +110,11 @@ button::after {
   align-items: center;
 }
 
+/* ===== 按压反馈(所有可点元素统一 hover-class)===== */
+.hover-dim {
+  opacity: 0.7;
+}
+
 .flex-between {
   display: flex;
   flex-direction: row;

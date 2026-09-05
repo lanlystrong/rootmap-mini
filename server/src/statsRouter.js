@@ -15,11 +15,15 @@ function dISO(d) { return `${d.getFullYear()}-${padt(d.getMonth() + 1)}-${padt(d
 function statsRouter(db, content) {
   const r = express.Router();
 
-  r.get('/overview', (req, res) => {
-    const distinct = db.prepare("SELECT COUNT(DISTINCT word_id) n FROM events WHERE user_id=? AND type='study'").get(req.user.id);
-    const rows = db.prepare(
-      "SELECT type, q, COUNT(*) n FROM events WHERE user_id=? GROUP BY type, q"
-    ).all(req.user.id);
+  r.get('/overview', async (req, res) => {
+    const distinct = await db.get(
+      "SELECT COUNT(DISTINCT word_id) n FROM events WHERE user_id=? AND type='study'",
+      [req.user.id]
+    );
+    const rows = await db.all(
+      "SELECT type, q, COUNT(*) n FROM events WHERE user_id=? GROUP BY type, q",
+      [req.user.id]
+    );
     const gradeDist = { q1: 0, q3: 0, q5: 0 };
     let studyEvents = 0, reviewEvents = 0;
     for (const row of rows) {
@@ -29,16 +33,17 @@ function statsRouter(db, content) {
     res.json({ totalStudied: distinct.n, studyEvents, reviewEvents, gradeDist, lapses: gradeDist.q1, accuracy: acc(gradeDist) });
   });
 
-  r.get('/daily', (req, res) => {
+  r.get('/daily', async (req, res) => {
     const days = clampInt(req.query.days, 14, 1, 90, 'days');
     if (days.err) return res.status(400).json({ error: { code: 'bad_request', message: days.err } });
     const today = todayISO();
     const start = new Date(today); start.setDate(start.getDate() - (days - 1));
     const sISO = dISO(start);
-    const rows = db.prepare(
-      `SELECT substr(at,1,10) d, type, q, COUNT(*) n FROM events
-       WHERE user_id=? AND substr(at,1,10)>=? GROUP BY substr(at,1,10), type, q`
-    ).all(req.user.id, sISO);
+    const rows = await db.all(
+      `SELECT SUBSTR(at,1,10) d, type, q, COUNT(*) n FROM events
+       WHERE user_id=? AND SUBSTR(at,1,10)>=? GROUP BY SUBSTR(at,1,10), type, q`,
+      [req.user.id, sISO]
+    );
     const map = new Map();
     for (const row of rows) {
       let e = map.get(row.d);
@@ -55,7 +60,7 @@ function statsRouter(db, content) {
     res.json(out);
   });
 
-  r.get('/roots', (req, res) => {
+  r.get('/roots', async (req, res) => {
     const days = clampInt(req.query.days, 30, 1, 90, 'days');
     const limit = clampInt(req.query.limit, 15, 1, 30, 'limit');
     if (days.err) return res.status(400).json({ error: { code: 'bad_request', message: days.err } });
@@ -63,9 +68,10 @@ function statsRouter(db, content) {
     const today = todayISO();
     const start = new Date(today); start.setDate(start.getDate() - (days - 1));
     const sISO = dISO(start);
-    const rows = db.prepare(
-      `SELECT word_id, type, q FROM events WHERE user_id=? AND substr(at,1,10)>=?`
-    ).all(req.user.id, sISO);
+    const rows = await db.all(
+      `SELECT word_id, type, q FROM events WHERE user_id=? AND SUBSTR(at,1,10)>=?`,
+      [req.user.id, sISO]
+    );
     const agg = new Map();
     const rootById = new Map(content.roots.map((x) => [x.id, x]));
     for (const row of rows) {

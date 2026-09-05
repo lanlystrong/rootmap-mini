@@ -54,9 +54,21 @@ function createStore(storage) {
   return { getProgress, markStudied, applyReview, dueWords, reset, getSettings, saveSettings };
 }
 
+let warnedWriteFail = false; // 仅提示一次的存储写失败标记(模块级)
+
 function makeWxStore() {
   if (typeof wx === 'undefined') return null;
-  return createStore({ get: k => wx.getStorageSync(k), set: (k, v) => wx.setStorageSync(k, v) });
+  const set = (k, v) => {
+    try {
+      wx.setStorageSync(k, v);
+    } catch (e) {
+      if (!warnedWriteFail && wx.showToast) {
+        warnedWriteFail = true;
+        wx.showToast({ title: '保存失败，请检查存储空间', icon: 'none' });
+      }
+    }
+  };
+  return createStore({ get: k => wx.getStorageSync(k), set });
 }
 
 module.exports = { createStore, makeWxStore };

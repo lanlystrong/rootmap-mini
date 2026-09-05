@@ -17,22 +17,20 @@
 
 ## 环境要求
 
-- **Node.js ≥ 24**(本仓库在 v24.16.0 实测)。
-- SQLite 使用 **Node 内置 `node:sqlite`(`DatabaseSync`)**,无需安装驱动、无原生编译;
-  唯一第三方依赖是 `express`。若日后改用 `better-sqlite3`,只需替换 `server/src/db.js` 内部一行
-  require,表结构与接口不变。
+- **Node.js ≥ 22**(本仓库在 v24.16.0 实测)。
+- 数据库使用 **MySQL**,经 `mysql2/promise` 连接池访问;依赖为 `express` + `mysql2`。
 
 ## 安装与运行
 
 ```bash
-npm install          # 安装 express(唯一依赖)
+npm install          # 安装 express + mysql2(在 server/ 目录下执行)
 npm run server       # 启动,监听 http://127.0.0.1:3000
 ```
 
 启动成功会打印:
 
 ```
-[rootmap-server] listening on http://127.0.0.1:3000 (db: D:\...\server\data\rootmap.db)
+[rootmap-server] listening on http://127.0.0.1:3000 (mysql: 127.0.0.1:3306/rootmap)
 ```
 
 ### 环境变量覆盖
@@ -41,9 +39,13 @@ npm run server       # 启动,监听 http://127.0.0.1:3000
 | --- | --- | --- |
 | `PORT` | `3000` | 监听端口。示例:`PORT=4000 npm run server` |
 | `HOST` | `127.0.0.1` | 监听地址,默认仅回环(明文 HTTP 安全档位)。需对外暴露时设 `HOST=0.0.0.0` |
-| `DB_PATH` | `server/data/rootmap.db` | SQLite 文件路径(目录不存在会自动创建)。示例:`DB_PATH=server/data/dev.db npm run server` |
+| `MYSQL_HOST` | `127.0.0.1` | MySQL 地址 |
+| `MYSQL_PORT` | `3306` | MySQL 端口 |
+| `MYSQL_USER` | `root` | MySQL 用户名 |
+| `MYSQL_PASSWORD` | 空 | MySQL 密码 |
+| `MYSQL_DATABASE` | `rootmap` | 应用库,启动时自动建表 |
 
-> `server/data/` 目录整体已 gitignore,运行产生的 `*.db*` 文件不会入库。
+> 连接信息全部来自环境变量,仓库内不存任何账号密码。
 
 ## 测试
 
@@ -52,6 +54,9 @@ npm run test:server   # 服务端单测(node --test,13 个:auth/content/events/s
 npm test              # 全量(含小程序侧内容不变量/日期/SRS/store/stats/api/reporter,40 个)
 npm run validate      # 全量内容校验,期望:✓ 内容通过: 30 roots / 66 affixes / 201 words
 ```
+
+> `npm run test:server` 需先设 `MYSQL_*` 指向可用 MySQL,且该账号须具备 `CREATE DATABASE` /
+> `DROP DATABASE` 权限(测试为每个用例创建并删除独立数据库以隔离)。
 
 ## API 一览
 
@@ -104,20 +109,18 @@ npm run validate      # 全量内容校验,期望:✓ 内容通过: 30 roots / 6
 
 空数据返回全 0 / 空数组,不报错。入参越界/非整数 → `400 bad_request`。
 
-## 与小程序联调(三步)
+## 与小程序联调
 
-小程序侧已在本分支接通服务端:「我的页」(`pages/profile`)内置服务端 登录/注册/登出
-(`miniprogram/utils/api.js`)并展示**云端统计卡**(仅登录时拉取,不影响本地进度);学习/复习事件
-仍由 `miniprogram/utils/reporter.js` 按离线队列上报。本机联调姿势:
+> 说明:目录重组后小程序侧**暂未接入本服务端**(`miniprogram/utils/api.js` / `reporter.js`
+> 已移除,小程序回到纯本地模式)。服务端当前作为独立 API 运行,以下联调姿势供后续重新接入时复用:
 
-1. **本机起服务**:仓库根目录执行 `npm run server`(默认 `http://127.0.0.1:3000`)。
-2. **关闭域名校验**:微信开发者工具 → 右上角「详情」→「本地设置」→ **勾选「不校验合法域名、web-view(业务域名)、TLS 版本以及 HTTPS 证书」**。
-   因为本服务是 `http://127.0.0.1` 明文 HTTP,不勾选会被小程序拦截。
-3. **我的页注册 / 登录**:使用游客 appid(touristappid)即可编译运行;进「我的」页用
-   username + password 注册(注册即登录)或登录,之后即可看到云端统计卡并上报事件。
-
-> 本机无微信开发者工具环境,小程序侧 UI 联调(登录框、云端统计卡渲染、断网不阻塞学习等)
-> **待用户在 DevTools 内人工验证**,不在本仓库伪造结果。
+1. **本机起服务**:在 `server/` 目录执行 `npm run server`(默认 `http://127.0.0.1:3000`,
+   需先设 `MYSQL_*`)。
+2. **关闭域名校验**:微信开发者工具 → 右上角「详情」→「本地设置」→ **勾选「不校验合法域名、
+   web-view(业务域名)、TLS 版本以及 HTTPS 证书」**。因为本服务是 `http://127.0.0.1` 明文
+   HTTP,不勾选会被小程序拦截。
+3. **冒烟验证**:按下文「curl 示例」注册/登录/上报/查统计,并用 MySQL 客户端确认
+   `users` / `sessions` / `events` 三表数据落库。
 
 ## curl 示例
 

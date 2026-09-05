@@ -35,8 +35,8 @@ function errorsFor(data) {
       if (!c.diff || !c.diff.trim()) out.push(base + 'confusing 缺辨析 diff');
     });
   });
-  data.roots.forEach(r => { if (!r.id || !r.root || !r.zh || !r.variants || r.variants.length < 1) out.push(`root 缺字段: ${r.id || r.root}`); });
-  data.affixes.forEach(a => { if (!a.id || !a.text || (a.type !== 'prefix' && a.type !== 'suffix')) out.push(`affix 缺字段: ${a.id || a.text}`); });
+  data.roots.forEach(r => { if (!r.id || !r.root || !r.zh || !r.variants || r.variants.length < 1 || !r.group || !r.group.trim()) out.push(`root 缺字段: ${r.id || r.root}`); });
+  data.affixes.forEach(a => { if (!a.id || !a.text || (a.type !== 'prefix' && a.type !== 'suffix') || !a.group || !a.group.trim()) out.push(`affix 缺字段: ${a.id || a.text}`); });
   return out;
 }
 

@@ -1,0 +1,207 @@
+/* 首页仪表盘 — 问候 / 今日待复习 / 继续学习 / 总体进度 / 快捷入口 */
+.hm-page {
+  box-sizing: border-box;
+  padding: 24rpx 24rpx calc(48rpx + env(safe-area-inset-bottom));
+}
+
+/* ===== hero ===== */
+.hm-hero {
+  border-radius: 24rpx;
+  padding: 36rpx 32rpx 32rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(79, 70, 229, 0.28);
+}
+
+.hm-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hm-hero-title {
+  font-size: 38rpx;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+.hm-streak {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 22rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.hm-streak-fire {
+  font-size: 28rpx;
+  line-height: 1;
+  margin-right: 8rpx;
+}
+
+.hm-streak-txt {
+  font-size: 26rpx;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+
+.hm-hero-sub {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== 通用卡片 ===== */
+.hm-card {
+  margin-bottom: 20rpx;
+}
+
+.hm-label {
+  display: block;
+  font-size: 22rpx;
+  margin-bottom: 6rpx;
+}
+
+/* ===== 今日待复习 ===== */
+.hm-due {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hm-due-num {
+  display: flex;
+  align-items: baseline;
+}
+
+.hm-due-val {
+  font-size: 64rpx;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hm-due-unit {
+  font-size: 26rpx;
+  margin-left: 8rpx;
+}
+
+.hm-due-btn {
+  height: 80rpx;
+  padding: 0 44rpx;
+  font-size: 30rpx;
+}
+
+/* ===== 继续学习 ===== */
+.hm-cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hm-cont-main {
+  flex: 1;
+  margin-right: 20rpx;
+  overflow: hidden;
+}
+
+.hm-cont-text {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 1.4;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hm-cont-btn {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hm-cont-btn-txt {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #3B82F6;
+}
+
+.hm-cont-arrow {
+  font-size: 36rpx;
+  line-height: 1;
+  margin-left: 4rpx;
+}
+
+/* ===== 总体进度环 ===== */
+.hm-prog {
+  display: flex;
+  align-items: center;
+}
+
+.hm-ring {
+  flex-shrink: 0;
+  margin-right: 32rpx;
+}
+
+.hm-prog-side {
+  flex: 1;
+}
+
+.hm-prog-num {
+  display: flex;
+  align-items: baseline;
+  margin-top: 4rpx;
+}
+
+.hm-prog-val {
+  font-size: 48rpx;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hm-prog-unit {
+  font-size: 26rpx;
+  margin-left: 8rpx;
+}
+
+.hm-prog-sub {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+}
+
+/* ===== 快捷入口 ===== */
+.hm-quick {
+  display: flex;
+}
+
+.hm-qitem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+
+.hm-qitem + .hm-qitem {
+  margin-left: 16rpx;
+}
+
+.hm-qicon {
+  font-size: 44rpx;
+  line-height: 1;
+  margin-bottom: 14rpx;
+}
+
+.hm-qtxt {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.hm-qsub {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+}

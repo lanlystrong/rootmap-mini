@@ -1,5 +1,5 @@
 <view class="card assoc">
-  <view class="assoc-head flex-between" bindtap="onToggle">
+  <view class="assoc-head flex-between" bindtap="onToggle" hover-class="hover-dim">
     <view class="flex-row">
       <text class="assoc-title t-2">{{title}}</text>
       <text class="assoc-count t-3" wx:if="{{count}}">({{count}})</text>

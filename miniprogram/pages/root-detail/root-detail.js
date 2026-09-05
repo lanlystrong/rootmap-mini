@@ -71,4 +71,12 @@ Page({
       url: '/pages/word/word?rootId=' + this.data.root.id + '&wordId=' + this.data.firstUnlearned,
     });
   },
+
+  onShareAppMessage() {
+    const r = this.data.root;
+    return {
+      title: r ? `词根 ${r.root}(${r.zh}) 家族词` : '词根地图 · 词根构词学单词',
+      path: r ? `/pages/root-detail/root-detail?rootId=${r.id}` : '/pages/index/index',
+    };
+  },
 });

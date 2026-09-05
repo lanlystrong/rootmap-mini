@@ -1,1 +1,1 @@
-<text class="chip {{cls}}" bindtap="onTap">{{text}}</text>
+<text class="chip {{cls}}" bindtap="onTap" hover-class="hover-dim">{{text}}</text>

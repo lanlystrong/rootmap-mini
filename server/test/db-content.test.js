@@ -1,17 +1,24 @@
 const test = require('node:test');
 const assert = require('node:assert');
-const { createDb } = require('../src/db');
+const { withTestDb } = require('./helper');
 const { loadContent } = require('../src/content');
 
-test('createDb 建齐三表(users/sessions/events)且 events 可写读回', () => {
-  const db = createDb(':memory:');
-  db.prepare("INSERT INTO users(username,pass_hash,salt,created_at) VALUES(?,?,?,?)")
-    .run('u1', 'h', 's', '2026-09-04T00:00:00');
-  db.prepare("INSERT INTO events(user_id,type,word_id,q,at) VALUES(?,?,?,?,?)")
-    .run(1, 'review', 'spectator', 3, '2026-09-04T13:00:00');
-  const r = db.prepare("SELECT * FROM events").get();
-  assert.equal(r.user_id, 1); assert.equal(r.type, 'review');
-  assert.equal(r.q, 3); assert.equal(r.word_id, 'spectator');
+test('createDb 建齐三表(users/sessions/events)且 events 可写读回', async () => {
+  await withTestDb(async (db) => {
+    const info = await db.run(
+      "INSERT INTO users(username,pass_hash,salt,created_at) VALUES(?,?,?,?)",
+      ['u1', 'h', 's', '2026-09-04T00:00:00']
+    );
+    await db.run(
+      "INSERT INTO events(user_id,type,word_id,q,at) VALUES(?,?,?,?,?)",
+      [info.lastInsertRowid, 'review', 'spectator', 3, '2026-09-04T13:00:00']
+    );
+    const r = await db.get("SELECT * FROM events");
+    assert.equal(r.user_id, info.lastInsertRowid);
+    assert.equal(r.type, 'review');
+    assert.equal(r.q, 3);
+    assert.equal(r.word_id, 'spectator');
+  });
 });
 
 test('content 单源:计数 30/66/201、wordSet 含词、wordRootMap/rootWords 正确', () => {

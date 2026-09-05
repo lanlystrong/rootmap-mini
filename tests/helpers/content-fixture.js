@@ -1,12 +1,12 @@
 const roots = [
-  { id: 'root-spect', root: 'spect', variants: ['spect', 'spec'], zh: '看',
+  { id: 'root-spect', root: 'spect', variants: ['spect', 'spec'], zh: '看', group: '看 · 光 · 声',
     meaning: '看、观察', story: '源自拉丁语 specere「看」。' },
 ];
 const affixes = [
-  { id: 'affix-in',  text: 'in-',  type: 'prefix', zh: '向内/进入', note: '在 b/m/p 前变 im-。' },
-  { id: 'affix-re',  text: 're-',  type: 'prefix', zh: '再次/向后' },
-  { id: 'affix-pro', text: 'pro-', type: 'prefix', zh: '向前/支持' },
-  { id: 'affix-ator', text: '-ator', type: 'suffix', zh: '…者(名词化)' },
+  { id: 'affix-in',  text: 'in-',  type: 'prefix', group: '方向 · 位置', zh: '向内/进入', note: '在 b/m/p 前变 im-。' },
+  { id: 'affix-re',  text: 're-',  type: 'prefix', group: '时间 · 次序', zh: '再次/向后' },
+  { id: 'affix-pro', text: 'pro-', type: 'prefix', group: '方向 · 位置', zh: '向前/支持' },
+  { id: 'affix-ator', text: '-ator', type: 'suffix', group: '表「…者 / …物」', zh: '…者(名词化)' },
 ];
 const words = [
   { id: 'inspect', word: 'inspect', phonetic: '/ɪnˈspekt/',

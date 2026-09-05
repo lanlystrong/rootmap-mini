@@ -6,7 +6,7 @@
         <text class="affix-text {{affix.type === 'prefix' ? 'is-pre' : 'is-suf'}}">{{affix.text}}</text>
         <text class="affix-zh t-1">{{affix.zh}}</text>
       </view>
-      <text class="affix-x t-3" bindtap="onClose">✕</text>
+      <text class="affix-x t-3" bindtap="onClose" hover-class="hover-dim">✕</text>
     </view>
     <view class="affix-note t-3" wx:if="{{affix.note}}">{{affix.note}}</view>
     <view class="affix-wlabel t-3" wx:if="{{words.length}}">含该词缀的词</view>

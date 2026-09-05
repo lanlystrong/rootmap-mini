@@ -123,3 +123,114 @@
   display: block;
   width: 100%;
 }
+
+/* ===== 进度筛选 chips ===== */
+.filter-bar {
+  display: flex;
+  margin-bottom: 16rpx;
+}
+
+.filter-chip {
+  flex: 1;
+  text-align: center;
+  height: 64rpx;
+  line-height: 64rpx;
+  background: #FFFFFF;
+  color: #64748B;
+  font-size: 26rpx;
+  border-radius: 999rpx;
+  box-shadow: 0 2rpx 12rpx rgba(15, 23, 42, 0.05);
+  margin-right: 16rpx;
+}
+
+.filter-chip:last-child {
+  margin-right: 0;
+}
+
+.filter-chip.filter-on {
+  background: linear-gradient(135deg, #3B82F6, #4F46E5);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* ===== 展开/收起全部 ===== */
+.expand-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12rpx;
+}
+
+.expand-toggle {
+  font-size: 24rpx;
+  padding: 4rpx 0;
+}
+
+/* ===== 分组区块 ===== */
+.group {
+  margin-bottom: 12rpx;
+}
+
+.group-head {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(15, 23, 42, 0.05);
+}
+
+.group-label {
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.group-count {
+  font-size: 24rpx;
+  margin-left: 16rpx;
+}
+
+.group-progress {
+  font-size: 24rpx;
+  color: #3B82F6;
+  margin-left: 16rpx;
+}
+
+.group-chevron {
+  font-size: 24rpx;
+  margin-left: 12rpx;
+}
+
+.group .grid {
+  margin-top: 16rpx;
+}
+
+/* ===== 前后缀区块 ===== */
+.affix-sec {
+  margin-bottom: 24rpx;
+}
+
+.affix-sec-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+  padding: 0 4rpx;
+}
+
+.affix-sec-title {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.affix-sec-count {
+  font-size: 24rpx;
+}
+
+.affix-group {
+  margin-bottom: 12rpx;
+}
+
+.affix-list {
+  margin-top: 16rpx;
+}

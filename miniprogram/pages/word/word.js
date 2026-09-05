@@ -1,7 +1,6 @@
 const { getContent } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { todayISO } = require('../../utils/date');
-const reporter = require('../../utils/reporter');
 
 const GROUP_KEYS = ['family', 'deriv', 'syn', 'ant', 'confuse', 'story'];
 
@@ -133,7 +132,8 @@ Page({
     const cards = store.getProgress().cards;
     if (!Object.prototype.hasOwnProperty.call(cards, word.id)) {
       store.markStudied(word.id, todayISO());
-      reporter.recordStudy(word.id); reporter.flush();
+      if (this._rootId) store.saveSettings({ lastRootId: this._rootId }); // 供首页「继续学习」定位上次学到的词根
+      wx.vibrateShort && wx.vibrateShort({ type: 'light', fail: () => {} });
     }
     this.next();
   },
@@ -168,7 +168,20 @@ Page({
   goWord(e) {
     const id = e.currentTarget.dataset.id;
     if (!id) return;
-    wx.navigateTo({ url: '/pages/word/word?wordId=' + id });
+    const url = '/pages/word/word?wordId=' + id;
+    // 已在词页时用 redirectTo 替换,避免点联想词无限 navigateTo 压栈(10 层上限崩溃)。
+    const pages = getCurrentPages();
+    const cur = pages[pages.length - 1];
+    if (cur && cur.route === 'pages/word/word') wx.redirectTo({ url });
+    else wx.navigateTo({ url });
+  },
+
+  onShareAppMessage() {
+    const w = this.data.w;
+    return {
+      title: w ? `词根联想学「${w.word}」` : '词根地图 · 词根构词学单词',
+      path: w ? `/pages/word/word?wordId=${w.id}` : '/pages/index/index',
+    };
   },
 
   // BreakdownBar tapbreak:root → 词根详情;prefix/suffix → 弹词缀层
