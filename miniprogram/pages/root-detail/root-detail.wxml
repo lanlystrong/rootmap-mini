@@ -1,3 +1,4 @@
+<navbar title="{{navTitle}}" />
 <view class="rd-page" wx:if="{{root}}">
   <!-- 头部:字根 + 词源故事 -->
   <view class="card rd-hero">

@@ -1,3 +1,4 @@
+<navbar title="{{navTitle}}" />
 <view class="w-page" wx:if="{{w && view}}">
   <!-- 1. 词头条:大字 + 音标 + tags + 已在词库角标 + 可交互拆解 -->
   <word-study-card word="{{w}}" inPool="{{inPool}}" bind:tapbreak="onBreak"></word-study-card>

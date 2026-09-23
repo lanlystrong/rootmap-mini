@@ -56,10 +56,43 @@ function buildIndex({ roots, affixes, words }) {
   };
 }
 
+// ===== 数据只来源于后端接口 =====
+// 与早期版本不同:这里不写 wx.storage,也不打包内置 data/index 作为兜底。
+// 内容仅在运行期内存缓存一次(会话复用,避免重复请求);离线/后端未就绪时
+// getContent() 返回 null,页面应展示空/加载态,不再有任何本地数据来源。
 let cached = null;
+let inflight = null; // 进行中的加载 Promise,去重并发调用
+
+// 同步读取当前生效的内容索引;冷启动、后端未就绪或离线时为 null。
 function getContent() {
-  if (!cached) cached = buildIndex(require('../data/index'));
   return cached;
 }
 
-module.exports = { buildIndex, getContent };
+// 是否已就绪(内存已有从后端拉到的内容)。
+function isLoaded() {
+  return !!cached;
+}
+
+// 确保内容已就绪:内存已有则直接返回;否则并行拉 roots/affixes/words 填充内存。
+// 任意失败(离线/后端未就绪)清空 inflight 并返回 null —— 此时无本地兜底数据。
+// in-flight 去重:多次调用共享同一次网络请求,不会并发重复拉取。
+async function ensureContent() {
+  if (cached) return cached;
+  if (inflight) return inflight;
+  inflight = (async () => {
+    let api;
+    try { api = require('./api'); } catch (e) { inflight = null; return null; }
+    try {
+      const raw = await api.fetchContent();
+      if (!raw || !Array.isArray(raw.words) || !raw.words.length) { inflight = null; return null; }
+      cached = buildIndex(raw);
+      return cached;
+    } catch (e) {
+      inflight = null;
+      return null; // 离线:无本地数据
+    }
+  })();
+  return inflight;
+}
+
+module.exports = { buildIndex, getContent, ensureContent, isLoaded };

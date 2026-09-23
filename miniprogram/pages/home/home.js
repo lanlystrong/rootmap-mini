@@ -1,4 +1,4 @@
-const { getContent } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { computeStats } = require('../../utils/stats');
 const { todayISO } = require('../../utils/date');
@@ -20,11 +20,17 @@ Page({
 
   onLoad() {
     this._store = makeWxStore();
-    this._c = getContent();
   },
 
   // Tab 页每次进入都重算(刚从学单词页/复习页回来,进度可能已变)
   onShow() {
+    // 内容只来自后端:未就绪则异步预载,完成后重入本页刷新;离线/后端未就绪时
+    // 保持空态,不重试(ensureContent 失败返回 null,不会进入递归)。
+    if (!isLoaded()) {
+      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      return;
+    }
+    this._c = getContent();
     this.refresh();
   },
 

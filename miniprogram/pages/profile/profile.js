@@ -1,4 +1,4 @@
-const { getContent } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded } = require('../../utils/content');
 const api = require('../../utils/api');
 const { makeWxStore } = require('../../utils/store');
 const { computeStats } = require('../../utils/stats');
@@ -40,7 +40,6 @@ Page({
 
   onLoad() {
     this._store = makeWxStore();
-    this._c = getContent();
     const app = getApp();
     if (app && app.globalData && app.globalData.version) {
       this.setData({ version: app.globalData.version });
@@ -49,6 +48,11 @@ Page({
 
   // Tab 页每次进入都重算(可能刚从学单词页/复习页回来);登录态/云端统计也一并刷新
   onShow() {
+    if (!isLoaded()) {
+      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      return;
+    }
+    this._c = getContent();
     this.refresh();
     this.refreshCloudState();
     this.refreshProfile();

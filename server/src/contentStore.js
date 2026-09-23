@@ -40,7 +40,7 @@ async function readDataset(conn) {
   const [exRows] = await conn.query('SELECT * FROM word_examples ORDER BY word_id, seq');
 
   const roots = rootRows.map((r) => {
-    const o = { id: r.id, root: r.root, variants: json(r.variants, []), zh: r.zh, group: r.group_name };
+    const o = { id: r.id, root: r.root, variants: json(r.variants, []), zh: r.zh, group: r.group_name, wordCount: r.word_count || 0 };
     // 可选字段:交付集里「没有」与「空串」是两回事(validate-content 在若干处分得很清),
     // 所以这里按「库里是 NULL 就不带这个键」还原,而不是补成 '' 或 null。
     if (r.meaning !== null) o.meaning = r.meaning;

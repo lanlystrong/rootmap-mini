@@ -23,6 +23,7 @@ const CONTENT_DDL = [
     story TEXT NULL COMMENT '词源助记',
     origin ENUM('hand','dict','gen') NOT NULL DEFAULT 'gen',
     seq INT NOT NULL DEFAULT 0,
+    word_count INT NOT NULL DEFAULT 0 COMMENT '关联单词数(由 words.root_id 聚合回填)',
     KEY idx_roots_root (root),
     KEY idx_roots_seq (seq)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
@@ -360,6 +361,7 @@ async function migrateContentColumns(pool) {
   const want = [
     ['roots', 'origin', "ENUM('hand','dict','gen') NOT NULL DEFAULT 'gen'"],
     ['roots', 'seq', 'INT NOT NULL DEFAULT 0'],
+    ['roots', 'word_count', 'INT NOT NULL DEFAULT 0'],
     ['affixes', 'origin', "ENUM('hand','dict','gen') NOT NULL DEFAULT 'gen'"],
     ['affixes', 'seq', 'INT NOT NULL DEFAULT 0'],
     ['affixes', 'merge_into', 'VARCHAR(64) NULL'],

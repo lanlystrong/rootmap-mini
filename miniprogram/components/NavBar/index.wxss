@@ -1,0 +1,77 @@
+/* 统一导航栏样式 — 白底 / 标题居中 / 左返回键 */
+.nb-placeholder {
+  width: 100%;
+  /* 高度由内联 style 动态设置,预留导航栏总高 */
+}
+
+.nb-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border-bottom: 1rpx solid #F1F5F9;
+}
+
+/* 状态栏占位:透明,仅占出刘海/状态栏高度,避免内容顶到系统状态文字 */
+.nb-status {
+  width: 100%;
+}
+
+/* 内容区:相对定位成为返回键/标题的包含块,二者只落在状态栏下方 */
+.nb-inner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 返回键:内容区左侧绝对定位,不挤压居中标题,不侵入状态栏 */
+.nb-back {
+  position: absolute;
+  left: 12rpx;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72rpx;
+  z-index: 1;
+}
+
+.nb-back-arrow {
+  font-size: 48rpx;
+  line-height: 1;
+  font-weight: 600;
+  color: #0F172A;
+}
+
+.nb-back-hover {
+  opacity: 0.45;
+}
+
+/* 标题:左右留白避让返回键与右侧胶囊按钮,超出省略 */
+.nb-title-wrap {
+  position: absolute;
+  left: 120rpx;
+  right: 180rpx;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.nb-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}

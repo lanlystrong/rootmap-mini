@@ -1,4 +1,4 @@
-const { getContent } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { todayISO } = require('../../utils/date');
 const reporter = require('../../utils/reporter');
@@ -7,6 +7,7 @@ const GROUP_KEYS = ['family', 'deriv', 'syn', 'ant', 'confuse', 'story'];
 
 Page({
   data: {
+    navTitle: '词根地图',
     w: null,          // 当前词原始对象(供 WordStudyCard 直接消费)
     view: null,       // 当前词「展示副本」:联想等已拼好的就绪数组,避免 wxml 复杂计算
     familyIndex: 0,
@@ -21,6 +22,11 @@ Page({
   },
 
   onLoad(options) {
+    this._opts = options || {};
+    if (!isLoaded()) {
+      ensureContent().then(() => { if (isLoaded()) this.onLoad(this._opts); }).catch(() => {});
+      return;
+    }
     const o = options || {};
     const c = getContent();
     const word = o.wordId ? c.byId(o.wordId) : null;
@@ -74,6 +80,7 @@ Page({
     const cards = (store && store.getProgress().cards) || {};
     const familyTotal = family.length;
     const patch = {
+      navTitle: word.word,
       w: word,
       familyIndex: i,
       familyTotal,

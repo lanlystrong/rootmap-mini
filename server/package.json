@@ -21,7 +21,8 @@
     "migrate": "node -r esm src/migrate.js",
     "seed": "node src/seed.js",
     "content:import": "node scripts/content-import.js",
-    "content:export": "node scripts/content-export.js"
+    "content:export": "node scripts/content-export.js",
+    "backfill:rootcount": "node scripts/backfill-root-wordcount.js"
   },
   "keywords": [
     "english",

@@ -1,4 +1,4 @@
-const { getContent } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded } = require('../../utils/content');
 const { familyProgressOf } = require('../../utils/stats');
 const { makeWxStore } = require('../../utils/store');
 
@@ -23,6 +23,10 @@ Page({
   },
 
   onShow() {
+    if (!isLoaded()) {
+      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      return;
+    }
     this.refresh();
   },
 

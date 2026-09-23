@@ -8,10 +8,14 @@
     "pages/profile/profile"
   ],
   "window": {
+    "navigationStyle": "custom",
     "navigationBarTitleText": "词根地图",
     "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#F8FAFC"
+  },
+  "usingComponents": {
+    "navbar": "/components/NavBar/index"
   },
   "tabBar": {
     "color": "#64748B", "selectedColor": "#3B82F6",

@@ -1,0 +1,15 @@
+<!-- 占位条：预留导航栏总高，使下方内容不被固定栏遮挡 -->
+<view class="nb-placeholder" style="height: {{totalH}}px;"></view>
+
+<!-- 固定导航栏：白底 / 状态栏占位 + 内容区 -->
+<view class="nb-bar" style="height: {{totalH}}px;">
+  <view class="nb-status" style="height: {{statusBarH}}px;"></view>
+  <view class="nb-inner" style="height: {{navH}}px;">
+    <view wx:if="{{back}}" class="nb-back" hover-class="nb-back-hover" bindtap="onBack">
+      <text class="nb-back-arrow">‹</text>
+    </view>
+    <view class="nb-title-wrap">
+      <text class="nb-title">{{title}}</text>
+    </view>
+  </view>
+</view>

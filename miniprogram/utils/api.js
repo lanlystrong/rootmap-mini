@@ -56,4 +56,15 @@ const overview = () => request('GET', '/api/stats/overview', { auth: true });
 const daily = (days = 14) => request('GET', '/api/stats/daily?days=' + days, { auth: true });
 const roots = (days = 30, limit = 15) => request('GET', '/api/stats/roots?days=' + days + '&limit=' + limit, { auth: true });
 
-module.exports = { BASE, isAuthed, getSession, setSession, clearSession, wxLogin, logout, me, saveProfile, postEvents, overview, daily, roots };
+// ===== 内容下发(无需鉴权)=====
+// 内容元数据:含 checksum/version/counts,用于增量判断是否需要重新拉全量。
+const contentMeta = () => request('GET', '/api/content/meta').then((d) => (d && d.meta) || d);
+// 拉取全量内容(词根/词缀/单词),三者并行;返回 { roots, affixes, words }
+// 与服务端同源 data/index,结构完全一致,可直接喂给 content.buildIndex。
+const fetchContent = () => Promise.all([
+  request('GET', '/api/content/roots'),
+  request('GET', '/api/content/affixes'),
+  request('GET', '/api/content/words'),
+]).then(([roots, affixes, words]) => ({ roots, affixes, words }));
+
+module.exports = { BASE, isAuthed, getSession, setSession, clearSession, wxLogin, logout, me, saveProfile, postEvents, overview, daily, roots, contentMeta, fetchContent };

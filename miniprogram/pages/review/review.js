@@ -1,4 +1,4 @@
-const { getContent } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { todayISO } = require('../../utils/date');
 const reporter = require('../../utils/reporter');
@@ -19,11 +19,15 @@ Page({
 
   onLoad() {
     this._store = makeWxStore();
-    this._c = getContent();
   },
 
   // Tab 每次进入:idle 态都重算当天到期(可能学新词后第二天才到期)
   onShow() {
+    if (!isLoaded()) {
+      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      return;
+    }
+    this._c = getContent();
     if (this.data.phase === 'idle') this.loadDue();
   },
 

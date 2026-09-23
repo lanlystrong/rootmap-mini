@@ -1,9 +1,10 @@
-const { getContent } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded } = require('../../utils/content');
 const { familyProgressOf } = require('../../utils/stats');
 const { makeWxStore } = require('../../utils/store');
 
 Page({
   data: {
+    navTitle: '词根地图',
     root: null,
     prog: { total: 0, learned: 0, familiar: 0 },
     rows: [],
@@ -12,12 +13,21 @@ Page({
   },
 
   onLoad(options) {
+    this._opts = options || {};
     this._rootId = (options && options.rootId) || '';
+    if (!isLoaded()) {
+      ensureContent().then(() => { if (isLoaded()) this.onLoad(this._opts); }).catch(() => {});
+      return;
+    }
     this.render();
   },
 
   onShow() {
-    // 从 word 页学完返回时刷新进度
+    // 从 word 页学完返回时刷新进度;内容未就绪时先等后端,避免空索引崩。
+    if (!isLoaded()) {
+      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      return;
+    }
     if (this._rootId) this.render();
   },
 
@@ -26,7 +36,7 @@ Page({
     const c = getContent();
     const root = c.roots.find(r => r.id === rootId);
     if (!root) {
-      this.setData({ root: null, rows: [], prog: { total: 0, learned: 0, familiar: 0 } });
+      this.setData({ navTitle: '词根家族', root: null, rows: [], prog: { total: 0, learned: 0, familiar: 0 } });
       return;
     }
     const words = c.rootWords(rootId);
@@ -48,7 +58,7 @@ Page({
       ? (words.find(w => !Object.prototype.hasOwnProperty.call(cards, w.id)) || words[0]).id
       : '';
 
-    this.setData({ root, prog, rows, firstUnlearned, expandedStory: false });
+    this.setData({ navTitle: root.root, root, prog, rows, firstUnlearned, expandedStory: false });
   },
 
   toggleStory() {

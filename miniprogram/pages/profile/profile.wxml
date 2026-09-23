@@ -1,3 +1,4 @@
+<navbar title="我的" />
 <view class="pf-page">
   <!-- ===== 用户信息:头像 + 昵称(云端) ===== -->
   <view class="card pf-profile">
