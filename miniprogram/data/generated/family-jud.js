@@ -1,0 +1,8 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"judgement","word":"judgement","phonetic":"'dʒʌdʒmənt","senses":[{"pos":"n","zh":"判断，决定","en":null}],"breakdown":[{"part":"judge","type":"root","zh":"判断","refId":"root-jud"},{"part":"ment","type":"suffix","zh":"名词后缀(表行为/结果)","refId":"affix-ment"}],"tags":["cet4","高频"],"examples":[{"en":"He trusted in his judgement.","zh":"他相信他的判断。"},{"en":"All action is based on judgement.","zh":"一切行动均以判断为基础。"}],"assoc":{"story":"构词:judge(判断) + ment(名词后缀(表行为/结果)) → 判断"}},
+{"id":"judge","word":"judge","phonetic":"dʒʌdʒ","senses":[{"pos":"v","zh":"判断；审判","en":null},{"pos":"n","zh":"法官；裁判员","en":null}],"breakdown":[{"part":"judg","type":"root","zh":"判断","refId":"root-jud"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"You should never judge a person by their looks.","zh":"决不要以貌取人。"},{"en":"Judge us on the improvements we make in the economy.","zh":"请根据我们在经济方面取得的进步来评价我们。"}],"assoc":{"story":"构词:judg(判断) → 判断"}},
+{"id":"prejudice","word":"prejudice","phonetic":"'prɛdʒədɪs","senses":[{"pos":"n","zh":"偏见，成见","en":null},{"pos":"vt","zh":"使有偏见； 对…不利， 损害","en":null}],"breakdown":[{"part":"pre","type":"prefix","zh":"在…前/预先","refId":"affix-pre"},{"part":"judic","type":"root","zh":"判断","refId":"root-jud"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"Women still face prejudice in the workplace.","zh":"女性在职场中仍然面临歧视。"},{"en":"It takes a long time to overcome these kinds of prejudices.","zh":"战胜这些偏见需要假以时日。"}],"assoc":{"story":"构词:pre(在…前/预先) + judic(判断) → 偏见"}},
+];
+module.exports = words;

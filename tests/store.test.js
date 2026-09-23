@@ -59,3 +59,27 @@ test('设置默认值与保存', () => {
   s.saveSettings({ reviewCapPerDay: 20, expandAssoc: true });
   assert.deepStrictEqual(s.getSettings(), { reviewCapPerDay: 20, expandAssoc: true });
 });
+
+// pruneCards:交付集缩减后,已下架词的卡片必须被清掉。
+// 为什么值得一条测试:computeStats 的 learned = Object.values(cards).length,不做对照,
+// 孤儿卡片会让「已学 X/1350」的 X 超过总数(扩词时移除了 47 个既有词)。
+test('pruneCards 清掉已下架词的卡片,保留在架词与 log', () => {
+  const mem = memStorage();
+  const s = createStore(mem);
+  s.markStudied('inspect', '2026-09-04');
+  s.markStudied('divide', '2026-09-04');      // 本次扩词中被否决、已移出交付集的词
+  s.markStudied('spectator', '2026-09-05');
+  const n = s.pruneCards(new Set(['inspect', 'spectator']));
+  assert.equal(n, 1);
+  const p = s.getProgress();
+  assert.deepStrictEqual(Object.keys(p.cards).sort(), ['inspect', 'spectator']);
+  // log 是历史流水,删词不该篡改「那天新学了几个」
+  assert.equal(p.log['2026-09-04'].new, 2);
+  assert.equal(s.pruneCards(new Set(['inspect', 'spectator'])), 0, '再清一次应为 0(幂等)');
+  // 空集合 = 调用方出问题(交付集加载成空),宁可不清也不能清空全部进度
+  assert.equal(s.pruneCards([]), 0, '空集合必须 no-op');
+  assert.equal(s.pruneCards(undefined), 0, '无参必须 no-op');
+  assert.deepStrictEqual(Object.keys(s.getProgress().cards).sort(), ['inspect', 'spectator']);
+  // 数组入参同样可用
+  assert.equal(s.pruneCards(['inspect']), 1);
+});

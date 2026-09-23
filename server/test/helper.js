@@ -8,7 +8,7 @@ function envConfig() {
     host: process.env.MYSQL_HOST || '127.0.0.1',
     port: Number(process.env.MYSQL_PORT) || 3306,
     user: process.env.MYSQL_USER || 'root',
-    password: process.env.MYSQL_PASSWORD || '',
+    password: process.env.MYSQL_PASSWORD || '123456',
   };
 }
 
@@ -29,10 +29,13 @@ async function dropTestDb(cfg, name) {
   await admin.end();
 }
 
-async function startServer() {
+async function startServer({ code2session } = {}) {
   const cfg = envConfig();
   const name = await createTestDb(cfg);
-  const { app, db } = await createApp({ dbConfig: { ...cfg, database: name } });
+  const { app, db } = await createApp({
+    dbConfig: { ...cfg, database: name },
+    wx: code2session ? { code2session } : {},
+  });
   const srv = app.listen(0);
   await once(srv, 'listening');
   const base = `http://127.0.0.1:${srv.address().port}`;

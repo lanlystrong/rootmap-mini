@@ -1,0 +1,9 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"liberation","word":"liberation","phonetic":"lɪbə'reʃən","senses":[{"pos":"n","zh":"解放","en":null}],"breakdown":[{"part":"liberat","type":"root","zh":"自由","refId":"root-liber"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4","高频"],"examples":[{"en":"They pant after liberation.","zh":"他们渴望解放。"},{"en":"All his life was submerged in the liberation of the people.","zh":"他的一生全部献身于人民的解放事业。"}],"assoc":{"story":"构词:liberat(自由) + ion(名词后缀(表行为/状态/结果)) → 解放"}},
+{"id":"liberate","word":"liberate","phonetic":"'lɪbə'ret","senses":[{"pos":"v","zh":"解放；释放","en":null}],"breakdown":[{"part":"liberat","type":"root","zh":"自由","refId":"root-liber"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"A few days later, our armies liberated the city.","zh":"几天以后，我军解放了这座城市。"}],"assoc":{"story":"构词:liberat(自由) → 解放"}},
+{"id":"liberal","word":"liberal","phonetic":"'lɪbərəl","senses":[{"pos":"adj","zh":"心胸宽大的；慷慨的","en":null}],"breakdown":[{"part":"liber","type":"root","zh":"自由","refId":"root-liber"},{"part":"al","type":"suffix","zh":"…的(形容词)/名词","refId":"affix-al"}],"tags":["cet4"],"examples":[{"en":"a liberal supply of drinks","zh":"饮料的充足供应"}],"assoc":{"story":"构词:liber(自由) + al(…的(形容词)/名词) → 心胸宽大的"}},
+{"id":"liberty","word":"liberty","phonetic":"'lɪbɚti","senses":[{"pos":"n","zh":"自由；释放；许可","en":null}],"breakdown":[{"part":"liber","type":"root","zh":"自由","refId":"root-liber"},{"part":"ty","type":"suffix","zh":"名词后缀(表性质/状态)","refId":"affix-ty"}],"tags":["cet4"],"examples":[{"en":"the fight for liberty and equality","zh":"争取自由和平等的斗争"}],"assoc":{"story":"构词:liber(自由) + ty(名词后缀(表性质/状态)) → 自由"}},
+];
+module.exports = words;

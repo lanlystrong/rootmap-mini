@@ -45,13 +45,34 @@ function createStore(storage) {
       .map(([id]) => id);
   }
   function reset() { try { storage.set(KEY_P, JSON.stringify(defaults())); } catch (e) {} }
+
+  // 清掉交付集里已不存在的词的卡片(返回被清掉的条数)。
+  // 为什么需要:卡片按 wordId 索引,而 computeStats 的 learned 直接数卡片条数
+  // (`Object.values(cards).length`),没有对照交付集 —— 单词一旦从数据集里被移除,
+  // 它的卡片就成了孤儿,「已学」会超过「总数」。familyProgressOf 有 has() 守卫,
+  // computeStats 没有,所以必须在入口处清理,而不是指望各处都记得守卫。
+  // log 不清:它是「某天学了多少」的历史流水,删词不改变历史。
+  //
+  // 空集合视为「调用方出了问题」而不是「全都不在架」—— 交付集若因故加载成空,
+  // 空集若照常执行就会**静默清空全部学习进度**。宁可不清,也不能清错。
+  function pruneCards(validIds) {
+    const ok = validIds instanceof Set ? validIds : new Set(validIds || []);
+    if (!ok.size) return 0;
+    const p = read();
+    let n = 0;
+    for (const id of Object.keys(p.cards)) {
+      if (!ok.has(id)) { delete p.cards[id]; n++; }
+    }
+    if (n) persist(p);
+    return n;
+  }
   function getSettings() {
     try { const raw = storage.get(KEY_S); if (raw) { const s = JSON.parse(raw); return { ...DEFAULT_SETTINGS, ...s }; } } catch (e) {}
     return { ...DEFAULT_SETTINGS };
   }
   function saveSettings(patch) { const cur = getSettings(); try { storage.set(KEY_S, JSON.stringify({ ...cur, ...patch })); } catch (e) {} }
 
-  return { getProgress, markStudied, applyReview, dueWords, reset, getSettings, saveSettings };
+  return { getProgress, markStudied, applyReview, dueWords, pruneCards, reset, getSettings, saveSettings };
 }
 
 let warnedWriteFail = false; // 仅提示一次的存储写失败标记(模块级)

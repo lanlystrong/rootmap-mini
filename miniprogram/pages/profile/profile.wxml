@@ -1,4 +1,16 @@
 <view class="pf-page">
+  <!-- ===== 用户信息:头像 + 昵称(云端) ===== -->
+  <view class="card pf-profile">
+    <button class="pf-avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image wx:if="{{profile.avatarUrl}}" class="pf-avatar" src="{{profile.avatarUrl}}" mode="aspectFill" />
+      <view wx:else class="pf-avatar pf-avatar-empty">👤</view>
+    </button>
+    <view class="pf-profile-info">
+      <input class="pf-nickname" type="nickname" value="{{profile.nickname}}" placeholder="点击设置昵称" placeholder-class="pf-nickname-ph" bindinput="onNicknameInput" bindblur="onNicknameBlur" bindconfirm="onNicknameBlur" />
+      <text class="pf-profile-sub t-3">词根地图 · 云端同步</text>
+    </view>
+  </view>
+
   <!-- ===== 顶部头部卡:连续打卡徽标 + 文案 ===== -->
   <view class="card pf-head">
     <view class="pf-badge {{stats.streak > 0 ? 'pf-badge-on' : ''}}">
@@ -63,6 +75,37 @@
     </view>
   </view>
 
+  <!-- ===== 云端统计(仅登录)===== -->
+  <view class="card pf-card" wx:if="{{cloud.authed}}">
+    <view class="pf-card-head">
+      <text class="pf-title t-1">云端统计</text>
+      <text class="pf-cloud-loading t-3" wx:if="{{cloud.loading}}">加载中…</text>
+    </view>
+    <text class="pf-cloud-err" wx:if="{{cloud.err}}">{{cloud.err}}</text>
+    <block wx:if="{{cloud.overview}}">
+      <view class="pf-ov">
+        <view class="pf-ov-item"><text class="pf-ov-num grad">{{cloud.overview.totalStudied}}</text><text class="pf-ov-txt t-3">累计学习词</text></view>
+        <view class="pf-ov-item"><text class="pf-ov-num">{{cloud.overview.reviewEvents}}</text><text class="pf-ov-txt t-3">云端复习</text></view>
+        <view class="pf-ov-item"><text class="pf-ov-num">{{cloud.overview.accTxt}}</text><text class="pf-ov-txt t-3">正确率</text></view>
+      </view>
+      <view class="pf-gd" wx:if="{{cloud.overview.reviewEvents > 0}}">
+        <view class="pf-gd-bar pf-gd-1" style="width:{{cloud.gdPct.q1}}%"></view>
+        <view class="pf-gd-bar pf-gd-3" style="width:{{cloud.gdPct.q3}}%"></view>
+        <view class="pf-gd-bar pf-gd-5" style="width:{{cloud.gdPct.q5}}%"></view>
+      </view>
+      <text class="pf-hint t-3" wx:else>暂无云端数据,先学几个词吧</text>
+    </block>
+    <stat-bar class="pf-sb" data="{{cloud.daily}}" wx:if="{{cloud.daily.length}}"></stat-bar>
+    <view wx:if="{{cloud.roots.length}}">
+      <view class="pf-subhead t-2">词根正确率 Top</view>
+      <view class="pf-rrow" wx:for="{{cloud.roots}}" wx:key="rootId">
+        <text class="pf-rt t-2">{{item.root}}</text>
+        <text class="pf-rz t-3">{{item.zh}}</text>
+        <text class="pf-rn t-3">{{item.reviews}} 次 · {{item.accTxt}}</text>
+      </view>
+    </view>
+  </view>
+
   <!-- ===== 重置学习数据 ===== -->
   <view class="pf-reset">
     <view class="btn-danger pf-reset-btn" bindtap="onResetTap" hover-class="hover-dim">重置学习数据</view>
@@ -76,6 +119,6 @@
       <text class="pf-about-ver t-3">v{{version}}</text>
     </view>
     <view class="pf-about-desc t-3">内置 {{counts.roots}} 词根 / {{counts.affixes}} 词缀 /
-      {{counts.words}} 单词 · 纯本地存储 · 无网络依赖</view>
+      {{counts.words}} 单词 · 进度本地 · 账号云端同步</view>
   </view>
 </view>

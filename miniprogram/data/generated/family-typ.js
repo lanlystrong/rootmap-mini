@@ -1,0 +1,9 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"type","word":"type","phonetic":"taɪp","senses":[{"pos":"n","zh":"型，类型","en":null},{"pos":"v","zh":"打字","en":null}],"breakdown":[{"part":"typ","type":"root","zh":"类型/打印","refId":"root-typ"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"Jo’s not really the sporty type.","zh":"乔可不是那种喜欢运动的人。"}],"assoc":{"story":"构词:typ(类型/打印) → 型"}},
+{"id":"typewriter","word":"typewriter","phonetic":"'taɪpraɪtɚ","senses":[{"pos":"n","zh":"打字机","en":null}],"breakdown":[{"part":"type","type":"root","zh":"类型/打印","refId":"root-typ"},{"part":"writer","type":"none"}],"tags":["cet4"],"examples":[{"en":"She tapped out a letter on the typewriter.","zh":"她用打字机打出了一封信。"},{"en":"He tapped out an article on the typewriter.","zh":"他用打字机打出了一篇文章。"}],"assoc":{"story":"构词:type(类型/打印) → 打字机"}},
+{"id":"typist","word":"typist","phonetic":"'taɪpɪst","senses":[{"pos":"n","zh":"打字员","en":null}],"breakdown":[{"part":"typ","type":"root","zh":"类型/打印","refId":"root-typ"},{"part":"ist","type":"suffix","zh":"…者(名词)","refId":"affix-ist"}],"tags":["cet4"],"examples":[{"en":"I’m a slow typist.","zh":"我打字很慢。"}],"assoc":{"story":"构词:typ(类型/打印) + ist(…者(名词)) → 打字员"}},
+{"id":"typical","word":"typical","phonetic":"'tɪpɪkl","senses":[{"pos":"adj","zh":"典型的，代表性的","en":null}],"breakdown":[{"part":"typ","type":"root","zh":"类型/打印","refId":"root-typ"},{"part":"ic","type":"suffix","zh":"…的/…学(名词/形容词)","refId":"affix-ic"},{"part":"al","type":"suffix","zh":"…的(形容词)/名词","refId":"affix-al"}],"tags":["cet4"],"examples":[{"en":"typical British weather","zh":"典型的英国天气"},{"en":"This advertisement is a typical example of their marketing strategy.","zh":"这则广告是他们营销策略的一个典型例子。"}],"assoc":{"story":"构词:typ(类型/打印) + ic(…的/…学(名词/形容词)) + al(…的(形容词)/名词) → 典型的"}},
+];
+module.exports = words;

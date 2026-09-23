@@ -1,0 +1,8 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"undervalue","word":"undervalue","phonetic":"ʌndɚ'vælju","senses":[{"pos":"v","zh":"低估","en":null}],"breakdown":[{"part":"under","type":"prefix","zh":"在下/不足","refId":"affix-under"},{"part":"valu","type":"root","zh":"价值/力量","refId":"root-val"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Society undervalues staying at home and looking after children.","zh":"社会低估了待在家里照看孩子的意义。"},{"en":"Analysts claim that the firm’s assets were undervalued by £300 million.","zh":"分析员称公司资产被低估了三亿英镑。"}],"assoc":{}},
+{"id":"evaluation","word":"evaluation","phonetic":"ɪ","senses":[{"pos":"n","zh":"评价，评估","en":null}],"breakdown":[{"part":"e","type":"prefix","zh":"出/向外","refId":"affix-e"},{"part":"valu","type":"root","zh":"价值/力量","refId":"root-val"},{"part":"ation","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ation"}],"tags":["cet4","高频"],"examples":[{"en":"We need to carry out a proper evaluation of the new system.","zh":"我们要对新系统进行合理的评估。"},{"en":"They took some samples of products for evaluation.","zh":"他们抽取了一些产品样本以作评估。"}],"assoc":{}},
+{"id":"equivalence","word":"equivalence","phonetic":"ɪ'kwɪvələns","senses":[{"pos":"n","zh":"等值，相等","en":null}],"breakdown":[{"part":"equi","type":"prefix","zh":"相等","refId":"affix-equi"},{"part":"val","type":"root","zh":"价值/力量","refId":"root-val"},{"part":"ence","type":"suffix","zh":"名词后缀(表性质/状态)","refId":"affix-ence"}],"tags":["cet4","高频"],"examples":[{"en":"the equivalence of science and rationality.","zh":"...科学和理性的相等。"}],"assoc":{}},
+];
+module.exports = words;

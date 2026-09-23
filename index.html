@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>词根地图 - 词根联想 · 成组记单词</title>
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+            padding-bottom: calc(48px + env(safe-area-inset-bottom));
+        }
+
+        /* ===== 字体层级 ===== */
+        .t-1 { font-size: 16px; font-weight: 600; }
+        .t-2 { font-size: 14px; font-weight: 500; }
+        .t-3 { font-size: 12px; color: #64748B; }
+
+        /* ===== 通用按钮 ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 24px;
+            border: none;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #3B82F6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2563EB;
+            transform: scale(0.98);
+        }
+
+        .btn-danger {
+            background-color: #EF4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #DC2626;
+            transform: scale(0.98);
+        }
+
+        /* ===== 通用卡片 ===== */
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        /* ===== 首页样式 ===== */
+        .hm-page {
+            box-sizing: border-box;
+            padding: 24px 24px calc(48px + env(safe-area-inset-bottom));
+        }
+
+        .hm-hero {
+            border-radius: 24px;
+            padding: 36px 32px 32px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 8px 24px rgba(79, 70, 229, 0.28);
+        }
+
+        .hm-hero-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .hm-hero-title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hm-streak {
+            display: flex;
+            align-items: center;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hm-streak-fire {
+            font-size: 18px;
+            line-height: 1;
+            margin-right: 6px;
+        }
+
+        .hm-streak-txt {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hm-hero-sub {
+            display: block;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .hm-card {
+            margin-bottom: 20px;
+        }
+
+        .hm-label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #64748B;
+        }
+
+        .hm-due {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hm-due-num {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .hm-due-val {
+            font-size: 40px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .hm-due-unit {
+            font-size: 16px;
+            margin-left: 8px;
+        }
+
+        .hm-due-btn {
+            height: 48px;
+            padding: 0 28px;
+            font-size: 16px;
+        }
+
+        .hm-cont {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .hm-cont-main {
+            flex: 1;
+            margin-right: 20px;
+            overflow: hidden;
+        }
+
+        .hm-cont-text {
+            display: block;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.4;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .hm-cont-btn {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .hm-cont-btn-txt {
+            font-size: 18px;
+            font-weight: 600;
+            color: #3B82F6;
+        }
+
+        .hm-cont-arrow {
+            font-size: 24px;
+            line-height: 1;
+            margin-left: 4px;
+            color: #3B82F6;
+        }
+
+        .hm-prog {
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-ring {
+            width: 168px;
+            height: 168px;
+            margin-right: 32px;
+            position: relative;
+        }
+
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .hm-prog-side {
+            flex: 1;
+        }
+
+        .hm-prog-num {
+            display: flex;
+            align-items: baseline;
+            margin-top: 4px;
+        }
+
+        .hm-prog-val {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .hm-prog-unit {
+            font-size: 16px;
+            margin-left: 8px;
+        }
+
+        .hm-prog-sub {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        .hm-quick {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hm-qitem {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 28px;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .hm-qitem:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .hm-qicon {
+            font-size: 28px;
+            line-height: 1;
+            margin-bottom: 14px;
+        }
+
+        .hm-qtxt {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .hm-qsub {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        /* ===== 搜索页样式 ===== */
+        .search-wrap {
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 24px;
+            padding: 12px 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            padding: 4px;
+        }
+
+        .search-ph {
+            color: #94A3B8;
+        }
+
+        .search-clear {
+            font-size: 20px;
+            color: #94A3B8;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .search-clear:hover {
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+        .mode-bar {
+            display: flex;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 24px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .mode-item {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mode-item:hover {
+            background: #F1F5F9;
+        }
+
+        .mode-on {
+            background: #3B82F6;
+            color: white;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            background: #F1F5F9;
+            color: #64748B;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover {
+            background: #E2E8F0;
+        }
+
+        .filter-on {
+            background: #3B82F6;
+            color: white;
+        }
+
+        .hit-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #1E293B;
+        }
+
+        .hit-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            background: #F8FAFC;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .hit-item:hover {
+            background: #F1F5F9;
+            transform: translateX(4px);
+        }
+
+        .hit-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .hit-zh {
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        .hit-variants {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .hit-chip {
+            padding: 4px 12px;
+            border-radius: 16px;
+            background: #E0F2FE;
+            color: #0369A1;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* ===== 个人中心样式 ===== */
+        .pf-page {
+            box-sizing: border-box;
+            padding: 24px 24px calc(48px + env(safe-area-inset-bottom));
+        }
+
+        .pf-head {
+            text-align: center;
+            padding: 32px 20px;
+        }
+
+        .pf-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 24px;
+            border-radius: 999px;
+            background: #F1F5F9;
+            margin-bottom: 16px;
+            transition: all 0.2s;
+        }
+
+        .pf-badge-on {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .pf-badge-fire {
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+        .pf-badge-txt {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .pf-headline {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .pf-stats {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .pf-stat {
+            flex: 1;
+            text-align: center;
+            padding: 24px 16px;
+        }
+
+        .pf-num {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pf-num-txt {
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        .pf-card-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .pf-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .pf-legend {
+            display: flex;
+            gap: 16px;
+        }
+
+        .pf-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pf-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .pf-dot-new {
+            background: #3B82F6;
+        }
+
+        .pf-dot-rev {
+            background: #10B981;
+        }
+
+        .pf-legend-txt {
+            font-size: 12px;
+            color: #64748B;
+        }
+
+        .pf-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            cursor: pointer;
+        }
+
+        .pf-row:hover {
+            background: #F8FAFC;
+            margin: 0 -20px;
+            padding: 16px 20px;
+        }
+
+        .pf-label {
+            font-size: 16px;
+        }
+
+        .pf-val {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pf-val-txt {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .pf-caret {
+            font-size: 18px;
+            color: #94A3B8;
+        }
+
+        .pf-divider {
+            height: 1px;
+            background: #E2E8F0;
+            margin: 0 -20px;
+        }
+
+        .pf-hint {
+            font-size: 12px;
+            color: #64748B;
+            line-height: 1.5;
+        }
+
+        .pf-cloud-btn {
+            width: 100%;
+        }
+
+        .pf-cloud-ghost {
+            color: #3B82F6;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .pf-cloud-err {
+            color: #EF4444;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .pf-ov {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .pf-ov-item {
+            text-align: center;
+        }
+
+        .pf-ov-num {
+            display: block;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pf-ov-txt {
+            font-size: 12px;
+            color: #64748B;
+        }
+
+        .pf-gd {
+            height: 40px;
+            background: #F1F5F9;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .pf-gd-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        .pf-gd-1 {
+            background: #EF4444;
+            width: 33.33%;
+        }
+
+        .pf-gd-3 {
+            background: #F59E0B;
+            width: 33.33%;
+        }
+
+        .pf-gd-5 {
+            background: #10B981;
+            width: 33.33%;
+        }
+
+        .pf-subhead {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .pf-rrow {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .pf-rrow:last-child {
+            border-bottom: none;
+        }
+
+        .pf-rt {
+            flex: 1;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .pf-rz {
+            flex: 1;
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        .pf-rn {
+            flex: 1;
+            font-size: 12px;
+            color: #64748B;
+            text-align: right;
+        }
+
+        .pf-reset {
+            margin: 32px 0;
+        }
+
+        .pf-reset-btn {
+            width: 100%;
+            height: 48px;
+            margin-bottom: 12px;
+        }
+
+        .pf-reset-hint {
+            text-align: center;
+            font-size: 12px;
+            color: #64748B;
+        }
+
+        .pf-about {
+            text-align: center;
+        }
+
+        .pf-about-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .pf-about-ver {
+            font-size: 14px;
+            color: #64748B;
+        }
+
+        .pf-about-desc {
+            font-size: 12px;
+            color: #64748B;
+            line-height: 1.5;
+            margin-top: 12px;
+        }
+
+        /* ===== 底部导航栏 ===== */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #E2E8F0;
+            display: flex;
+            padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+            z-index: 100;
+        }
+
+        .tab-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+
+        .tab-text {
+            font-size: 12px;
+            color: #64748B;
+            transition: all 0.2s;
+        }
+
+        .tab-item.active .tab-icon,
+        .tab-item.active .tab-text {
+            opacity: 1;
+        }
+
+        .tab-item.active .tab-text {
+            color: #3B82F6;
+        }
+
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 16px;
+                padding-bottom: calc(32px + env(safe-area-inset-bottom));
+            }
+
+            .hm-hero-title {
+                font-size: 20px;
+            }
+
+            .hm-due-val {
+                font-size: 32px;
+            }
+
+            .hm-prog-val {
+                font-size: 24px;
+            }
+
+            .hm-qtxt {
+                font-size: 16px;
+            }
+        }
+
+        /* ===== 动画效果 ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 首页内容 -->
+        <div id="homePage" class="hm-page fade-in">
+            <!-- 顶部hero -->
+            <div class="hm-hero">
+                <div class="hm-hero-top">
+                    <div>
+                        <h1 class="hm-hero-title">你好,词根学习者</h1>
+                        <div class="hm-streak">
+                            <span class="hm-streak-fire">🔥</span>
+                            <span class="hm-streak-txt">连续 7 天</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="hm-hero-sub">词根联想 · 成组记单词</p>
+            </div>
+
+            <!-- 今日待复习 -->
+            <div class="card hm-card hm-due">
+                <div class="hm-due-left">
+                    <span class="hm-label">今日待复习</span>
+                    <div class="hm-due-num">
+                        <span class="hm-due-val">12</span>
+                        <span class="hm-due-unit">词</span>
+                    </div>
+                </div>
+                <button class="btn-primary hm-due-btn">去复习</button>
+            </div>
+
+            <!-- 继续学习 -->
+            <div class="card hm-card hm-cont" onclick="continueStudy()">
+                <div class="hm-cont-main">
+                    <span class="hm-label">继续学习</span>
+                    <p class="hm-cont-text">学习词根 port: 携带、运输</p>
+                </div>
+                <div class="hm-cont-btn">
+                    <span class="hm-cont-btn-txt">继续</span>
+                    <span class="hm-cont-arrow">›</span>
+                </div>
+            </div>
+
+            <!-- 总体进度环 -->
+            <div class="card hm-card hm-prog">
+                <div class="progress-ring">
+                    <svg width="168" height="168">
+                        <circle cx="84" cy="84" r="80" fill="none" stroke="#E5E7EB" stroke-width="12"></circle>
+                        <circle cx="84" cy="84" r="80" fill="none" stroke="#3B82F6" stroke-width="12"
+                                stroke-dasharray="502.65" stroke-dashoffset="251.33"
+                                stroke-linecap="round" opacity="0.8"></circle>
+                    </svg>
+                    <div class="progress-text">50%</div>
+                </div>
+                <div class="hm-prog-side">
+                    <span class="hm-label">总体进度</span>
+                    <div class="hm-prog-num">
+                        <span class="hm-prog-val">156</span>
+                        <span class="hm-prog-unit">/ 312 已学</span>
+                    </div>
+                    <p class="hm-prog-sub">熟悉 89 词 · 连续 7 天</p>
+                </div>
+            </div>
+
+            <!-- 快捷入口 -->
+            <div class="hm-quick">
+                <div class="card hm-qitem" onclick="goLearn()">
+                    <span class="hm-qicon">🗺️</span>
+                    <span class="hm-qtxt">词根地图</span>
+                    <span class="hm-qsub">按词根浏览学习</span>
+                </div>
+                <div class="card hm-qitem" onclick="goReview()">
+                    <span class="hm-qicon">⏰</span>
+                    <span class="hm-qtxt">复习</span>
+                    <span class="hm-qsub">到期单词巩固</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索页内容（初始隐藏） -->
+        <div id="searchPage" class="search-page" style="display: none;">
+            <div class="search-wrap">
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="搜索词根或单词…" />
+                    <span class="search-clear" onclick="clearSearch()">✕</span>
+                </div>
+            </div>
+
+            <div class="mode-bar">
+                <div class="mode-item mode-on" onclick="switchMode('root')">词根</div>
+                <div class="mode-item" onclick="switchMode('affix')">前后缀</div>
+            </div>
+
+            <div class="filter-bar">
+                <div class="filter-chip filter-on" onclick="setFilter('all')">全部</div>
+                <div class="filter-chip" onclick="setFilter('new')">未学</div>
+                <div class="filter-chip" onclick="setFilter('learning')">学习中</div>
+                <div class="filter-chip" onclick="setFilter('done')">已掌握</div>
+            </div>
+
+            <!-- 词根分组 -->
+            <div class="group">
+                <div class="group-head" onclick="toggleRootGroup(this)">
+                    <span class="group-label">-a-/-ab-/-ac-</span>
+                    <span class="group-count">12 个词根</span>
+                    <span class="group-progress">5/12</span>
+                    <span class="group-chevron">▾</span>
+                </div>
+                <div class="grid">
+                    <div class="card hm-qitem" style="display: inline-flex; margin: 8px;">
+                        <span style="font-size: 18px; font-weight: 600;">ab-</span>
+                        <span style="margin-left: 12px; font-size: 14px; color: #64748B;">离开、脱离</span>
+                    </div>
+                    <div class="card hm-qitem" style="display: inline-flex; margin: 8px;">
+                        <span style="font-size: 18px; font-weight: 600;">abs-</span>
+                        <span style="margin-left: 12px; font-size: 14px; color: #64748B;">远离、脱离</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 个人中心内容（初始隐藏） -->
+        <div id="profilePage" class="pf-page" style="display: none;">
+            <!-- 顶部头部卡 -->
+            <div class="card pf-head">
+                <div class="pf-badge pf-badge-on">
+                    <span class="pf-badge-fire">🔥</span>
+                    <span class="pf-badge-txt">连续 7 天</span>
+                </div>
+                <p class="pf-headline">坚持就是胜利,继续保持!</p>
+            </div>
+
+            <!-- 统计卡 -->
+            <div class="pf-stats">
+                <div class="card pf-stat">
+                    <div class="pf-num">12</div>
+                    <p class="pf-num-txt">今日待复习</p>
+                </div>
+                <div class="card pf-stat">
+                    <div class="pf-num">156</div>
+                    <p class="pf-num-txt">累计已学</p>
+                </div>
+                <div class="card pf-stat">
+                    <div class="pf-num">89</div>
+                    <p class="pf-num-txt">熟悉词</p>
+                </div>
+            </div>
+
+            <!-- 近14天柱状图 -->
+            <div class="card pf-card">
+                <div class="pf-card-head">
+                    <h3 class="pf-title">近 14 天</h3>
+                    <div class="pf-legend">
+                        <div class="pf-legend-item">
+                            <div class="pf-dot pf-dot-new"></div>
+                            <span class="pf-legend-txt">新学</span>
+                        </div>
+                        <div class="pf-legend-item">
+                            <div class="pf-dot pf-dot-rev"></div>
+                            <span class="pf-legend-txt">复习</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 简化的柱状图占位 -->
+                <div style="display: flex; align-items: flex-end; height: 100px; gap: 4px; margin-top: 20px;">
+                    <div style="flex: 1; background: #3B82F6; height: 60%; border-radius: 4px;"></div>
+                    <div style="flex: 1; background: #10B981; height: 80%; border-radius: 4px;"></div>
+                    <div style="flex: 1; background: #3B82F6; height: 40%; border-radius: 4px;"></div>
+                    <div style="flex: 1; background: #10B981; height: 70%; border-radius: 4px;"></div>
+                    <div style="flex: 1; background: #3B82F6; height: 90%; border-radius: 4px;"></div>
+                    <div style="flex: 1; background: #10B981; height: 50%; border-radius: 4px;"></div>
+                    <div style="flex: 1; background: #3B82F6; height: 60%; border-radius: 4px;"></div>
+                </div>
+            </div>
+
+            <!-- 设置 -->
+            <div class="card pf-card">
+                <div class="pf-card-head">
+                    <h3 class="pf-title">设置</h3>
+                </div>
+                <div class="pf-row">
+                    <span class="pf-label">每日复习上限</span>
+                    <div class="pf-val">
+                        <span class="pf-val-txt">无限制</span>
+                        <span class="pf-caret">›</span>
+                    </div>
+                </div>
+                <div class="pf-divider"></div>
+                <div class="pf-row">
+                    <span class="pf-label">学习页默认展开联想</span>
+                    <input type="checkbox" style="width: 44px; height: 24px;">
+                </div>
+            </div>
+
+            <!-- 账号 -->
+            <div class="card pf-card">
+                <div class="pf-card-head">
+                    <h3 class="pf-title">账号</h3>
+                </div>
+                <button class="btn-primary pf-cloud-btn" onclick="onWxLogin()">微信一键登录</button>
+                <p class="pf-hint">登录后学习事件同步到云端统计;进度仍存本地,离线也可正常学习</p>
+            </div>
+
+            <!-- 重置学习数据 -->
+            <div class="pf-reset">
+                <button class="btn-danger pf-reset-btn" onclick="onResetTap()">重置学习数据</button>
+                <p class="pf-reset-hint">将清空学习与复习进度,设置保留</p>
+            </div>
+
+            <!-- 关于 -->
+            <div class="card pf-about">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span class="pf-about-name">词根地图</span>
+                    <span class="pf-about-ver">v0.1.0</span>
+                </div>
+                <p class="pf-about-desc">内置 50 词根 / 100 词缀 / 500 单词 · 纯本地存储 · 无网络依赖</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item active" onclick="switchTab('home', this)">
+            <svg class="tab-icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <span class="tab-text">首页</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('learn', this)">
+            <svg class="tab-icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <span class="tab-text">学习</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('review', this)">
+            <svg class="tab-icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+            </svg>
+            <span class="tab-text">复习</span>
+        </div>
+        <div class="tab-item" onclick="switchTab('profile', this)">
+            <svg class="tab-icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+            <span class="tab-text">我的</span>
+        </div>
+    </div>
+
+    <script>
+        // 页面切换功能
+        function switchTab(page, element) {
+            // 移除所有活跃状态
+            document.querySelectorAll('.tab-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 设置当前页面活跃
+            element.classList.add('active');
+
+            // 隐藏所有页面
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('searchPage').style.display = 'none';
+            document.getElementById('profilePage').style.display = 'none';
+
+            // 显示对应页面
+            if (page === 'home') {
+                document.getElementById('homePage').style.display = 'block';
+            } else if (page === 'learn') {
+                document.getElementById('searchPage').style.display = 'block';
+            } else if (page === 'profile') {
+                document.getElementById('profilePage').style.display = 'block';
+            }
+        }
+
+        // 首页功能
+        function continueStudy() {
+            alert('继续学习功能');
+        }
+
+        function goLearn() {
+            switchTab('learn', document.querySelectorAll('.tab-item')[1]);
+        }
+
+        function goReview() {
+            switchTab('review', document.querySelectorAll('.tab-item')[2]);
+        }
+
+        // 搜索页功能
+        function clearSearch() {
+            document.querySelector('.search-input').value = '';
+        }
+
+        function switchMode(mode) {
+            document.querySelectorAll('.mode-item').forEach(item => {
+                item.classList.remove('mode-on');
+            });
+            event.target.classList.add('mode-on');
+        }
+
+        function setFilter(filter) {
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('filter-on');
+            });
+            event.target.classList.add('filter-on');
+        }
+
+        function toggleRootGroup(element) {
+            const chevron = element.querySelector('.group-chevron');
+            chevron.textContent = chevron.textContent === '▾' ? '▴' : '▾';
+
+            // 这里可以添加展开/收起内容的逻辑
+            const content = element.nextElementSibling;
+            if (content) {
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        // 个人中心功能
+        function onWxLogin() {
+            alert('微信登录功能（模拟）');
+        }
+
+        function onResetTap() {
+            if (confirm('确定要重置所有学习数据吗？')) {
+                alert('学习数据已重置');
+            }
+        }
+
+        // 模拟数据更新
+        setInterval(() => {
+            // 更新连续打卡天数
+            const streakElement = document.querySelector('.hm-streak-txt');
+            if (streakElement) {
+                const days = parseInt(streakElement.textContent.match(/\d+/)[0]);
+                streakElement.textContent = `连续 ${days + 1} 天`;
+            }
+        }, 30000); // 每30秒更新一次（模拟）
+
+        // 页面加载时的动画
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in').forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

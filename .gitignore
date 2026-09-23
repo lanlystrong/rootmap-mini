@@ -3,3 +3,7 @@ node_modules/
 .DS_Store
 server/data/
 miniprogram/project.private.config.json
+
+# 环境变量里含真实数据库凭据,只提交模板
+.env
+!.env.example

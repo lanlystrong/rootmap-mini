@@ -1,6 +1,7 @@
 const { getContent } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { todayISO } = require('../../utils/date');
+const reporter = require('../../utils/reporter');
 
 const GROUP_KEYS = ['family', 'deriv', 'syn', 'ant', 'confuse', 'story'];
 
@@ -134,6 +135,7 @@ Page({
       store.markStudied(word.id, todayISO());
       if (this._rootId) store.saveSettings({ lastRootId: this._rootId }); // 供首页「继续学习」定位上次学到的词根
       wx.vibrateShort && wx.vibrateShort({ type: 'light', fail: () => {} });
+      reporter.recordStudy(word.id); reporter.flush();
     }
     this.next();
   },

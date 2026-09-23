@@ -1,0 +1,8 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"elevator","word":"elevator","phonetic":"'ɛlɪvetɚ","senses":[{"pos":"n","zh":"电梯；升降机","en":null}],"breakdown":[{"part":"e","type":"prefix","zh":"出/向外","refId":"affix-e"},{"part":"lev","type":"root","zh":"举起/轻","refId":"root-lev"},{"part":"ator","type":"suffix","zh":"…者/…物(名词)","refId":"affix-ator"}],"tags":["cet4","高频"],"examples":[{"en":"We’ll have to take the elevator.","zh":"我们只好坐电梯了。"}],"assoc":{"story":"构词:e(出/向外) + lev(举起/轻) + ator(…者/…物(名词)) → 电梯"}},
+{"id":"relevant","word":"relevant","phonetic":"'rɛləvənt","senses":[{"pos":"adj","zh":"有关的，中肯的","en":null}],"breakdown":[{"part":"re","type":"prefix","zh":"再次/向后","refId":"affix-re"},{"part":"lev","type":"root","zh":"举起/轻","refId":"root-lev"},{"part":"ant","type":"suffix","zh":"…的(形容词)/…者(名词)","refId":"affix-ant"}],"tags":["cet4","高频"],"examples":[{"en":"Relevant documents were presented in court.","zh":"法庭上出示了相关的文件。"},{"en":"We received all the relevant information.","zh":"我们收到了所有相关信息。"}],"assoc":{"story":"构词:re(再次/向后) + lev(举起/轻) + ant(…的(形容词)/…者(名词)) → 有关的"}},
+{"id":"lever","word":"lever","phonetic":"'lɛvɚ","senses":[{"pos":"n","zh":"杆，杠杆；控制杆","en":null}],"breakdown":[{"part":"lev","type":"root","zh":"举起/轻","refId":"root-lev"},{"part":"er","type":"suffix","zh":"…者/…物(名词)","refId":"affix-er"}],"tags":["cet4"],"examples":[{"en":"Pull this lever to open the gate.","zh":"拉此横杆开启大门。"}],"assoc":{"story":"构词:lev(举起/轻) + er(…者/…物(名词)) → 杆"}},
+];
+module.exports = words;

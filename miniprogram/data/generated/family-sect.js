@@ -1,0 +1,9 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"insect","word":"insect","phonetic":"'ɪnsɛkt","senses":[{"pos":"n","zh":"昆虫，虫","en":null}],"breakdown":[{"part":"in","type":"prefix","zh":"不/非;向内","refId":"affix-in"},{"part":"sect","type":"root","zh":"切","refId":"root-sect"}],"tags":["cet4"],"examples":[{"en":"an insect bite","zh":"昆虫的叮咬"},{"en":"flying insects","zh":"飞虫"}],"assoc":{"story":"构词:in(不/非;向内) + sect(切) → 昆虫"}},
+{"id":"sector","word":"sector","phonetic":"'sɛktɚ","senses":[{"pos":"n","zh":"部门， 部分； 防御地段， 防区； 扇形","en":null}],"breakdown":[{"part":"sect","type":"root","zh":"切","refId":"root-sect"},{"part":"or","type":"suffix","zh":"…者/…物(名词)","refId":"affix-or"}],"tags":["cet4"],"examples":[{"en":"the nation's manufacturing sector.","zh":"…该国的制造部门。"}],"assoc":{"story":"构词:sect(切) + or(…者/…物(名词)) → 部门"}},
+{"id":"section","word":"section","phonetic":"'sɛkʃən","senses":[{"pos":"n","zh":"截面；部分；部门；地区；章节","en":null},{"pos":"v","zh":"被切割成片；被分成部分","en":null}],"breakdown":[{"part":"sect","type":"root","zh":"切","refId":"root-sect"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4"],"examples":[{"en":"The plane’s tail section was found in a cornfield.","zh":"飞机的尾部在玉米田里找到了。"},{"en":"the smoking section","zh":"吸烟区"}],"assoc":{"story":"构词:sect(切) + ion(名词后缀(表行为/状态/结果)) → 截面"}},
+{"id":"segment","word":"segment","phonetic":"'sɛɡmənt","senses":[{"pos":"n","zh":"部分， 片段； 瓣","en":null}],"breakdown":[{"part":"seg","type":"root","zh":"切","refId":"root-sect"},{"part":"ment","type":"suffix","zh":"名词后缀(表行为/结果)","refId":"affix-ment"}],"tags":["cet4"],"examples":[{"en":"Decorate with orange segments.","zh":"用几瓣橙子作点缀。"}],"assoc":{"story":"构词:seg(切) + ment(名词后缀(表行为/结果)) → 部分"}},
+];
+module.exports = words;

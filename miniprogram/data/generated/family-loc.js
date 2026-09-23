@@ -1,0 +1,9 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"locate","word":"locate","phonetic":"ˈloˌket","senses":[{"pos":"v","zh":"位于，定位","en":null}],"breakdown":[{"part":"loca","type":"root","zh":"地方","refId":"root-loc"},{"part":"te","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The business is located right in the center of town.","zh":"这家商店就在市中心。"}],"assoc":{"story":"构词:loca(地方) → 位于"}},
+{"id":"allocate","word":"allocate","phonetic":"'æləket","senses":[{"pos":"vt","zh":"分配， 分派， 把…拨给","en":null}],"breakdown":[{"part":"al","type":"prefix","zh":"朝向/加强","refId":"affix-al-prefix"},{"part":"loca","type":"root","zh":"地方","refId":"root-loc"},{"part":"te","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Tickets are limited and will be allocated to those who apply first.","zh":"票数有限，将分配给那些先申请的人。"}],"assoc":{"story":"构词:al(朝向/加强) + loca(地方) → 分配"}},
+{"id":"local","word":"local","phonetic":"ˈloʊkl","senses":[{"pos":"n","zh":"[计] 局部；当地居民；本地新闻","en":null},{"pos":"adj","zh":"当地的；局部的；地方性的；乡土的","en":null}],"breakdown":[{"part":"loca","type":"root","zh":"地方","refId":"root-loc"},{"part":"l","type":"none"}],"tags":["cet4"],"examples":[{"en":"We asked one of the locals to recommend a restaurant.","zh":"我们请一位当地人推荐一家餐馆。"}],"assoc":{"story":"构词:loca(地方) → [计] 局部"}},
+{"id":"location","word":"location","phonetic":"lo'keʃən","senses":[{"pos":"n","zh":"位置，场所","en":null}],"breakdown":[{"part":"loca","type":"root","zh":"地方","refId":"root-loc"},{"part":"tion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-tion"}],"tags":["cet4"],"examples":[{"en":"His apartment is in a really good location.","zh":"他的公寓地段很好。"},{"en":"its isolatedgeographical location","zh":"它偏远的地理位置"}],"assoc":{"story":"构词:loca(地方) + tion(名词后缀(表行为/状态/结果)) → 位置"}},
+];
+module.exports = words;

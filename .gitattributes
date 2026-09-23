@@ -1,0 +1,12 @@
+# 交付集里**由生成器逐字节比对**的文件必须固定为 LF。
+#
+# 为什么需要:本仓库 core.autocrlf=true(Windows 默认),git 检出时会把 LF 换成 CRLF;
+# 而 generate-content.js 写出的是 LF,它的 `--check` 是拿生成结果与磁盘文件做**逐字节**
+# 字符串比较。于是任何一次 checkout 之后 --check 都会报「交付集与生成结果不一致」,
+# 而重跑生成器又会把工作区刷回 LF、让 git 显示一堆改动 —— 两边互相打架。
+# 实测:把一个 generated 文件转成 CRLF,`--check` 立刻报该文件不一致。
+#
+# 只约束这两处(它们是 --check 的比较对象),手写层不在此列 —— 手写层只被 require
+# 解析(不经字节比较),保持现状可避免一次无谓的全量行尾翻动。
+miniprogram/data/generated/** text eol=lf
+miniprogram/data/index.js     text eol=lf

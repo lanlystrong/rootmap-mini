@@ -1,0 +1,9 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"bicycle","word":"bicycle","phonetic":"'baɪsɪkl","senses":[{"pos":"n","zh":"自行车","en":null},{"pos":"v","zh":"骑脚踏车","en":null}],"breakdown":[{"part":"bi","type":"prefix","zh":"二/两","refId":"affix-bi"},{"part":"cycle","type":"root","zh":"圆/环","refId":"root-cycl"}],"tags":["cet4","高频"],"examples":[{"en":"Can James ride a bicycle yet?","zh":"詹姆斯会骑自行车了吗？"}],"assoc":{"story":"构词:bi(二/两) + cycle(圆/环) → 自行车"}},
+{"id":"cyclist","word":"cyclist","phonetic":"'saɪklɪst","senses":[{"pos":"n","zh":"骑自行车的人","en":null}],"breakdown":[{"part":"cycl","type":"root","zh":"圆/环","refId":"root-cycl"},{"part":"ist","type":"suffix","zh":"…者(名词)","refId":"affix-ist"}],"tags":["cet4","高频"],"examples":[{"en":"better protection for pedestrians and cyclists.","zh":"…对行人和骑自行车的人的更好保护。"}],"assoc":{"story":"构词:cycl(圆/环) + ist(…者(名词)) → 骑自行车的人"}},
+{"id":"cycle","word":"cycle","phonetic":"'saɪkl","senses":[{"pos":"vi","zh":"骑自行车，循环","en":null},{"pos":"n","zh":"周期；循环","en":null},{"pos":"vt","zh":"使循环","en":null}],"breakdown":[{"part":"cycl","type":"root","zh":"圆/环","refId":"root-cycl"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"The water is cycled through the machine and reused.","zh":"水通过机器循环后重复使用。"}],"assoc":{"story":"构词:cycl(圆/环) → 骑自行车"}},
+{"id":"recycle","word":"recycle","phonetic":"ri'saɪkl","senses":[{"pos":"v","zh":"使再循环；使…重新利用","en":null},{"pos":"n","zh":"再生；再循环；重复利用","en":null}],"breakdown":[{"part":"re","type":"prefix","zh":"再次/向后","refId":"affix-re"},{"part":"cycle","type":"root","zh":"圆/环","refId":"root-cycl"}],"tags":["cet4"],"examples":[{"en":"The fashion world just keeps recycling old ideas.","zh":"时装界就是不停地翻新旧观念。"}],"assoc":{"story":"构词:re(再次/向后) + cycle(圆/环) → 使再循环"}},
+];
+module.exports = words;

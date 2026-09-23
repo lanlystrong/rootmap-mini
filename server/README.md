@@ -1,159 +1,409 @@
-# 词根地图 · 服务端 (server)
+# 词根地图服务端
 
-为「词根地图」微信小程序配套的自建 Node.js HTTP 服务端,承载三件事:
+一个为微信小程序"词根地图"提供后端服务的 Node.js 应用。
 
-1. **账号**:用户名 + 密码注册/登录,签发 Bearer 会话 token(注册即登录)。
-2. **内容下发**:把 `miniprogram/data/index.js` 这份词典**单源**以只读 JSON API 暴露出去
-   (30 词根 / 66 词缀 / 201 词,服务端不改写词条字段)。
-3. **事件统计**:接收「学了某词 / 对某词做了三档复习自评」学习事件,按用户聚合出云端统计
-   (overview / 近 N 天 daily / 词根榜)。
+## 功能特性
 
-## 定位与边界
+- 🔐 微信静默登录认证
+- 📊 学习数据统计和分析
+- 🔄 智能复习算法（基于艾宾浩斯遗忘曲线）
+- 📝 学习事件记录
+- 🗂️ 词根和单词数据管理
+- 📈 用户进度追踪
+- 🔧 可配置的用户设置
 
-- **学习进度仍存小程序本地**(`rm_progress_v1`),本服务端**不存进度、不回写 SM-2 状态**;
-  本地离线学习流程完全不变,服务端只做账号、内容下发与事件统计。
-- 内容本期**接口做足、客户端渲染仍走本地**:`checksum` 已就绪,小程序切网络内容属后续任务。
-- 明文 HTTP + 明文 token 仅面向**本机开发联调**,详见文末「安全声明」。
+## 技术栈
 
-## 环境要求
+- **后端框架**: Express.js
+- **数据库**: MySQL 8.0+
+- **认证**: JWT + 微信小程序授权
+- **日志**: Winston
+- **数据验证**: Joi
+- **安全**: Helmet + CORS + 速率限制
 
-- **Node.js ≥ 22**(本仓库在 v24.16.0 实测)。
-- 数据库使用 **MySQL**,经 `mysql2/promise` 连接池访问;依赖为 `express` + `mysql2`。
+## 快速开始
 
-## 安装与运行
-
-```bash
-npm install          # 安装 express + mysql2(在 server/ 目录下执行)
-npm run server       # 启动,监听 http://127.0.0.1:3000
-```
-
-启动成功会打印:
-
-```
-[rootmap-server] listening on http://127.0.0.1:3000 (mysql: 127.0.0.1:3306/rootmap)
-```
-
-### 环境变量覆盖
-
-| 变量 | 默认 | 说明 |
-| --- | --- | --- |
-| `PORT` | `3000` | 监听端口。示例:`PORT=4000 npm run server` |
-| `HOST` | `127.0.0.1` | 监听地址,默认仅回环(明文 HTTP 安全档位)。需对外暴露时设 `HOST=0.0.0.0` |
-| `MYSQL_HOST` | `127.0.0.1` | MySQL 地址 |
-| `MYSQL_PORT` | `3306` | MySQL 端口 |
-| `MYSQL_USER` | `root` | MySQL 用户名 |
-| `MYSQL_PASSWORD` | 空 | MySQL 密码 |
-| `MYSQL_DATABASE` | `rootmap` | 应用库,启动时自动建表 |
-
-> 连接信息全部来自环境变量,仓库内不存任何账号密码。
-
-## 测试
+### 1. 安装依赖
 
 ```bash
-npm run test:server   # 服务端单测(node --test,13 个:auth/content/events/stats/http 冒烟)
-npm test              # 全量(含小程序侧内容不变量/日期/SRS/store/stats/api/reporter,40 个)
-npm run validate      # 全量内容校验,期望:✓ 内容通过: 30 roots / 66 affixes / 201 words
+cd server
+npm install
 ```
 
-> `npm run test:server` 需先设 `MYSQL_*` 指向可用 MySQL,且该账号须具备 `CREATE DATABASE` /
-> `DROP DATABASE` 权限(测试为每个用例创建并删除独立数据库以隔离)。
+### 2. 环境配置
 
-## API 一览
-
-- 基址:`http://127.0.0.1:3000`,统一前缀 `/api`。
-- 统一 JSON;错误体固定为 `{error: {code, message}}`。
-- 鉴权列「—」表示公开;**Bearer** 表示需请求头 `Authorization: Bearer <token>`。
-- `at` 取值:`YYYY-MM-DD` 或 `YYYY-MM-DDTHH:mm:ss`(非法日期 / 可滚转日期会被拒);缺省为服务端当前时刻。
-
-### auth(4)
-
-| 方法 | 路径 | 鉴权 | 入参(body) | 返回 |
-| --- | --- | --- | --- | --- |
-| POST | `/api/auth/register` | — | `{username, password}`。username `3-20` 位字母/数字/下划线;password `6-72` 位 | `201 {token, user:{id, username}}`;重名 `409 username_taken`;非法 `400` |
-| POST | `/api/auth/login` | — | `{username, password}` | `200 {token, user:{id, username}}`;凭证错 `401 bad_credentials` |
-| POST | `/api/auth/logout` | Bearer | 无 | `204`(删除该 token,无响应体) |
-| GET | `/api/auth/me` | Bearer | 无 | `200 {user:{id, username}}` |
-
-### content(7,公开只读)
-
-| 方法 | 路径 | 鉴权 | 入参 | 返回 |
-| --- | --- | --- | --- | --- |
-| GET | `/api/content/meta` | — | 无 | `200 {name:'rootmap', counts:{roots,affixes,words}, checksum, version}`;`checksum` 为三表 id 序列 sha1 |
-| GET | `/api/content/roots` | — | 无 | `200` 全部词根对象数组 |
-| GET | `/api/content/affixes` | — | 无 | `200` 全部词缀对象数组 |
-| GET | `/api/content/words` | — | 无 | `200` 全部单词对象数组(全字段) |
-| GET | `/api/content/words/:id` | — | path `id` = 单词拼写 | `200` 单词对象;不存在 `404 not_found` |
-| GET | `/api/content/roots/:id` | — | path `id` | `200 {root, words:[该词根族全部单词]}`;不存在 `404` |
-| GET | `/api/content/affixes/:id` | — | path `id` | `200 {affix, words:[含该词缀的单词]}`;不存在 `404` |
-
-### events(1,受保护)
-
-| 方法 | 路径 | 鉴权 | 入参(body) | 返回 |
-| --- | --- | --- | --- | --- |
-| POST | `/api/events` | Bearer | `{events:[{type, wordId, q?, at?}]}` | `200 {accepted, ignored, truncated?}` |
-
-`POST /api/events` 逐条校验语义:
-
-- `type ∈ {study, review}`;`wordId` 必填且必须存在于词典 —— **未知词不计入错误**,`ignored+1` 不落库。
-- `review` 必带 `q ∈ {1,3,5}`(忘了/模糊/记得);`study` **不得**带 `q`。
-- 单批 ≤ 200 条,超出截断为前 200 条并附 `truncated:true`。
-- `at` 见上文约定;缺省 = 服务端当前时刻(本地时区)。
-
-### stats(3,受保护,均限当前登录用户)
-
-| 方法 | 路径 | 鉴权 | 入参 | 返回 |
-| --- | --- | --- | --- | --- |
-| GET | `/api/stats/overview` | Bearer | 无 | `200 {totalStudied, studyEvents, reviewEvents, gradeDist:{q1,q3,q5}, lapses, accuracy}`;accuracy = `1 - q1/(q1+q3+q5)`(无 review 为 0) |
-| GET | `/api/stats/daily` | Bearer | query `days=14`(默认 14,范围 1..90) | `200 [{date:'YYYY-MM-DD', new, reviews, lapses}…]` 升序、**今天在末**、缺日补 0 |
-| GET | `/api/stats/roots` | Bearer | query `days=30`(默认 30,1..90)、`limit=15`(默认 15,≤30) | `200 [{rootId, root, zh, studied, reviews, gradeDist, accuracy}…]` 按 reviews 降序 |
-
-空数据返回全 0 / 空数组,不报错。入参越界/非整数 → `400 bad_request`。
-
-## 与小程序联调
-
-> 说明:目录重组后小程序侧**暂未接入本服务端**(`miniprogram/utils/api.js` / `reporter.js`
-> 已移除,小程序回到纯本地模式)。服务端当前作为独立 API 运行,以下联调姿势供后续重新接入时复用:
-
-1. **本机起服务**:在 `server/` 目录执行 `npm run server`(默认 `http://127.0.0.1:3000`,
-   需先设 `MYSQL_*`)。
-2. **关闭域名校验**:微信开发者工具 → 右上角「详情」→「本地设置」→ **勾选「不校验合法域名、
-   web-view(业务域名)、TLS 版本以及 HTTPS 证书」**。因为本服务是 `http://127.0.0.1` 明文
-   HTTP,不勾选会被小程序拦截。
-3. **冒烟验证**:按下文「curl 示例」注册/登录/上报/查统计,并用 MySQL 客户端确认
-   `users` / `sessions` / `events` 三表数据落库。
-
-## curl 示例
+复制 `.env.example` 为 `.env` 并配置相关参数：
 
 ```bash
-# 注册(注册即登录,返回 token)
-curl -s -X POST http://127.0.0.1:3000/api/auth/register -H 'content-type: application/json' -d '{"username":"demo","password":"secret123"}'
-
-# 登录(拿 token)
-curl -s -X POST http://127.0.0.1:3000/api/auth/login -H 'content-type: application/json' -d '{"username":"demo","password":"secret123"}'
-
-# 用 token 查本人
-curl -s http://127.0.0.1:3000/api/auth/me -H 'authorization: Bearer <token>'
-
-# 内容元信息(公开)
-curl -s http://127.0.0.1:3000/api/content/meta
-
-# 上报学习事件(受保护):study 不带 q;review 带 q=1|3|5;未知词被忽略不计错
-curl -s -X POST http://127.0.0.1:3000/api/events -H 'authorization: Bearer <token>' \
-  -H 'content-type: application/json' \
-  -d '{"events":[{"type":"study","wordId":"inspect"},{"type":"review","wordId":"inspect","q":5}]}'
-
-# 云端统计(受保护)
-curl -s http://127.0.0.1:3000/api/stats/overview -H 'authorization: Bearer <token>'
-curl -s 'http://127.0.0.1:3000/api/stats/daily?days=14' -H 'authorization: Bearer <token>'
+cp .env.example .env
 ```
 
-## 安全声明
+必要配置项：
+- `MYSQL_HOST`: 数据库主机地址
+- `MYSQL_USER`: 数据库用户名
+- `MYSQL_PASSWORD`: 数据库密码
+- `MYSQL_DATABASE`: 数据库名称
+- `WX_APPID`: 微信小程序 AppID
+- `WX_SECRET`: 微信小程序 AppSecret
 
-本服务定位为**本机开发联调档位**:
+### 3. 数据库初始化
 
-- 传输走明文 HTTP,会话 token 以明文随 `Authorization` 头传输,**未启用 TLS**,仅限
-  `127.0.0.1` 本机联调。
-- 密码以 scrypt(随机 salt, 常量时间比较)哈希存储;SQL 全部参数化。
-- 账号即「用户名 + 密码」,无 `wx.login`/openid(游客 appid 无法换取)。
-- **生产部署不在本轮范围**:若上线需 HTTPS + 备案合法域名、关闭 DevTools 域名校验开关、并把
-  明文 token 换成更健壮的方案(如短期 JWT / OpenID 改造)。本机联调期间请勿在公网暴露该端口。
+应用启动时会自动创建所需的数据表。如果需要手动初始化：
+
+```bash
+# 创建数据库
+mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS rootmap CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+# 授予权限（可选）
+mysql -u root -p -e "GRANT ALL PRIVILEGES ON rootmap.* TO 'root'@'localhost';"
+```
+
+### 4. 启动服务
+
+开发模式：
+```bash
+npm run dev
+```
+
+生产模式：
+```bash
+npm start
+```
+
+服务将在 `http://127.0.0.1:3000` 启动。
+
+## 内容数据流水线
+
+内容以**词根为中心**组织:每个词恰有 1 个词根段,按词根分族;前缀后缀作为辅助拆解段。
+数据分「手写精选层 + 生成层」两层,在 `miniprogram/data/index.js` 合并后交付。
+
+```
+[第 1 段]  server/scripts/generate-cet4.js
+  miniprogram/data/{roots,affixes}(手写,作为 morphology 基底)
+  + server/data/raw-cet4/*.json(CET4 + GaoZhong 语料)
+  → server/data/cet4/index.js        5554 词,其中 1316 词可拆解(其余整词 none)
+        │
+        │  产物只是「逐词猜拆解」的全量语料,不是交付集
+        ▼
+[第 2 段]  server/scripts/generate-content.js
+  倒过来以词根为起点收词:只收拆得动的词、按词根分族、与手写精选层合并
+  → miniprogram/data/generated/**    生成层(209 个族)
+  → miniprogram/data/index.js        交付集 213 根 / 151 缀 / 1350 词
+        │
+        ▼
+[入库]     server/src/seed.js  → 清空并重灌 6 张内容表(单事务)
+```
+
+第 1 段的 1316 条可拆解词来自两条通道:1252 条由形态学规则直接拆出(根变体 + 词缀 + R7
+有界残段),64 条由语料 `relWord`「同根」声明背书(R8)。两条通道都会产出伪词源,
+因此候选词必须**逐词人工审校**,否决结果落在 `generate-cet4.js` 的 `NO_DECOMPOSE`
+(现 251 条,其中 222 条是「规则本会收下、人审否决」)。`generate-cet4.js` 导出
+`blacklistPressure()` 把这两个数暴露出来,`server/test/dataset-merge.test.js` 的 ⑩ 号用例
+钉住它们 —— 改动任何拆解规则都会让它们变,从而强制重跑审校。
+
+### 命令顺序
+
+```bash
+npm run generate:cet4      # 第 1 段:语料 → 可拆解词表(仅在改词典/拆解算法时跑)
+npm run generate:content   # 第 2 段:装配交付集(读第 1 段产物 + 手写层)
+npm run validate           # 内容校验:213 roots / 151 affixes / 1350 words
+npm run audit              # 内容质检:硬红线非零即退出码 1
+npm run seed               # 校验通过后清空并重灌 6 张内容表
+npm run verify:db          # 逐字段核对交付集 vs 数据库(截断/丢失/孤儿行,0 才退出码 0)
+npm run generate:content -- --check   # 只比对不写盘:磁盘交付集与生成结果是否一致
+```
+
+只有改了**形态学词典或拆解算法**时才需要重跑第 1 段,之后必须重跑第 2 段
+(顺序固定:`generate:cet4` → `generate:content` → `validate` → `seed`)。日常改内容不必碰第 1 段。
+`server/data/` 不进版本控制,所以第 1 段的产物无法在 PR diff 里评审 —— 改拆解规则时
+请连同 `blacklistPressure()` 的两个数字一起说明变化。
+
+### 三道门禁
+
+| 门禁 | 位置 | 作用 |
+|---|---|---|
+| 生成器契约 | `generate-cet4.js` 结尾断言 + `generate-content.js` Pass B | 产物必须满足拆解算法的结构性约束 |
+| 交付集红线 | `generate-content.js` Pass C(写盘前)、`seed.js`(连库前) | 不合规就**不写盘 / 不连库**,不留中间态 |
+| 内容质检 | `npm run audit` | 音标可疑字符、例句残留 HTML / `(= …)` 片段、跨词重复例句等 |
+
+### 为什么交付集不能传 `generated: true`
+
+`scripts/validate-content.js` 的 `opts.generated` 是给**生成器**用的严格契约(词缀段文本必须与
+词典 `text` 完全一致、单字母前缀只能是 `e-`、同 type 同 text 的词缀唯一)。它对交付集会大面积误报:
+
+1. **手写层刻意使用同化后的表面形做段文本** —— `support` 的段是 `sup-`(refId 指向 `affix-sub`)、
+   `attract` 的段是 `at-`(→ `affix-ad`)、`oppress` 的段是 `op-`(→ `affix-ob`)。这是拉丁同化,
+   是手写层的设计而不是缺陷(实测 15 例)。
+2. **手写层刻意保留 `in-` 的两条同形词缀** —— 「向内/进入」(`affix-in`)与「不/非」
+   (`affix-in-neg`)分列,段的 `refId` 各自指向对应那条。生成器的变体索引是 first-wins,容纳不下
+   这种区分,故在产物里被 `morphology.js` 的 `MERGED_AFFIX_IN` 合并成一条。
+
+因此交付集只用通用红线校验(`npm run validate` + `npm run audit`);生成侧的契约由第 1 段与
+第 2 段的 Pass B 在装配时保证。反向的 `npm run audit -- --generated` 会明确报出这两类差异,
+用来复查产物本身。
+
+### 该改哪里
+
+| 想改什么 | 改哪里 |
+|---|---|
+| 单个词条/词根/词缀的文案、例句、拆解 | `miniprogram/data/{roots.js,affixes.js,families/}`(手写层,人工维护) |
+| 拆解算法、词根词缀词典、覆盖面 | `server/src/morphology.js` + `server/scripts/generate-cet4.js` → 重跑第 1、2 段 |
+| 生成层的排序/分族/合并规则 | `server/scripts/generate-content.js` → 重跑第 2 段 |
+
+**生成器只写 `miniprogram/data/generated/` 与 `miniprogram/data/index.js`,对手写层只读**,
+所以重新装配不可能破坏手写内容;`server/test/dataset-merge.test.js` 用逐字段快照把这个不变量钉死。
+
+### 重建前提
+
+语料目录 `server/data/`(含 37 MB 的 `raw-cet4/` 与产物 `cet4/index.js`)**被 `.gitignore` 排除**,
+只存在于本机。因此**新克隆的仓库无法重新生成内容** —— 它只能使用已提交的生成层与手写层。
+需要重建时得先取回 kajweb/dict 的 CET4 JSONL 放到 `server/data/raw-cet4/`。生成文件头记录了
+输入内容的 sha1,可用于确认产出对应的输入版本。
+
+> ⚠️ **当前 `miniprogram/data/generated/`(209 个文件)尚未纳入版本控制**,而
+> `miniprogram/data/index.js` 已改为 `require('./generated')`。也就是说:**此刻直接
+> `git commit` 会让新克隆在加载交付集时抛异常**(缺 `./generated`)。
+> 提交前必须先把生成层一起加进版本控制:
+>
+> ```bash
+> git add miniprogram/data/generated miniprogram/data/index.js
+> ```
+>
+> 手写层(`roots.js`/`affixes.js`/`families/`)一直是有版本控制的,只有生成层漏了 ——
+> 这不是本次扩词引入的,而是它第一次暴露出来(在此之前 `index.js` 只合并手写层,
+> 生成层从未进过仓库)。
+>
+> 另外,生成层与 `index.js` **必须固定 LF 行尾**(根目录 `.gitattributes` 已声明)。
+> 这两处是 `--check` 逐字节比较的对象,而本仓库 `core.autocrlf=true`:不做声明时 git 检出
+> 会把 LF 换成 CRLF,`--check` 随即报「不一致」,重跑生成器又把工作区刷回 LF —— 两边打架。
+> 新克隆之所以能开箱即用,靠的就是这条声明。
+
+
+## API 文档
+
+### 认证接口
+
+#### POST /api/auth/wechat
+微信登录
+```json
+{
+  "code": "微信登录code"
+}
+```
+
+响应：
+```json
+{
+  "token": "session_token",
+  "user": {
+    "id": 1,
+    "openid": "user_openid"
+  },
+  "expires_at": "2024-01-01T00:00:00.000Z"
+}
+```
+
+#### GET /api/auth/me
+获取当前用户信息
+
+#### POST /api/auth/logout
+退出登录
+
+### 内容接口
+
+#### GET /api/content/meta
+获取内容元数据
+
+#### GET /api/content/roots
+获取所有词根
+
+#### GET /api/content/roots/:id
+获取词根详情及关联单词
+
+#### GET /api/content/search
+搜索词根和单词
+```
+?q=查询关键词&mode=root|word|all
+```
+
+### 事件接口（需要认证）
+
+#### POST /api/events
+批量上报学习事件
+```json
+{
+  "events": [
+    {
+      "type": "learn",
+      "wordId": "word1",
+      "rootId": "root1",
+      "at": "2024-01-01T00:00:00.000Z"
+    }
+  ]
+}
+```
+
+#### POST /api/events/review/:wordId
+复习单词
+```json
+{
+  "a": 1,
+  "q": 1
+}
+```
+
+#### GET /api/events/due
+获取今日待复习单词列表
+
+### 统计接口（需要认证）
+
+#### GET /api/stats/overview
+获取学习概览
+
+#### GET /api/stats/daily?days=14
+获取每日统计数据
+
+#### GET /api/stats/roots?days=30&limit=15
+获取词根正确率统计
+
+### 设置接口（需要认证）
+
+#### GET /api/settings
+获取用户设置
+
+#### PUT /api/settings
+更新用户设置
+```json
+{
+  "settings": {
+    "dailyReviewLimit": "100",
+    "expandAssocByDefault": true
+  }
+}
+```
+
+## 数据库设计
+
+### 主要表结构
+
+#### users
+- `id`: 用户ID
+- `openid`: 微信openid
+- `created_at`: 创建时间
+- `settings`: 用户设置(JSON)
+
+#### sessions
+- `token`: 会话token
+- `user_id`: 用户ID
+- `created_at`: 创建时间
+- `expires_at`: 过期时间
+
+#### events
+- `id`: 事件ID
+- `user_id`: 用户ID
+- `type`: 事件类型(learn/review)
+- `word_id`: 单词ID
+- `root_id`: 词根ID
+- `q`: 问题选项
+- `a`: 用户答案
+- `correct`: 是否正确
+- `interval_hours`: 复习间隔
+- `at`: 事件时间
+
+#### word_progress
+- `user_id`: 用户ID
+- `word_id`: 单词ID
+- `learned_at`: 学习时间
+- `reviewed_at`: 复习时间
+- `review_count`: 复习次数
+- `correct_count`: 正确次数
+- `level`: 学习等级(new/learning/familiar/master)
+- `next_review`: 下次复习时间
+
+#### root_progress
+- `user_id`: 用户ID
+- `root_id`: 词根ID
+- `learned_words`: 已学单词列表(JSON)
+- `reviewed_at`: 复习时间
+- `review_count`: 复习次数
+- `correct_count`: 正确次数
+- `level`: 学习等级
+
+## 开发指南
+
+### 添加新的API端点
+
+1. 在相应的路由文件中添加新路由
+2. 实现业务逻辑
+3. 添加适当的中间件
+4. 编写测试用例
+
+### 数据库迁移
+
+如果需要修改表结构，可以在 `db.js` 中的 `TABLE_DDL` 数组中添加新的DDL语句。应用启动时会自动执行迁移。
+
+### 日志
+
+应用使用 Winston 记录日志，日志文件位于 `./logs/` 目录：
+- `combined.log`: 所有日志
+- `error.log`: 错误日志
+- `http.log`: HTTP请求日志
+- `database.log`: 数据库操作日志
+- `audit.log`: 用户行为日志
+
+### 错误处理
+
+API 使用统一的错误格式：
+```json
+{
+  "error": {
+    "code": "error_code",
+    "message": "Error message"
+  }
+}
+```
+
+## 部署
+
+### 使用 Docker
+
+```bash
+# 构建镜像
+docker build -t rootmap-server .
+
+# 运行容器
+docker run -p 3000:3000 \
+  -e MYSQL_HOST=mysql \
+  -e MYSQL_USER=root \
+  -e MYSQL_PASSWORD=password \
+  -e MYSQL_DATABASE=rootmap \
+  rootmap-server
+```
+
+### 使用 PM2
+
+```bash
+# 安装 PM2
+npm install -g pm2
+
+# 启动应用
+pm2 start ecosystem.config.js
+
+# 查看状态
+pm2 status
+```
+
+## 常见问题
+
+### Q: 数据库连接失败
+A: 检查 `.env` 文件中的数据库配置，确保MySQL服务正在运行。
+
+### Q: 微信登录失败
+A: 检查微信小程序的AppID和AppSecret是否正确配置。
+
+### Q: 端口被占用
+A: 修改 `.env` 文件中的 `PORT` 配置，或使用其他端口。
+
+## 许可证
+
+MIT License

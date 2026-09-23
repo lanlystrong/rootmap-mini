@@ -21,3 +21,10 @@
 .bp-pre  { color: #06B6D4; }
 .bp-root { color: #3B82F6; }
 .bp-suf  { color: #8B5CF6; }
+
+/* 长 none 残段(词典未收的派生后缀,如 -ation/-ology/-ific):灰色补全,
+   不参与着色、不可点,但必须显示——否则拆解条拼不回完整单词。 */
+.bp-none {
+  color: #9CA3AF;
+  font-weight: 400;
+}

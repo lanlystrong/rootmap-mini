@@ -1,0 +1,8 @@
+// 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
+// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+const words = [
+{"id":"vacuum","word":"vacuum","phonetic":"'vækjʊəm","senses":[{"pos":"v","zh":"用吸尘器清扫","en":null},{"pos":"n","zh":"真空；真空吸尘器","en":null}],"breakdown":[{"part":"vacu","type":"root","zh":"空","refId":"root-vac"},{"part":"um","type":"none"}],"tags":["cet4"],"examples":[{"en":"I vacuumed the carpets today.","zh":"我今天用吸尘器清洁地毯了。"}],"assoc":{"story":"构词:vacu(空) → 用吸尘器清扫"}},
+{"id":"vacant","word":"vacant","phonetic":"'vekənt","senses":[{"pos":"adj","zh":"空虚的；空的；空缺的；空闲的；茫然的","en":null},{"pos":"n","zh":"(Vacant)人名；(法)瓦康","en":null}],"breakdown":[{"part":"vac","type":"root","zh":"空","refId":"root-vac"},{"part":"ant","type":"suffix","zh":"…的(形容词)/…者(名词)","refId":"affix-ant"}],"tags":["cet4"],"examples":[{"en":"Only a few apartments were still vacant.","zh":"只有几套公寓仍然空着。"},{"en":"There was only a vacant lot where her house used to be.","zh":"她以前房子所在的地方只剩下一块空地了。"}],"assoc":{"story":"构词:vac(空) + ant(…的(形容词)/…者(名词)) → 空虚的"}},
+{"id":"vacation","word":"vacation","phonetic":"vəˈkeɪʃn","senses":[{"pos":"n","zh":"假期；（房屋）搬出","en":null},{"pos":"v","zh":"休假，度假","en":null}],"breakdown":[{"part":"vacat","type":"root","zh":"空","refId":"root-vac"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4"],"examples":[{"en":"We’re planning a vacation in Europe.","zh":"我们正计划去欧洲度假。"},{"en":"We’re planning to go on vacation soon.","zh":"我们在计划近期去度假。"}],"assoc":{"story":"构词:vacat(空) + ion(名词后缀(表行为/状态/结果)) → 假期"}},
+];
+module.exports = words;
