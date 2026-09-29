@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"cooperate","word":"cooperate","phonetic":"koʊˈɑːpəreɪt","senses":[{"pos":"v","zh":"合作，协作；配合","en":null}],"breakdown":[{"part":"co","type":"prefix","zh":"共同","refId":"affix-co"},{"part":"opera","type":"root","zh":"工作","refId":"root-oper"},{"part":"te","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"They agreed to co-operate with Brazil on a programme to protect the rain forests.","zh":"他们同意和巴西合作进行一个保护热带雨林的项目。"}],"assoc":{"story":"构词:co(共同) + opera(工作) → 合作"}},
 {"id":"operation","word":"operation","phonetic":"ɑpə'reʃən","senses":[{"pos":"n","zh":"手术；行动","en":null}],"breakdown":[{"part":"opera","type":"root","zh":"工作","refId":"root-oper"},{"part":"tion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-tion"}],"tags":["cet4","高频"],"examples":[{"en":"The UN rescue operation started shortly after dawn.","zh":"联合国的救援行动在破晓后不久就开始了。"}],"assoc":{"story":"构词:opera(工作) + tion(名词后缀(表行为/状态/结果)) → 手术"}},

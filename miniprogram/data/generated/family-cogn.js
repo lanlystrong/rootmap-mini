@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"diagnose","word":"diagnose","phonetic":"daɪəɡ'nos","senses":[{"pos":"vt","zh":"诊断","en":null}],"breakdown":[{"part":"dia","type":"prefix","zh":"相对/相互/穿过","refId":"affix-dia"},{"part":"gnos","type":"root","zh":"认识","refId":"root-cogn"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"He could diagnose an engine problem simply by listening.","zh":"他仅靠听就能判断发动机出了什么问题。"},{"en":"This product is not intended to diagnose, treat or prevent any disease.","zh":"此产品并不供作诊断、治疗或预防任何疾病之用。"}],"assoc":{"story":"构词:dia(相对/相互/穿过) + gnos(认识) → 诊断"}},
 {"id":"recognise","word":"recognise","phonetic":"'rekəɡnaɪz","senses":[{"pos":"v","zh":"认出；承认，认可；识别","en":null}],"breakdown":[{"part":"re","type":"prefix","zh":"再次/向后","refId":"affix-re"},{"part":"cogni","type":"root","zh":"认识","refId":"root-cogn"},{"part":"se","type":"none"}],"tags":["cet4"],"examples":[{"en":"I recognised him at once.","zh":"我立刻认出了他。"}],"assoc":{"story":"构词:re(再次/向后) + cogni(认识) → 认出"}},

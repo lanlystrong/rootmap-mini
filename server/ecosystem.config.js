@@ -10,7 +10,11 @@ module.exports = {
     },
     env_production: {
       NODE_ENV: 'production',
-      PORT: 3000
+      HOST: '0.0.0.0',
+      PORT: 3000,
+      // 敏感项(WX_SECRET / MYSQL_PASSWORD)请勿写死在此文件,
+      // 在启动 Shell 中 export 后由 PM2 注入;或填充于生产机的 server/.env(已被 git 忽略)。
+      MYSQL_DATABASE: process.env.MYSQL_DATABASE || 'rootmap_1'
     },
     log_file: './logs/combined.log',
     out_file: './logs/out.log',

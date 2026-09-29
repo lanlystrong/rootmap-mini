@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"attain","word":"attain","phonetic":"ə'ten","senses":[{"pos":"v","zh":"达到，实现；获得；到达","en":null},{"pos":"n","zh":"成就","en":null}],"breakdown":[{"part":"at","type":"prefix","zh":"朝向/加强","refId":"affix-at"},{"part":"tain","type":"root","zh":"持/握","refId":"root-ten"}],"tags":["cet4","高频"],"examples":[{"en":"More women are attaining positions of power.","zh":"越来越多的女性获得要职。"}],"assoc":{"story":"构词:at(朝向/加强) + tain(持/握) → 达到"}},
 {"id":"obtain","word":"obtain","phonetic":"əb'ten","senses":[{"pos":"v","zh":"获得","en":null}],"breakdown":[{"part":"ob","type":"prefix","zh":"朝向/相对/反对","refId":"affix-ob"},{"part":"tain","type":"root","zh":"持/握","refId":"root-ten"}],"tags":["cet4","高频"],"examples":[{"en":"Evans was trying to obtain a false passport and other documents.","zh":"埃文斯当时正试图获取假护照和其他文件。"}],"assoc":{"story":"构词:ob(朝向/相对/反对) + tain(持/握) → 获得"}},

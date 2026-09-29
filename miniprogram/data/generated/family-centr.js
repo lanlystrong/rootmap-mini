@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"centre","word":"centre","phonetic":"sɛntɚ","senses":[{"pos":"v","zh":"以…为中心","en":null},{"pos":"n","zh":"中心","en":null},{"pos":"adj","zh":"中央的","en":null}],"breakdown":[{"part":"centr","type":"root","zh":"中心","refId":"root-centr"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The title isn’t quite centred on the page, is it?","zh":"标题并不在这页的正中间，是吗？"}],"assoc":{"story":"构词:centr(中心) → 以…为中心"}},
 {"id":"central","word":"central","phonetic":"'sɛntrəl","senses":[{"pos":"adj","zh":"中心的；主要的；中枢的","en":null},{"pos":"n","zh":"电话总机","en":null}],"breakdown":[{"part":"centr","type":"root","zh":"中心","refId":"root-centr"},{"part":"al","type":"suffix","zh":"…的(形容词)/名词","refId":"affix-al"}],"tags":["cet4","高频"],"examples":[{"en":"He lives in central London.","zh":"他住在伦敦市中心。"},{"en":"The roof is supported by a central column.","zh":"屋顶由一根中心柱支撑着。"}],"assoc":{"story":"构词:centr(中心) + al(…的(形容词)/名词) → 中心的"}},

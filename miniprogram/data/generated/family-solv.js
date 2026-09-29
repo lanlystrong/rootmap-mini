@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"solve","word":"solve","phonetic":"sɔlv","senses":[{"pos":"v","zh":"解决","en":null}],"breakdown":[{"part":"solv","type":"root","zh":"松开/解决","refId":"root-solv"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Charlie thinks money will solve all his problems.","zh":"查理认为钱能解决他所有的问题。"},{"en":"the best way of solving our dilemma","zh":"解决我们两难处境的最佳办法"}],"assoc":{"story":"构词:solv(松开/解决) → 解决"}},
 {"id":"absolute","word":"absolute","phonetic":"'æbsəlut","senses":[{"pos":"adj","zh":"绝对的；完全的；专制的","en":null},{"pos":"n","zh":"绝对；绝对事物","en":null}],"breakdown":[{"part":"ab","type":"prefix","zh":"偏离/离开","refId":"affix-ab"},{"part":"solute","type":"root","zh":"松开/解决","refId":"root-solv"}],"tags":["cet4","高频"],"examples":[{"en":"I have absolute confidence in her.","zh":"我对她充满信心。"},{"en":"We don’t know with absolute certainty that the project will succeed.","zh":"我们没有绝对的把握这个项目一定会成功。"}],"assoc":{"story":"构词:ab(偏离/离开) + solute(松开/解决) → 绝对的"}},

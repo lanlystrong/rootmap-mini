@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"depressed","word":"depressed","phonetic":"dɪ'prɛst","senses":[{"pos":"adj","zh":"沮丧的；萧条的","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"press","type":"root","zh":"压","refId":"root-press"},{"part":"ed","type":"suffix","zh":"过去式/过去分词/形容词后缀","refId":"affix-ed"}],"tags":["cet4","高频"],"examples":[{"en":"Britain’s depressed housing market","zh":"英国不景气的房产市场"}],"assoc":{}},
 {"id":"depressing","word":"depressing","phonetic":"dɪ'prɛsɪŋ","senses":[{"pos":"adj","zh":"令人沮丧的","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"press","type":"root","zh":"压","refId":"root-press"},{"part":"ing","type":"suffix","zh":"现在分词/动名词后缀","refId":"affix-ing"}],"tags":["cet4","高频"],"examples":[{"en":"It’s a depressing thought.","zh":"这是个令人沮丧的想法。"},{"en":"The whole experience was very depressing.","zh":"整个经历非常令人沮丧。"}],"assoc":{}},

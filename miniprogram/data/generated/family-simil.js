@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"assemble","word":"assemble","phonetic":"ə'sɛmbl","senses":[{"pos":"v","zh":"组装；集合","en":null}],"breakdown":[{"part":"as","type":"prefix","zh":"朝向/加强","refId":"affix-as"},{"part":"sembl","type":"root","zh":"相似","refId":"root-simil"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"A large crowd had assembled outside the American embassy.","zh":"一大群人聚集在美国大使馆外。"},{"en":"He looked around at the assembled company.","zh":"他环顾四周聚集的人群。"}],"assoc":{"story":"构词:as(朝向/加强) + sembl(相似) → 组装"}},
 {"id":"resemble","word":"resemble","phonetic":"rɪ'zɛmbl","senses":[{"pos":"v","zh":"像，相似","en":null}],"breakdown":[{"part":"re","type":"prefix","zh":"再次/向后","refId":"affix-re"},{"part":"sembl","type":"root","zh":"相似","refId":"root-simil"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"It’s amazing how closely Brian and Steve resemble each other.","zh":"布赖恩和史蒂夫真是惊人地相像。"},{"en":"He grew up to resemble his father.","zh":"他长大了，很像他父亲。"}],"assoc":{"story":"构词:re(再次/向后) + sembl(相似) → 像"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"assess","word":"assess","phonetic":"ə'sɛs","senses":[{"pos":"v","zh":"评价","en":null}],"breakdown":[{"part":"as","type":"prefix","zh":"朝向/加强","refId":"affix-as"},{"part":"sess","type":"root","zh":"坐","refId":"root-sess"}],"tags":["cet4","高频"],"examples":[{"en":"The test was to assess aptitude rather than academic achievement.","zh":"该测试将评估能力而不是学业成绩。"}],"assoc":{"story":"构词:as(朝向/加强) + sess(坐) → 评价"}},
 {"id":"reassess","word":"reassess","phonetic":"'riə'sɛs","senses":[{"pos":"v","zh":"重新评估","en":null}],"breakdown":[{"part":"re","type":"prefix","zh":"再次/向后","refId":"affix-re"},{"part":"as","type":"prefix","zh":"朝向/加强","refId":"affix-as"},{"part":"sess","type":"root","zh":"坐","refId":"root-sess"}],"tags":["cet4","高频"],"examples":[{"en":"This has caused us to reassess the way we approach our planning.","zh":"这件事让我们重新审视了我们的规划方式。"}],"assoc":{"story":"构词:re(再次/向后) + as(朝向/加强) + sess(坐) → 重新评估"}},

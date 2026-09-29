@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"ferry","word":"ferry","phonetic":"'fɛri","senses":[{"pos":"n","zh":"渡船；摆渡；渡口","en":null},{"pos":"v","zh":"（乘渡船）渡过；用渡船运送；空运","en":null}],"breakdown":[{"part":"ferr","type":"root","zh":"带/运","refId":"root-fer"},{"part":"y","type":"suffix","zh":"名词后缀","refId":"affix-y"}],"tags":["cet4","高频"],"examples":[{"en":"They had recrossed the River Gambia by ferry.","zh":"他们乘船又一次渡过了冈比亚河。"}],"assoc":{"story":"构词:ferr(带/运) + y(名词后缀) → 渡船"}},
 {"id":"differ","word":"differ","phonetic":"'dɪfɚ","senses":[{"pos":"v","zh":"使…相异；使…不同","en":null},{"pos":"n","zh":"(Differ)人名；(法)迪费","en":null}],"breakdown":[{"part":"dif","type":"prefix","zh":"分开/否定","refId":"affix-dif"},{"part":"fer","type":"root","zh":"带/运","refId":"root-fer"}],"tags":["cet4","高频"],"examples":[{"en":"The story he told police differed from the one he told his mother.","zh":"他告诉警察的话和告诉他母亲的不同。"}],"assoc":{"story":"构词:dif(分开/否定) + fer(带/运) → 使…相异"}},

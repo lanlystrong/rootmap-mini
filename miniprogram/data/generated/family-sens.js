@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"consent","word":"consent","phonetic":"kən'sɛnt","senses":[{"pos":"n","zh":"同意，赞成","en":null},{"pos":"v","zh":"同意","en":null}],"breakdown":[{"part":"con","type":"prefix","zh":"共同/加强","refId":"affix-con"},{"part":"sent","type":"root","zh":"感觉","refId":"root-sens"}],"tags":["cet4","高频"],"examples":[{"en":"The chairman was elected by common consent.","zh":"主席是大家一致推选出来的。"},{"en":"divorce by mutual consent","zh":"双方均同意的离婚"}],"assoc":{"story":"构词:con(共同/加强) + sent(感觉) → 同意"}},
 {"id":"nonsense","word":"nonsense","phonetic":"'nɑnsɛns","senses":[{"pos":"n","zh":"胡说， 废话； 冒失的行动","en":null}],"breakdown":[{"part":"non","type":"prefix","zh":"非/无","refId":"affix-non"},{"part":"sens","type":"root","zh":"感觉","refId":"root-sens"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"‘I’m a prisoner in my own home.’ ‘Nonsense!’","zh":"“我在自己家里就像个囚犯。”“胡说！”"},{"en":"If you ask me, these modern teaching methods are a load of nonsense.","zh":"要我说，这些现代教学方法全是一派胡言。"}],"assoc":{"story":"构词:non(非/无) + sens(感觉) → 胡说"}},

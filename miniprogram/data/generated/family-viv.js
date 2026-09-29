@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"survive","word":"survive","phonetic":"sɚ'vaɪv","senses":[{"pos":"vi","zh":"活下来， 幸存","en":null},{"pos":"vt","zh":"从…逃出，幸免于；从中挺过来；比…活得长","en":null}],"breakdown":[{"part":"sur","type":"prefix","zh":"超过/在上","refId":"affix-sur"},{"part":"viv","type":"root","zh":"活/生命","refId":"root-viv"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Only 12 of the 140 passengers survived.","zh":"140 名乘客中只有 12 人生还。"},{"en":"She survived the attack.","zh":"她在袭击中幸免于难。"}],"assoc":{"story":"构词:sur(超过/在上) + viv(活/生命) → 活下来"}},
 {"id":"vitally","word":"vitally","phonetic":"'vaɪtəli","senses":[{"pos":"adv","zh":"极其重要地","en":null}],"breakdown":[{"part":"vit","type":"root","zh":"活/生命","refId":"root-viv"},{"part":"al","type":"suffix","zh":"…的(形容词)/名词","refId":"affix-al"},{"part":"ly","type":"suffix","zh":"…地(副词)","refId":"affix-ly"}],"tags":["cet4","高频"],"examples":[{"en":"A sensible diet is vitally important if you want to remain in good health.","zh":"如想保持健康，合理的饮食十分重要。"}],"assoc":{"story":"构词:vit(活/生命) + al(…的(形容词)/名词) + ly(…地(副词)) → 极其重要地"}},

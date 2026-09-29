@@ -88,7 +88,7 @@ npm start
 [第 2 段]  server/scripts/generate-content.js
   倒过来以词根为起点收词:只收拆得动的词、按词根分族、与手写精选层合并
   → miniprogram/data/generated/**    生成层(209 个族)
-  → miniprogram/data/index.js        交付集 213 根 / 151 缀 / 1350 词
+  → miniprogram/data/index.js        交付集 223 根 / 151 缀 / 1450 词
         │
         ▼
 [入库]     server/src/seed.js  → 清空并重灌 6 张内容表(单事务)
@@ -106,7 +106,7 @@ npm start
 ```bash
 npm run generate:cet4      # 第 1 段:语料 → 可拆解词表(仅在改词典/拆解算法时跑)
 npm run generate:content   # 第 2 段:装配交付集(读第 1 段产物 + 手写层)
-npm run validate           # 内容校验:213 roots / 151 affixes / 1350 words
+npm run validate           # 内容校验:223 roots / 151 affixes / 1450 words
 npm run audit              # 内容质检:硬红线非零即退出码 1
 npm run seed               # 校验通过后清空并重灌 6 张内容表
 npm run verify:db          # 逐字段核对交付集 vs 数据库(截断/丢失/孤儿行,0 才退出码 0)

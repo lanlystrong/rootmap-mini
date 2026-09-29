@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"specify","word":"specify","phonetic":"'spɛsɪfaɪ","senses":[{"pos":"v","zh":"指定，具体说明","en":null}],"breakdown":[{"part":"spec","type":"root","zh":"看","refId":"root-spect"},{"part":"ify","type":"suffix","zh":"(使…)动词后缀","refId":"affix-ify"}],"tags":["cet4","高频"],"examples":[{"en":"Payments will be made for a specified number of months.","zh":"款项将在规定的几个月内支付。"}],"assoc":{}},
 {"id":"inspector","word":"inspector","phonetic":"ɪn'spɛktɚ","senses":[{"pos":"n","zh":"检查员","en":null}],"breakdown":[{"part":"in","type":"prefix","zh":"不/非;向内","refId":"affix-in"},{"part":"spect","type":"root","zh":"看","refId":"root-spect"},{"part":"or","type":"suffix","zh":"…者/…物(名词)","refId":"affix-or"}],"tags":["cet4","高频"],"examples":[{"en":"ticket inspectors","zh":"查票员"},{"en":"a Health and Safety inspector","zh":"健康安全督察员"}],"assoc":{}},

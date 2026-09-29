@@ -44,7 +44,8 @@ test('① 每个手写词在交付集中逐字段不变(生成器只追加,不�
     }
   }
   assert.equal(n, hand.words.length);
-  assert.equal(n, 201);
+  // 绊线:手写层扩词后这行必须**刻意**更新,不能删。改了 40 族/325 词。
+  assert.equal(n, 325, '手写词数变了 —— 扩词是有意的,但要确认这 325 条仍逐字段未被生成器改动');
 });
 
 test('② 每个手写词根字段不变,且 variants 是超集、手写序在前', () => {
@@ -113,10 +114,11 @@ test('④ 生成词 = 产物可拆词 − 手写 id,且逐字节等于产物', (
   }
 });
 
-test('⑤ 交付集自洽:1350 词各恰 1 个根段、refId 有效、id 唯一、零命中根为 0', () => {
-  assert.equal(disk.roots.length, 213);
-  assert.equal(disk.affixes.length, 151);
-  assert.equal(disk.words.length, 1350);
+test('⑤ 交付集自洽:1450 词各恰 1 个根段、refId 有效、id 唯一、零命中根为 0', () => {
+  // 绊线:交付集扩词后必须**刻意**更新,不能删。
+  assert.equal(disk.roots.length, 223, '词根数变了 —— 扩词是有意的,确认这 223 族仍各恰 1 根段且零悬空');
+  assert.equal(disk.affixes.length, 151, '词缀数变了 —— 确认 affix-in 等白名单词缀仍在');
+  assert.equal(disk.words.length, 1450, '单词数变了 —— 确认 1450 词仍各恰 1 根段、id 唯一');
 
   const rootById = new Map(disk.roots.map((r) => [r.id, r]));
   const affIds = new Set(disk.affixes.map((a) => a.id));
@@ -151,7 +153,11 @@ test('⑦ 落盘 index.js 与内存构建逐字节一致(两份合并实现不�
   assert.deepStrictEqual(clone(disk.roots), clone(built.roots));
   assert.deepStrictEqual(clone(disk.affixes), clone(built.affixes));
   assert.deepStrictEqual(clone(disk.words), clone(built.words));
-  assert.equal(disk.roots.length, handIds.size + product.roots.length - handIds.size);
+  // 手写根与产物根按 id 取并集 —— 同一 id 只留一条,不是两边相加。
+  // (原式 `handIds.size + product.roots.length - handIds.size` 恒等于 product.roots.length,
+  //  隐含「手写根数 = 产物里同名根数」的巧合,扩词后立刻失效。改成并集口径,对扩词免疫。)
+  const unionIds = new Set([...handIds, ...product.roots.map((r) => r.id)]);
+  assert.equal(disk.roots.length, unionIds.size);
 });
 
 // ⑧ 人审闸门:逐词审校否决掉的伪拆解,一个都不许回到交付集。
@@ -269,7 +275,8 @@ test('⑪ require 第 1 段生成器不产生副作用', () => {
 test('⑫ story 不得给 none 残段编造义项', () => {
   const handIds = new Set(hand.words.map((w) => w.id));
   const genWords = disk.words.filter((w) => !handIds.has(w.id));
-  assert.equal(genWords.length, 1149);
+  // 绊线:生成层词数变了 —— 扩词是有意的,确认新收进来的词也没给 none 残段编造义项。
+  assert.equal(genWords.length, 1125, '生成层词数变了 —— 手写层富化挤掉了 24 条生成词,确认新集合仍无 none 残段编造义项');
 
   const offenders = [];
   let withNone = 0;

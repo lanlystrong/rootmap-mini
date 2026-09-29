@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"apply","word":"apply","phonetic":"ə'plaɪ","senses":[{"pos":"vi","zh":"适用； 申请， 请求； 涂， 敷， 施","en":null},{"pos":"vt","zh":"应用，实施；使用；涂敷；把…施于","en":null}],"breakdown":[{"part":"ap","type":"prefix","zh":"朝向/加强","refId":"affix-ap"},{"part":"ply","type":"root","zh":"折/叠","refId":"root-plic"}],"tags":["cet4","高频"],"examples":[{"en":"We need to apply for planning permission to build a garage.","zh":"我们建车库需要申请规划许可。"}],"assoc":{"story":"构词:ap(朝向/加强) + ply(折/叠) → 适用"}},
 {"id":"imply","word":"imply","phonetic":"ɪm'plai","senses":[{"pos":"v","zh":"意味；暗示","en":null}],"breakdown":[{"part":"im","type":"prefix","zh":"向内/进入","refId":"affix-im"},{"part":"ply","type":"root","zh":"折/叠","refId":"root-plic"}],"tags":["cet4","高频"],"examples":[{"en":"an implied threat","zh":"隐含的威胁"}],"assoc":{"story":"构词:im(向内/进入) + ply(折/叠) → 意味"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"firm","word":"firm","phonetic":"fɝm","senses":[{"pos":"adj","zh":"坚定的；牢固的；严格的；结实的","en":null},{"pos":"v","zh":"使坚定；使牢固","en":null},{"pos":"adv","zh":"稳固地","en":null},{"pos":"n","zh":"公司；商号","en":null}],"breakdown":[{"part":"firm","type":"root","zh":"坚固","refId":"root-firm"}],"tags":["cet4","高频"],"examples":[{"en":"The sofa cushions are fairly firm.","zh":"沙发的坐垫很硬。"},{"en":"a firm green apple","zh":"硬的青苹果"}],"assoc":{"story":"构词:firm(坚固) → 坚定的"}},
 {"id":"affirm","word":"affirm","phonetic":"ə'fɝm","senses":[{"pos":"v","zh":"断言，声明","en":null}],"breakdown":[{"part":"af","type":"prefix","zh":"朝向/加强","refId":"affix-af"},{"part":"firm","type":"root","zh":"坚固","refId":"root-firm"}],"tags":["cet4","高频"],"examples":[{"en":"The general affirmed rumors of an attack.","zh":"将军证实了袭击的传闻。"}],"assoc":{"story":"构词:af(朝向/加强) + firm(坚固) → 断言"}},

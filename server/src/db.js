@@ -187,63 +187,21 @@ const TABLE_DDL = [
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
 
   // 事件表 - 记录用户的学习、复习等行为
+  // 学习事件表 —— 服务端只当**事件桶**:原始流水,不是进度。
+  // 列刻意只有 type/word_id/q/at 四项(加 user_id):复习调度(SM-2)跑在客户端
+  // miniprogram/utils/srs.js,学习进度以小程序本地为唯一真源,服务端不回写、不复制一份。
+  // 曾经存在的 root_id / a / correct / interval_hours 四列建好即空、零读写(唯一会写它们的
+  // db.recordEvent 从未被调用),已连同 idx_events_root 一并删除 —— 见 migrateDropDeadEventColumns。
   `CREATE TABLE IF NOT EXISTS events (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNSIGNED NOT NULL,
     type ENUM('study', 'review') NOT NULL,
     word_id VARCHAR(64) NOT NULL,
-    root_id VARCHAR(64) NULL,
-    q TINYINT NULL COMMENT '正确答案选项',
-    a TINYINT NULL COMMENT '用户选择的选项',
-    correct BOOLEAN NULL,
-    interval_hours INT DEFAULT 0 COMMENT '复习间隔(小时)',
+    q TINYINT NULL COMMENT '三档自评:1 忘了 / 3 模糊 / 5 记得(study 为 NULL)',
     at VARCHAR(25) NOT NULL,
     KEY idx_events_user_at (user_id, at),
     KEY idx_events_user_type (user_id, type),
-    KEY idx_events_word (word_id),
-    KEY idx_events_root (root_id)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
-
-  // 单词学习进度表
-  `CREATE TABLE IF NOT EXISTS word_progress (
-    user_id INT UNSIGNED NOT NULL,
-    word_id VARCHAR(64) NOT NULL,
-    learned_at VARCHAR(25) NULL COMMENT '首次学习时间',
-    reviewed_at VARCHAR(25) NULL COMMENT '最近复习时间',
-    review_count INT DEFAULT 0 COMMENT '复习次数',
-    correct_count INT DEFAULT 0 COMMENT '正确次数',
-    level ENUM('new', 'learning', 'familiar', 'master') DEFAULT 'new',
-    next_review VARCHAR(25) NOT NULL DEFAULT (NOW()),
-    PRIMARY KEY (user_id, word_id),
-    KEY idx_progress_user_level (user_id, level),
-    KEY idx_progress_next_review (user_id, next_review)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
-
-  // 词根学习进度表
-  `CREATE TABLE IF NOT EXISTS root_progress (
-    user_id INT UNSIGNED NOT NULL,
-    root_id VARCHAR(64) NOT NULL,
-    learned_words JSON DEFAULT NULL COMMENT '已学习的单词ID列表',
-    learned_at VARCHAR(25) NULL COMMENT '首次学习时间',
-    reviewed_at VARCHAR(25) NULL COMMENT '最近复习时间',
-    review_count INT DEFAULT 0 COMMENT '复习次数',
-    correct_count INT DEFAULT 0 COMMENT '正确次数',
-    level ENUM('new', 'learning', 'familiar', 'master') DEFAULT 'new',
-    PRIMARY KEY (user_id, root_id),
-    KEY idx_root_user_level (user_id, level)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
-
-  // 错误日志表（可选）
-  `CREATE TABLE IF NOT EXISTS error_logs (
-    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT UNSIGNED NULL,
-    type VARCHAR(20) NOT NULL,
-    message TEXT NOT NULL,
-    stack TEXT NULL,
-    context JSON NULL,
-    created_at VARCHAR(25) NOT NULL,
-    KEY idx_error_user (user_id),
-    KEY idx_error_created (created_at)
+    KEY idx_events_word (word_id)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
 
   // 内容表(词根/词缀/单词/释义/拆解/例句)
@@ -286,9 +244,14 @@ async function migrateLegacyUsers(pool) {
     if (names.length && names.includes('username') && !names.includes('openid')) {
       console.log('检测到旧版数据库结构，开始迁移...');
 
+      // 备份表名**只能取一次**。此前 CREATE 与 SELECT 各调一次 Date.now(),
+      // 两次几乎必然不同 → 恢复语句指向一张从未建过的表,而 users 已经被 DROP,
+      // 异常又被下面的 catch 吞掉 —— 这条迁移一旦触发就是永久丢用户数据。
+      const backup = `users_backup_${Date.now()}`;
+
       // 创建临时备份表
       await pool.query(`
-        CREATE TABLE IF NOT EXISTS users_backup_${Date.now()} AS
+        CREATE TABLE IF NOT EXISTS ${backup} AS
         SELECT * FROM users
       `);
 
@@ -298,7 +261,9 @@ async function migrateLegacyUsers(pool) {
       await pool.query('DROP TABLE IF EXISTS word_progress');
       await pool.query('DROP TABLE IF EXISTS root_progress');
       await pool.query('DROP TABLE IF EXISTS error_logs');
-      await pool.query('DROP TABLE IF NOT EXISTS users');
+      // 注:这三张表已从 TABLE_DDL 移除(建好即空、零读写),但这里仍要 DROP ——
+      // 走这条路径的都是旧库,留着它们只会变成谁也说不清的孤儿表。
+      await pool.query('DROP TABLE IF EXISTS users');
 
       // 重新创建表结构
       for (const ddl of TABLE_DDL) {
@@ -308,13 +273,17 @@ async function migrateLegacyUsers(pool) {
       // 从备份恢复用户数据（迁移openid）
       await pool.query(`
         INSERT INTO users (id, openid, created_at)
-        SELECT id, username, NOW() FROM users_backup_${Date.now()}
+        SELECT id, username, NOW() FROM ${backup}
       `);
 
+      await pool.query(`DROP TABLE IF EXISTS ${backup}`);
       console.log('数据库迁移完成');
     }
   } catch (err) {
-    console.error('数据库迁移失败:', err);
+    // 到这里 users 可能已经被删掉了。绝不能静默继续 —— 重新抛出,
+    // 让 createDb 失败、服务起不来,人来处理。备份表还在,数据没丢。
+    console.error('数据库迁移失败(用户表可能已被删除,请检查 users_backup_* 备份表):', err);
+    throw err;
   }
 }
 
@@ -332,6 +301,33 @@ async function migrateEventTypeEnum(pool) {
     }
   } catch (err) {
     console.error('纠正 events.type 枚举失败:', err);
+  }
+}
+
+// 删掉 events 表里建好即空、零读写的四列(root_id / a / correct / interval_hours)及 idx_events_root。
+// 服务端只把事件当流水,复习调度在客户端;留着这几列只会让人以为服务端维护进度。
+// 逐列判存在性 → 幂等,重跑不报错。ALTER TABLE 是 DDL(隐式提交),故不放事务。
+async function migrateDropDeadEventColumns(pool) {
+  const dead = ['root_id', 'a', 'correct', 'interval_hours'];
+  try {
+    const [cols] = await pool.query(
+      "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='events'"
+    );
+    const names = (cols || []).map(c => c.COLUMN_NAME);
+    for (const c of dead) {
+      if (!names.includes(c)) continue;
+      await pool.query(`ALTER TABLE events DROP COLUMN \`${c}\``);
+      console.log(`已删除 events.${c} 列(建好即空、零读写)`);
+    }
+    const [idx] = await pool.query(
+      "SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='events' AND INDEX_NAME='idx_events_root'"
+    );
+    if (idx.length) {
+      await pool.query('ALTER TABLE events DROP INDEX idx_events_root');
+      console.log('已删除 events.idx_events_root 索引');
+    }
+  } catch (err) {
+    console.error('清理 events 冗余列失败:', err);
   }
 }
 
@@ -356,7 +352,7 @@ async function migrateProfileColumns(pool) {
 }
 
 // 为旧的内容表补充 origin / seq 等列。`CREATE TABLE IF NOT EXISTS` 不会改已有表,
-// 而 rootmap_1 里那 213/151/1350 行是既有数据 —— 必须原地补列,不能重建。
+// 而 rootmap_1 里那 223/151/1450 行是既有数据 —— 必须原地补列,不能重建。
 async function migrateContentColumns(pool) {
   const want = [
     ['roots', 'origin', "ENUM('hand','dict','gen') NOT NULL DEFAULT 'gen'"],
@@ -411,6 +407,9 @@ async function createDb(cfg) {
     // 纠正旧库事件表 type 枚举(建表完成后执行)
     await migrateEventTypeEnum(pool);
 
+    // 删除 events 表建好即空的冗余列(建表完成后执行)
+    await migrateDropDeadEventColumns(pool);
+
     // 初始化基础数据（开发环境）
     if (process.env.NODE_ENV !== 'production') {
       for (const sql of INIT_DATA_SQL) {
@@ -458,7 +457,10 @@ async function createDb(cfg) {
           'INSERT INTO users (openid, created_at) VALUES (?, NOW())',
           [openid]
         );
-        return { id: result[0].insertId, openid, created_at: new Date().toISOString() };
+        // created_at 回读库里那一行,而不是本地现拼一个 toISOString() ——
+        // 后者是 UTC 串、与 NOW() 落库值差一个时区,同一个用户两次登录会拿到不同的 created_at。
+        const row = await pool.query('SELECT created_at FROM users WHERE id = ?', [result[0].insertId]);
+        return { id: result[0].insertId, openid, created_at: row[0][0].created_at };
       } catch (err) {
         console.error('创建用户失败:', err);
         throw err;
@@ -466,6 +468,9 @@ async function createDb(cfg) {
     },
 
     // 会话相关
+    // expiresAt 是 time.js 的 sqlAtPlusDays() 产出的本地 datetime 字面量
+    // ('YYYY-MM-DD HH:MM:SS'),与校验用的 NOW() 同格式。传 Date 对象会走驱动的时区转换,
+    // 传 ISO 串则与 NOW() 字典序对不上 —— 两种都会让 `expires_at > NOW()` 失去意义。
     createSession: async (userId, token, expiresAt) => {
       try {
         await pool.query(
@@ -475,6 +480,18 @@ async function createDb(cfg) {
       } catch (err) {
         console.error('创建会话失败:', err);
         throw err;
+      }
+    },
+
+    // 清理已过期的会话行。借 idx_sessions_expires 走索引,登录时顺带做一次即可,
+    // 不必再养一个定时任务 —— 这张表此前只增不减,过期行会无限堆积。
+    purgeExpiredSessions: async () => {
+      try {
+        const [r] = await pool.query('DELETE FROM sessions WHERE expires_at <= NOW()');
+        return r.affectedRows || 0;
+      } catch (err) {
+        console.error('清理过期会话失败:', err);
+        return 0;
       }
     },
 
@@ -501,20 +518,10 @@ async function createDb(cfg) {
     },
 
     // 事件相关
-    addEvent: async (event) => {
-      try {
-        const { userId, type, wordId, rootId, q, a, correct, intervalHours, at } = event;
-        const [result] = await pool.execute(
-          `INSERT INTO events (user_id, type, word_id, root_id, q, a, correct, interval_hours, at)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-          [userId, type, wordId, rootId, q, a, correct, intervalHours, at]
-        );
-        return { id: result.insertId, ...event };
-      } catch (err) {
-        console.error('添加事件失败:', err);
-        throw err;
-      }
-    },
+    // 注:原有的 addEvent 门面已删 —— 它是 events.root_id/a/correct/interval_hours 四列的
+    // 唯一写者,而 /api/events 走 eventsRouter 里自己的 5 列 INSERT,addEvent 从未被调用。
+    // 四列已随 migrateDropDeadEventColumns 一并删除,留着它就成了一段必然报错的死代码。
+    // 事件写入的唯一路径是 eventsRouter;读取是 statsRouter 自己的聚合 SQL。
 
     getEventsByUser: async (userId, type, limit = 100, offset = 0) => {
       try {
@@ -537,98 +544,13 @@ async function createDb(cfg) {
       }
     },
 
-    // 进度相关
-    updateWordProgress: async (userId, wordId, data) => {
-      try {
-        const { level, nextReview, reviewedAt, reviewCount, correctCount } = data;
-        await pool.execute(
-          `INSERT INTO word_progress
-           (user_id, word_id, level, next_review, reviewed_at, review_count, correct_count)
-           VALUES (?, ?, ?, ?, ?, ?, ?)
-           ON DUPLICATE KEY UPDATE
-           level = VALUES(level),
-           next_review = VALUES(next_review),
-           reviewed_at = VALUES(reviewed_at),
-           review_count = VALUES(review_count),
-           correct_count = VALUES(correct_count)`,
-          [userId, wordId, level, nextReview, reviewedAt, reviewCount, correctCount]
-        );
-      } catch (err) {
-        console.error('更新单词进度失败:', err);
-        throw err;
-      }
-    },
-
-    getWordProgress: async (userId, wordId) => {
-      try {
-        const [rows] = await pool.execute(
-          'SELECT * FROM word_progress WHERE user_id = ? AND word_id = ?',
-          [userId, wordId]
-        );
-        return rows[0] || null;
-      } catch (err) {
-        console.error('获取单词进度失败:', err);
-        return null;
-      }
-    },
-
-    getWordsByLevel: async (userId, level) => {
-      try {
-        const [rows] = await pool.execute(
-          'SELECT word_id, level FROM word_progress WHERE user_id = ? AND level = ?',
-          [userId, level]
-        );
-        return rows;
-      } catch (err) {
-        console.error('获取按级别单词失败:', err);
-        return [];
-      }
-    },
-
-    getTodayDueWords: async (userId) => {
-      try {
-        const [rows] = await pool.execute(
-          'SELECT word_id FROM word_progress WHERE user_id = ? AND next_review <= NOW()',
-          [userId]
-        );
-        return rows.map(row => row.word_id);
-      } catch (err) {
-        console.error('获取今日待复习单词失败:', err);
-        return [];
-      }
-    },
-
-    updateRootProgress: async (userId, rootId, learnedWords, level) => {
-      try {
-        const now = new Date().toISOString();
-        await pool.execute(
-          `INSERT INTO root_progress
-           (user_id, root_id, learned_words, reviewed_at, level)
-           VALUES (?, ?, ?, ?, ?)
-           ON DUPLICATE KEY UPDATE
-           learned_words = VALUES(learned_words),
-           reviewed_at = VALUES(reviewed_at),
-           level = VALUES(level)`,
-          [userId, rootId, JSON.stringify(learnedWords), now, level]
-        );
-      } catch (err) {
-        console.error('更新词根进度失败:', err);
-        throw err;
-      }
-    },
-
-    getRootProgress: async (userId, rootId) => {
-      try {
-        const [rows] = await pool.execute(
-          'SELECT * FROM root_progress WHERE user_id = ? AND root_id = ?',
-          [userId, rootId]
-        );
-        return rows[0] || null;
-      } catch (err) {
-        console.error('获取词根进度失败:', err);
-        return null;
-      }
-    },
+    // 进度相关:已全部删除(updateWordProgress / getWordProgress / getWordsByLevel /
+    // getTodayDueWords / updateRootProgress / getRootProgress)。
+    //
+    // 理由:对应的 word_progress / root_progress 两张表建好即空、全仓零读写。
+    // 学习进度以**小程序本地**为唯一真源,复习调度(SM-2)跑在 miniprogram/utils/srs.js,
+    // 服务端既不回写也不复制一份 —— 两套调度并行只会漂移。真要跨设备续学是独立特性,
+    // 不该由"表先建好、函数先写好"来假装已经存在。
 
   };
 }

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"graduation","word":"graduation","phonetic":"ɡrædʒu'eʃən","senses":[{"pos":"n","zh":"毕业；毕业典礼；刻度，分度；分等级","en":null}],"breakdown":[{"part":"grad","type":"root","zh":"步/走","refId":"root-grad"},{"part":"uation","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"After graduation Neil returned to Ohio.","zh":"尼尔毕业以后回到了俄亥俄州。"},{"en":"On graduation, Nancy became an art teacher.","zh":"南希毕业以后当了一名美术老师。"}],"assoc":{}},
 {"id":"aggression","word":"aggression","phonetic":"ə'ɡrɛʃən","senses":[{"pos":"n","zh":"侵略；进攻；侵犯；侵害","en":null}],"breakdown":[{"part":"ag","type":"prefix","zh":"朝向/加强","refId":"affix-ag"},{"part":"gress","type":"root","zh":"步/走","refId":"root-grad"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4","高频"],"examples":[{"en":"an unprovoked act of aggression","zh":"无端的侵犯"}],"assoc":{}},

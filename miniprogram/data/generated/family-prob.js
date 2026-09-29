@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"approve","word":"approve","phonetic":"ə'prʊv","senses":[{"pos":"vi","zh":"赞成； 满意","en":null},{"pos":"vt","zh":"批准，通过","en":null}],"breakdown":[{"part":"ap","type":"prefix","zh":"朝向/加强","refId":"affix-ap"},{"part":"prov","type":"root","zh":"检验/证明","refId":"root-prob"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"You've never approved of Henry, have you?","zh":"你从未赞赏过亨利，是吧？"}],"assoc":{"story":"构词:ap(朝向/加强) + prov(检验/证明) → 赞成"}},
 {"id":"probably","word":"probably","phonetic":"'prɑbəbli","senses":[{"pos":"adv","zh":"很可能， 大概","en":null}],"breakdown":[{"part":"probab","type":"root","zh":"检验/证明","refId":"root-prob"},{"part":"ly","type":"suffix","zh":"…地(副词)","refId":"affix-ly"}],"tags":["cet4","高频"],"examples":[{"en":"The White House probably won't make this plan public until July.","zh":"白宫可能要到7月份才会公布这项计划。"},{"en":"Van Gogh is probably the best-known painter in the world.","zh":"梵高可能是世界上最知名的画家。"}],"assoc":{"story":"构词:probab(检验/证明) + ly(…地(副词)) → 很可能"}},

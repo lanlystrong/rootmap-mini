@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"compete","word":"compete","phonetic":"kəm'pit","senses":[{"pos":"v","zh":"竞争","en":null}],"breakdown":[{"part":"com","type":"prefix","zh":"共同/加强","refId":"affix-com"},{"part":"pete","type":"root","zh":"寻求/追求","refId":"root-pet"}],"tags":["cet4","高频"],"examples":[{"en":"Me: What do you mean \"compete\"?","zh":"我：你的“竞争”是什么意思？"}],"assoc":{"story":"构词:com(共同/加强) + pete(寻求/追求) → 竞争"}},
 {"id":"appetite","word":"appetite","phonetic":"'æpɪtaɪt","senses":[{"pos":"n","zh":"欲望, 胃口","en":null}],"breakdown":[{"part":"ap","type":"prefix","zh":"朝向/加强","refId":"affix-ap"},{"part":"petite","type":"root","zh":"寻求/追求","refId":"root-pet"}],"tags":["cet4","高频"],"examples":[{"en":"Her husband always had a huge appetite.","zh":"她丈夫向来胃口极大。"},{"en":"Symptoms include tiredness and loss of appetite.","zh":"症状包括疲倦和食欲不振。"}],"assoc":{"story":"构词:ap(朝向/加强) + petite(寻求/追求) → 欲望"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"determination","word":"determination","phonetic":"dɪˌtɜːrmɪˈneɪʃn","senses":[{"pos":"n","zh":"决心；决定；确定","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"termin","type":"root","zh":"界限/结束","refId":"root-term"},{"part":"ation","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ation"}],"tags":["cet4","高频"],"examples":[{"en":"his dogged determination to succeed","zh":"他想要成功的坚定决心"}],"assoc":{"story":"构词:de(向下/去除/加强) + termin(界限/结束) + ation(名词后缀(表行为/状态/结果)) → 决心"}},
 {"id":"term","word":"term","phonetic":"tɝm","senses":[{"pos":"n","zh":"术语；学期；期限；条款；(代数式等的)项","en":null},{"pos":"v","zh":"把…叫做","en":null}],"breakdown":[{"part":"term","type":"root","zh":"界限/结束","refId":"root-term"}],"tags":["cet4"],"examples":[{"en":"Teachers often feel overworked in term time.","zh":"教师在学期内经常觉得工作担子过重。"}],"assoc":{"story":"构词:term(界限/结束) → 术语"}},

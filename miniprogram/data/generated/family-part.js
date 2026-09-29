@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"depart","word":"depart","phonetic":"dɪ'pɑrt","senses":[{"pos":"v","zh":"离开，起程；出发","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"part","type":"root","zh":"部分/分开","refId":"root-part"}],"tags":["cet4","高频"],"examples":[{"en":"Flights by Air Europe depart Gatwick on Tuesdays.","zh":"欧洲航空公司的航班每逢周二从盖特威克机场起飞。"}],"assoc":{"story":"构词:de(向下/去除/加强) + part(部分/分开) → 离开"}},
 {"id":"departure","word":"departure","phonetic":"dɪ'pɑrtʃɚ","senses":[{"pos":"n","zh":"离开，出发，起程","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"part","type":"root","zh":"部分/分开","refId":"root-part"},{"part":"ure","type":"suffix","zh":"名词后缀(表行为/结果)","refId":"affix-ure"}],"tags":["cet4","高频"],"examples":[{"en":"There are several departures for New York every day.","zh":"每天有好几个班次去纽约。"}],"assoc":{"story":"构词:de(向下/去除/加强) + part(部分/分开) + ure(名词后缀(表行为/结果)) → 离开"}},

@@ -20,6 +20,13 @@ const canon = (v) => {
   if (v == null || v === '') return null;
   let o = v;
   if (typeof v === 'string') { try { o = JSON.parse(v); } catch { return v; } }
+  // 丢弃 undefined 值:JSON 不可序列化 undefined,`{story:undefined}` 与 `{}` 语义等价,
+  // 否则会误报「源 {} ≠ 库 null」(生成层无 story 的词就是这种空 assoc)。
+  if (o && typeof o === 'object' && !Array.isArray(o)) {
+    const clean = {};
+    for (const k of Object.keys(o)) if (o[k] !== undefined) clean[k] = o[k];
+    o = clean;
+  }
   if (o == null || (typeof o === 'object' && !Object.keys(o).length)) return null;
   return JSON.stringify(sortKeys(o));
 };

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"type","word":"type","phonetic":"taɪp","senses":[{"pos":"n","zh":"型，类型","en":null},{"pos":"v","zh":"打字","en":null}],"breakdown":[{"part":"typ","type":"root","zh":"类型/打印","refId":"root-typ"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"Jo’s not really the sporty type.","zh":"乔可不是那种喜欢运动的人。"}],"assoc":{"story":"构词:typ(类型/打印) → 型"}},
 {"id":"typewriter","word":"typewriter","phonetic":"'taɪpraɪtɚ","senses":[{"pos":"n","zh":"打字机","en":null}],"breakdown":[{"part":"type","type":"root","zh":"类型/打印","refId":"root-typ"},{"part":"writer","type":"none"}],"tags":["cet4"],"examples":[{"en":"She tapped out a letter on the typewriter.","zh":"她用打字机打出了一封信。"},{"en":"He tapped out an article on the typewriter.","zh":"他用打字机打出了一篇文章。"}],"assoc":{"story":"构词:type(类型/打印) → 打字机"}},

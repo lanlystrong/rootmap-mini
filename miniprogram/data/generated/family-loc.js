@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"locate","word":"locate","phonetic":"ˈloˌket","senses":[{"pos":"v","zh":"位于，定位","en":null}],"breakdown":[{"part":"loca","type":"root","zh":"地方","refId":"root-loc"},{"part":"te","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The business is located right in the center of town.","zh":"这家商店就在市中心。"}],"assoc":{"story":"构词:loca(地方) → 位于"}},
 {"id":"allocate","word":"allocate","phonetic":"'æləket","senses":[{"pos":"vt","zh":"分配， 分派， 把…拨给","en":null}],"breakdown":[{"part":"al","type":"prefix","zh":"朝向/加强","refId":"affix-al-prefix"},{"part":"loca","type":"root","zh":"地方","refId":"root-loc"},{"part":"te","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Tickets are limited and will be allocated to those who apply first.","zh":"票数有限，将分配给那些先申请的人。"}],"assoc":{"story":"构词:al(朝向/加强) + loca(地方) → 分配"}},

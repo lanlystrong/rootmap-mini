@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"effort","word":"effort","phonetic":"'ɛfɚt","senses":[{"pos":"n","zh":"努力；努力的成果","en":null}],"breakdown":[{"part":"ef","type":"prefix","zh":"出/向外","refId":"affix-ef"},{"part":"fort","type":"root","zh":"强","refId":"root-fort"}],"tags":["cet4","高频"],"examples":[{"en":"Lou lifted the box easily, without using much effort.","zh":"卢没费多大力气就把箱子搬了起来。"},{"en":"Frank put a lot of effort into the party.","zh":"弗兰克办这次聚会花了不少精力。"}],"assoc":{"story":"构词:ef(出/向外) + fort(强) → 努力"}},
 {"id":"comfort","word":"comfort","phonetic":"'kʌmfɚt","senses":[{"pos":"n","zh":"舒适；安慰","en":null},{"pos":"v","zh":"安慰","en":null}],"breakdown":[{"part":"com","type":"prefix","zh":"共同/加强","refId":"affix-com"},{"part":"fort","type":"root","zh":"强","refId":"root-fort"}],"tags":["cet4","高频"],"examples":[{"en":"I dress for comfort, not fashion.","zh":"我穿衣服只讲舒服，不追求时髦。"},{"en":"Alan was very reluctant to leave the warmth and comfort of the fire.","zh":"艾伦很不情愿离开暖和舒适的火堆。"}],"assoc":{"story":"构词:com(共同/加强) + fort(强) → 舒适"}},

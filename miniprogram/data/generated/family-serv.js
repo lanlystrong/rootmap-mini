@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"serve","word":"serve","phonetic":"sɝv","senses":[{"pos":"vt","zh":"服务， 招待； 服役","en":null}],"breakdown":[{"part":"serv","type":"root","zh":"服务/保存","refId":"root-serv"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"There was only one girl serving customers.","zh":"只有一个女孩在接待顾客。"}],"assoc":{"story":"构词:serv(服务/保存) → 服务"}},
 {"id":"deserve","word":"deserve","phonetic":"dɪ'zɝv","senses":[{"pos":"v","zh":"值得","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"serv","type":"root","zh":"服务/保存","refId":"root-serv"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"What have I done to deserve this?","zh":"我做了什么事，要得到这样的报应？"},{"en":"I’m sorry for the kids. They deserve better.","zh":"我为这些孩子感到难过，他们应该过得更好。"}],"assoc":{"story":"构词:de(向下/去除/加强) + serv(服务/保存) → 值得"}},

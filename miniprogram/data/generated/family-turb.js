@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"disturb","word":"disturb","phonetic":"dɪ'stɝb","senses":[{"pos":"v","zh":"打扰，扰乱；弄乱","en":null}],"breakdown":[{"part":"dis","type":"prefix","zh":"分开/否定/加强","refId":"affix-dis"},{"part":"turb","type":"root","zh":"扰乱","refId":"root-turb"}],"tags":["cet4","高频"],"examples":[{"en":"Sorry to disturb you, but I have an urgent message.","zh":"对不起打扰一下，我有个紧急消息。"},{"en":"The thieves fled when they were disturbed by a neighbour.","zh":"窃贼们被一名邻居惊动后逃跑了。"}],"assoc":{"story":"构词:dis(分开/否定/加强) + turb(扰乱) → 打扰"}},
 {"id":"disturbing","word":"disturbing","phonetic":"dɪ'stɝbɪŋ","senses":[{"pos":"adj","zh":"令人不安的；烦扰的","en":null},{"pos":"v","zh":"干扰；打断（disturb的ing形式）","en":null}],"breakdown":[{"part":"dis","type":"prefix","zh":"分开/否定/加强","refId":"affix-dis"},{"part":"turb","type":"root","zh":"扰乱","refId":"root-turb"},{"part":"ing","type":"suffix","zh":"现在分词/动名词后缀","refId":"affix-ing"}],"tags":["cet4","高频"],"examples":[{"en":"a disturbing increase in the crime rate","zh":"令人不安的犯罪率增幅"}],"assoc":{"story":"构词:dis(分开/否定/加强) + turb(扰乱) + ing(现在分词/动名词后缀) → 令人不安的"}},

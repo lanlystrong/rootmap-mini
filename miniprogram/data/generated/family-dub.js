@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"doubt","word":"doubt","phonetic":"daʊt","senses":[{"pos":"n","zh":"怀疑；疑虑","en":null},{"pos":"v","zh":"怀疑","en":null}],"breakdown":[{"part":"doubt","type":"root","zh":"怀疑","refId":"root-dub"}],"tags":["cet4","高频"],"examples":[{"en":"There was still one little nagging doubt at the back of his mind.","zh":"他的心头仍有一丝挥之不去的疑虑。"}],"assoc":{"story":"构词:doubt(怀疑) → 怀疑"}},
 {"id":"doubtful","word":"doubtful","phonetic":"'daʊtfəl","senses":[{"pos":"adj","zh":"难以预测的；怀疑的","en":null}],"breakdown":[{"part":"doubt","type":"root","zh":"怀疑","refId":"root-dub"},{"part":"ful","type":"suffix","zh":"充满…的(形容词)","refId":"affix-ful"}],"tags":["cet4","高频"],"examples":[{"en":"‘Everything’s going to be all right, you’ll see.’ Jenny looked doubtful.","zh":"“一切都会顺顺当当的，你等着看好了。” 珍妮看起来不大相信的样子。"}],"assoc":{"story":"构词:doubt(怀疑) + ful(充满…的(形容词)) → 难以预测的"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"evolve","word":"evolve","phonetic":"ɪ'vɑlv","senses":[{"pos":"v","zh":"使发展","en":null}],"breakdown":[{"part":"e","type":"prefix","zh":"出/向外","refId":"affix-e"},{"part":"volv","type":"root","zh":"滚/转","refId":"root-volv"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The school has evolved its own style of teaching.","zh":"学校逐步形成了自己的教学风格。"},{"en":"Businesses need to evolve rapidly.","zh":"各项业务需要快速发展。"}],"assoc":{"story":"构词:e(出/向外) + volv(滚/转) → 使发展"}},
 {"id":"involve","word":"involve","phonetic":"ɪn'vɑlv","senses":[{"pos":"v","zh":"卷入，包含","en":null}],"breakdown":[{"part":"in","type":"prefix","zh":"不/非;向内","refId":"affix-in"},{"part":"volv","type":"root","zh":"滚/转","refId":"root-volv"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"What will the job involve?","zh":"这份工作包括什么？"},{"en":"I didn’t realize putting on a play involved so much work.","zh":"我没想到上演一出戏剧需要做这么多的工作。"}],"assoc":{"story":"构词:in(不/非;向内) + volv(滚/转) → 卷入"}},

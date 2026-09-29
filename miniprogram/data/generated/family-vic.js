@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"victim","word":"victim","phonetic":"'vɪktɪm","senses":[{"pos":"n","zh":"牺牲者， 受害者","en":null}],"breakdown":[{"part":"vict","type":"root","zh":"征服","refId":"root-vic"},{"part":"im","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The victim received head injuries from which she died a week later.","zh":"受害人头部受伤，一周后死亡。"},{"en":"a credit card fraud ring that stole millions of dollars from unsuspecting victims","zh":"从毫无戒心的受害者手中盗取数百万美元的信用卡诈骗团伙"}],"assoc":{"story":"构词:vict(征服) → 牺牲者"}},
 {"id":"convict","word":"convict","phonetic":"kən'vɪkt","senses":[{"pos":"vt","zh":"证明…有罪， 宣判…有罪","en":null},{"pos":"n","zh":"囚犯","en":null}],"breakdown":[{"part":"con","type":"prefix","zh":"共同/加强","refId":"affix-con"},{"part":"vict","type":"root","zh":"征服","refId":"root-vic"}],"tags":["cet4","高频"],"examples":[{"en":"a convicted murderer","zh":"已定罪的谋杀犯"}],"assoc":{"story":"构词:con(共同/加强) + vict(征服) → 证明…有罪"}},

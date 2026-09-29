@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"civil","word":"civil","phonetic":"'sɪvl","senses":[{"pos":"adj","zh":"公民的；民间的；文职的；有礼貌的；根据民法的","en":null},{"pos":"n","zh":"(Civil)人名；(土)吉维尔；(法)西维尔","en":null}],"breakdown":[{"part":"civ","type":"root","zh":"市民/城","refId":"root-civ"},{"part":"il","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"They were married in a civil ceremony in May.","zh":"他们在五月份举行了世俗婚礼。"}],"assoc":{"story":"构词:civ(市民/城) → 公民的"}},
 {"id":"civilized","word":"civilized","phonetic":"sɪvlˌaɪzd","senses":[{"pos":"adj","zh":"文明的","en":null}],"breakdown":[{"part":"civil","type":"root","zh":"市民/城","refId":"root-civ"},{"part":"ized","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Such things should not happen in a civilized society.","zh":"文明社会不应该有这种事情发生。"}],"assoc":{"story":"构词:civil(市民/城) → 文明的"}},

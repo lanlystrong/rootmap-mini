@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"demand","word":"demand","phonetic":"dɪ'mænd","senses":[{"pos":"v","zh":"要求；需要；查询","en":null},{"pos":"n","zh":"[经] 需求；要求；需要","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"mand","type":"root","zh":"命令","refId":"root-mand"}],"tags":["cet4","高频"],"examples":[{"en":"Angry demonstrators demanded the resignation of two senior officials.","zh":"愤怒的示威者要求两名高级官员辞职。"},{"en":"‘Where are you going?’ she demanded angrily.","zh":"“你要去哪里？” 她气愤地质问道。"}],"assoc":{"story":"构词:de(向下/去除/加强) + mand(命令) → 要求"}},
 {"id":"command","word":"command","phonetic":"kə'mænd","senses":[{"pos":"v","zh":"命令，指挥；控制","en":null},{"pos":"n","zh":"指挥，控制；命令；司令部","en":null}],"breakdown":[{"part":"com","type":"prefix","zh":"共同/加强","refId":"affix-com"},{"part":"mand","type":"root","zh":"命令","refId":"root-mand"}],"tags":["cet4","高频"],"examples":[{"en":"He commands the 4th Battalion.","zh":"他指挥第四营。"}],"assoc":{"story":"构词:com(共同/加强) + mand(命令) → 命令"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"acquire","word":"acquire","phonetic":"ə'kwaɪr","senses":[{"pos":"v","zh":"获得","en":null}],"breakdown":[{"part":"ac","type":"prefix","zh":"朝向/加强","refId":"affix-ac"},{"part":"quir","type":"root","zh":"寻求","refId":"root-quir"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Manning hoped to acquire valuable works of art as cheaply as possible.","zh":"曼宁希望以尽可能低的价格买到有价值的艺术品。"},{"en":"She has acquired an email address and a site on the World Wide Web.","zh":"她获得了一个电子邮件地址和万维网网址。"}],"assoc":{"story":"构词:ac(朝向/加强) + quir(寻求) → 获得"}},
 {"id":"conquer","word":"conquer","phonetic":"'kɑŋkɚ","senses":[{"pos":"v","zh":"征服，战胜；破除","en":null}],"breakdown":[{"part":"con","type":"prefix","zh":"共同/加强","refId":"affix-con"},{"part":"quer","type":"root","zh":"寻求","refId":"root-quir"}],"tags":["cet4","高频"],"examples":[{"en":"The Normans conquered England in 1066.","zh":"诺曼人于 1066 年征服英格兰。"},{"en":"Egypt was conquered by the Persian king Kambyses.","zh":"埃及被波斯国王冈比西斯征服。"}],"assoc":{"story":"构词:con(共同/加强) + quer(寻求) → 征服"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"erupt","word":"erupt","phonetic":"ɪ'rʌpt","senses":[{"pos":"v","zh":"爆发；喷出；发疹；长牙","en":null}],"breakdown":[{"part":"e","type":"prefix","zh":"出/向外","refId":"affix-e"},{"part":"rupt","type":"root","zh":"破","refId":"root-rupt"}],"tags":["cet4","高频"],"examples":[{"en":"Violence erupted after police shot a student during the demonstration.","zh":"警察向示威人群中的一名学生开枪，暴乱随之发生。"},{"en":"A political row erupted over the MP’s comments.","zh":"这名下院议员的评论引发了一场政治论战。"}],"assoc":{"story":"构词:e(出/向外) + rupt(破) → 爆发"}},
 {"id":"abrupt","word":"abrupt","phonetic":"ə'brʌpt","senses":[{"pos":"adj","zh":"生硬的；突然的；唐突的；陡峭的","en":null}],"breakdown":[{"part":"ab","type":"prefix","zh":"偏离/离开","refId":"affix-ab"},{"part":"rupt","type":"root","zh":"破","refId":"root-rupt"}],"tags":["cet4","高频"],"examples":[{"en":"an abrupt change of plan","zh":"计划的突然改变"}],"assoc":{"story":"构词:ab(偏离/离开) + rupt(破) → 生硬的"}},

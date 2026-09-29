@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"durability","word":"durability","phonetic":"ˌdjʊərə'bɪlətɪ","senses":[{"pos":"n","zh":"持久","en":null}],"breakdown":[{"part":"dur","type":"root","zh":"持续","refId":"root-dur"},{"part":"ability","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"A: Why do we have to do durability test?","zh":"我们为什么要做耐久性测试?"},{"en":"Another problem of cigarettes as money is their lack of durability.","zh":"香烟作为货币的另一个问题是它缺少耐久性。"}],"assoc":{"story":"构词:dur(持续) → 持久"}},
 {"id":"during","word":"during","phonetic":"'dʊrɪŋ","senses":[{"pos":"prep","zh":"在…的时候，在…的期间","en":null},{"pos":"n","zh":"(During)人名；(法)迪兰；(瑞典、利比)杜林","en":null}],"breakdown":[{"part":"dur","type":"root","zh":"持续","refId":"root-dur"},{"part":"ing","type":"suffix","zh":"现在分词/动名词后缀","refId":"affix-ing"}],"tags":["cet4","高频"],"examples":[{"en":"During the summer she worked as a lifeguard.","zh":"夏天她当过救生员。"},{"en":"He slept calmly during the early part of the night.","zh":"他上半夜睡得很安稳。"}],"assoc":{"story":"构词:dur(持续) + ing(现在分词/动名词后缀) → 在…的时候"}},

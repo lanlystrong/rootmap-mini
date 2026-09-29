@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"police","word":"police","phonetic":"pə'lis","senses":[{"pos":"n","zh":"警察，警方；治安","en":null},{"pos":"v","zh":"监督；管辖；维持治安；为…配备警察","en":null},{"pos":"adj","zh":"警察的；有关警察的","en":null}],"breakdown":[{"part":"polic","type":"root","zh":"城邦/政治","refId":"root-polit"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"Police surrounded the courthouse.","zh":"警察围在法院大楼四周。"}],"assoc":{"story":"构词:polic(城邦/政治) → 警察"}},
 {"id":"politician","word":"politician","phonetic":"pɑlə'tɪʃən","senses":[{"pos":"n","zh":"政治家；政客","en":null}],"breakdown":[{"part":"polit","type":"root","zh":"城邦/政治","refId":"root-polit"},{"part":"ician","type":"none"}],"tags":["cet4"],"examples":[{"en":"politicians who are trying to get the minority vote","zh":"努力争取少数族群选票的政治家"},{"en":"a British Labour politician","zh":"英国工党政治家"}],"assoc":{"story":"构词:polit(城邦/政治) → 政治家"}},

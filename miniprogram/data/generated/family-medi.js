@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"medium","word":"medium","phonetic":"'midɪəm","senses":[{"pos":"adj","zh":"中等的","en":null},{"pos":"n","zh":"媒体；媒介物，传导体","en":null}],"breakdown":[{"part":"medi","type":"root","zh":"中间","refId":"root-medi"},{"part":"um","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"What size shirt does he wear – small, medium or large?","zh":"他穿多大尺码的衬衫——小号、中号还是大号？"},{"en":"hair of medium length","zh":"中等长短的头发"}],"assoc":{"story":"构词:medi(中间) → 中等的"}},
 {"id":"media","word":"media","phonetic":"'miːdiə","senses":[{"pos":"n","zh":"新闻媒介， 传播媒介","en":null}],"breakdown":[{"part":"medi","type":"root","zh":"中间","refId":"root-medi"},{"part":"a","type":"none"}],"tags":["cet4"],"examples":[{"en":"The scandal was widely reported in the national media.","zh":"这一丑闻在全国媒体上被广泛报道。"},{"en":"The role of the news media in forming public opinion is very important.","zh":"新闻媒体对于社会舆论的形成具有非常重要的作用。"}],"assoc":{"story":"构词:medi(中间) → 新闻媒介"}},

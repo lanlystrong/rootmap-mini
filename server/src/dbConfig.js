@@ -5,7 +5,7 @@
 //
 // 为什么这条守卫值得写:`.env.example` 里写的是 MYSQL_DATABASE=rootmap,而 server.js /
 // seed.js / verify-db.js 的内建默认值都是 rootmap_1。一个字的笔误就能让生成器对着一个
-// **空库**写出一份完整、合法、全 origin='gen' 的 1350 词交付集 —— 校验全绿、数量看着
+// **空库**写出一份完整、合法、全 origin='gen' 的 1450 词交付集 —— 校验全绿、数量看着
 // 也对,只是手写层"消失"了。而手写层是原创内容,重生不出来。这不是多疑,是构造性的。
 
 const DEFAULT_DB = 'rootmap_1';

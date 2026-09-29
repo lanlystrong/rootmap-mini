@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"liberation","word":"liberation","phonetic":"lɪbə'reʃən","senses":[{"pos":"n","zh":"解放","en":null}],"breakdown":[{"part":"liberat","type":"root","zh":"自由","refId":"root-liber"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4","高频"],"examples":[{"en":"They pant after liberation.","zh":"他们渴望解放。"},{"en":"All his life was submerged in the liberation of the people.","zh":"他的一生全部献身于人民的解放事业。"}],"assoc":{"story":"构词:liberat(自由) + ion(名词后缀(表行为/状态/结果)) → 解放"}},
 {"id":"liberate","word":"liberate","phonetic":"'lɪbə'ret","senses":[{"pos":"v","zh":"解放；释放","en":null}],"breakdown":[{"part":"liberat","type":"root","zh":"自由","refId":"root-liber"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"A few days later, our armies liberated the city.","zh":"几天以后，我军解放了这座城市。"}],"assoc":{"story":"构词:liberat(自由) → 解放"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"option","word":"option","phonetic":"'ɑpʃən","senses":[{"pos":"n","zh":"选择","en":null}],"breakdown":[{"part":"opti","type":"root","zh":"选择/看","refId":"root-opt"},{"part":"on","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"There are a number of options available.","zh":"有多种选择。"},{"en":"He had two options.","zh":"他有两种选择。"}],"assoc":{"story":"构词:opti(选择/看) → 选择"}},
 {"id":"adopt","word":"adopt","phonetic":"ə'dɑpt","senses":[{"pos":"v","zh":"收养；采用；采取","en":null}],"breakdown":[{"part":"ad","type":"prefix","zh":"朝向/加强","refId":"affix-ad"},{"part":"opt","type":"root","zh":"选择/看","refId":"root-opt"}],"tags":["cet4","高频"],"examples":[{"en":"Sally was adopted when she was four.","zh":"莎莉四岁时被人收养。"},{"en":"The couple are unable to have children of their own, but hope to adopt.","zh":"那对夫妇自己无法生育，但希望领养孩子。"}],"assoc":{"story":"构词:ad(朝向/加强) + opt(选择/看) → 收养"}},

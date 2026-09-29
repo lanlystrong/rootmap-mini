@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"crew","word":"crew","phonetic":"krʊ","senses":[{"pos":"n","zh":"队，组；全体人员，全体船员","en":null},{"pos":"v","zh":"一起工作","en":null}],"breakdown":[{"part":"cre","type":"root","zh":"生长/创造","refId":"root-cre"},{"part":"w","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The plane crashed, killing two of the crew and four passengers.","zh":"飞机坠毁，造成两名机组人员和四名乘客死亡。"},{"en":"a crew member","zh":"一名机组人员"}],"assoc":{"story":"构词:cre(生长/创造) → 队"}},
 {"id":"create","word":"create","phonetic":"krɪ'et","senses":[{"pos":"v","zh":"创造；引起，产生","en":null}],"breakdown":[{"part":"creat","type":"root","zh":"生长/创造","refId":"root-cre"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Some people believe the universe was created by a big explosion.","zh":"有些人认为宇宙是通过一次大爆炸创造出来的。"},{"en":"Her behaviour is creating a lot of problems.","zh":"她的行为引起了很多问题。"}],"assoc":{"story":"构词:creat(生长/创造) → 创造"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"accord","word":"accord","phonetic":"ə'kɔrd","senses":[{"pos":"vi","zh":"相符合； 相一致","en":null},{"pos":"n","zh":"一致，符合；谅解，协议","en":null},{"pos":"vt","zh":"使符合；使一致；调节；授予，赠与，给予","en":null}],"breakdown":[{"part":"ac","type":"prefix","zh":"朝向/加强","refId":"affix-ac"},{"part":"cord","type":"root","zh":"心","refId":"root-cord"}],"tags":["cet4","高频"],"examples":[{"en":"The punishments accorded with the current code of discipline.","zh":"处罚与现行的纪律规则一致。"}],"assoc":{"story":"构词:ac(朝向/加强) + cord(心) → 相符合"}},
 {"id":"cordial","word":"cordial","phonetic":"'kɔrdʒəl","senses":[{"pos":"adj","zh":"真诚的，诚恳的","en":null}],"breakdown":[{"part":"cord","type":"root","zh":"心","refId":"root-cord"},{"part":"ial","type":"suffix","zh":"…的(形容词)","refId":"affix-ial"}],"tags":["cet4","高频"],"examples":[{"en":"The talks were conducted in a cordial atmosphere.","zh":"会谈在友好的气氛中进行。"}],"assoc":{"story":"构词:cord(心) + ial(…的(形容词)) → 真诚的"}},

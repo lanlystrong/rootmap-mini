@@ -1,7 +1,7 @@
 // server/src/authRouter.js
 const crypto = require('crypto');
 const { promisify } = require('util');
-const jwt = require('jsonwebtoken');
+const { sqlAtPlusDays } = require('./time');
 const axios = require('axios');
 
 // 微信登录配置
@@ -10,35 +10,6 @@ const WX_LOGIN_URL = 'https://api.weixin.qq.com/sns/jscode2session';
 // 生成随机token
 function generateToken() {
   return crypto.randomBytes(24).toString('hex');
-}
-
-// 验证JWT token
-function verifyToken(req, res, next) {
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({
-      error: {
-        code: 'missing_token',
-        message: 'Missing authorization token'
-      }
-    });
-  }
-
-  const token = authHeader.substring(7);
-  const secret = process.env.JWT_SECRET || 'rootmap-secret-key';
-
-  try {
-    const decoded = jwt.verify(token, secret);
-    req.user = decoded;
-    next();
-  } catch (err) {
-    return res.status(401).json({
-      error: {
-        code: 'invalid_token',
-        message: 'Invalid or expired token'
-      }
-    });
-  }
 }
 
 // 认证中间件 - 从token获取用户
@@ -116,9 +87,15 @@ async function handleWechatLogin(db, wx, code) {
       console.log('New user created:', user);
     }
 
-    // 创建会话
+    // 顺手清掉过期会话。这张表只增不减(每次登录插一行,登出删一行),
+    // 过期行会一直堆着。借 idx_sessions_expires 顺带清掉,不必再养一个定时任务。
+    try { await db.purgeExpiredSessions(); } catch (e) { console.error('清理过期会话失败:', e.message); }
+
+    // 创建会话。expires_at 存的是**本地时区**的 datetime 字面量(sqlAtPlusDays),
+    // 与 MySQL NOW() 同格式 —— 校验走的是 `expires_at > NOW()` 的字符串比较,
+    // 格式不一致会让过期判断在当天内恒真(见 time.js 的说明)。
     const token = generateToken();
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7天后过期
+    const expiresAt = sqlAtPlusDays(7); // 7天后过期
     await db.createSession(user.id, token, expiresAt);
 
     return {
@@ -128,7 +105,9 @@ async function handleWechatLogin(db, wx, code) {
         openid: user.openid,
         created_at: user.created_at
       },
-      expires_at: expiresAt.toISOString()
+      // 返回**与落库同一个字符串**:此前这里回的是 UTC ISO 串,和库里存的本地串对不上,
+      // 客户端拿到的过期时间比实际差一个时区。
+      expires_at: expiresAt
     };
   } catch (err) {
     console.error('WeChat login error:', err);
@@ -342,4 +321,4 @@ function authRouter(db, wx) {
   return router;
 }
 
-module.exports = { authRouter, authRequired, verifyToken, buildCode2Session };
+module.exports = { authRouter, authRequired, buildCode2Session };

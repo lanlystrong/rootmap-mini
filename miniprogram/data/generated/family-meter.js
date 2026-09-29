@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"diameter","word":"diameter","phonetic":"daɪ'æmɪtɚ","senses":[{"pos":"n","zh":"直径","en":null}],"breakdown":[{"part":"dia","type":"prefix","zh":"相对/相互/穿过","refId":"affix-dia"},{"part":"meter","type":"root","zh":"测量","refId":"root-meter"}],"tags":["cet4","高频"],"examples":[{"en":"a tube less than a fifth of the diameter of a human hair.","zh":"…一根直径不到头发五分之一的微管。"}],"assoc":{"story":"构词:dia(相对/相互/穿过) + meter(测量) → 直径"}},
 {"id":"immeasurable","word":"immeasurable","phonetic":"ɪ'mɛʒərəbl","senses":[{"pos":"adj","zh":"无法估量的","en":null}],"breakdown":[{"part":"im","type":"prefix","zh":"向内/进入","refId":"affix-im"},{"part":"measur","type":"root","zh":"测量","refId":"root-meter"},{"part":"able","type":"suffix","zh":"可…的(形容词)","refId":"affix-able"}],"tags":["cet4","高频"],"examples":[{"en":"The refugee problem has now reached immeasurable proportions.","zh":"难民问题现在已经到了无法估量的程度。"}],"assoc":{"story":"构词:im(向内/进入) + measur(测量) + able(可…的(形容词)) → 无法估量的"}},

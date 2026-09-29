@@ -9,7 +9,7 @@
 //
 // ⚠ 依赖方向是**单向**的,禁止反向 require:
 //   本文件 → miniprogram/data/{roots,affixes}   本文件的基底是**手写层**(30 根 / 66 缀),
-//   而不是交付集 miniprogram/data/index.js(213 根 / 151 缀)。若改成 require 交付集,
+//   而不是交付集 miniprogram/data/index.js(223 根 / 151 缀)。若改成 require 交付集,
 //   本文件会把生成结果当成自家基底再加一遍 extra,自我放大成正反馈。
 //   miniprogram/data/index.js → miniprogram/data/generated/** → (由 generate-content.js 装配)
 //   交付集的构建不经过本文件:generate-content.js 直接读第 1 段产物 server/data/cet4/index.js,

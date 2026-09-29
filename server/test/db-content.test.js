@@ -21,12 +21,13 @@ test('createDb 建齐三表(users/sessions/events)且 events 可写读回', asyn
   });
 });
 
-test('content 单源:计数 213/151/1350、wordSet 含词、wordRootMap/rootWords 正确', () => {
+test('content 单源:计数 223/151/1450、wordSet 含词、wordRootMap/rootWords 正确', () => {
   const c = loadContent();
-  assert.equal(c.roots.length, 213); assert.equal(c.affixes.length, 151); assert.equal(c.words.length, 1350);
+  // 绊线:交付集扩词后必须**刻意**更新,不能删。
+  assert.equal(c.roots.length, 223); assert.equal(c.affixes.length, 151); assert.equal(c.words.length, 1450);
   assert.ok(c.wordSet.has('spectator'));
   assert.equal(c.rootOfWord('spectator'), 'root-spect');          // breakdown root refId(本数据 spect/spectat 族)
   assert.equal(c.rootOfWord('notexist'), undefined);
   assert.ok(c.rootWords('root-spect').some(w => w.id === 'spectator'));
-  assert.ok(c.meta.counts.words === 1350 && /^[0-9a-f]{40}$/.test(c.meta.checksum));
+  assert.ok(c.meta.counts.words === 1450 && /^[0-9a-f]{40}$/.test(c.meta.checksum));
 });

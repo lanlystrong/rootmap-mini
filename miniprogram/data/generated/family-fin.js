@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"fine","word":"fine","phonetic":"faɪn","senses":[{"pos":"adj","zh":"好的；优良的；细小的，精美的；健康的；晴朗的","en":null},{"pos":"n","zh":"罚款","en":null},{"pos":"v","zh":"罚款；澄清","en":null},{"pos":"adv","zh":"很好地；精巧地","en":null}],"breakdown":[{"part":"fin","type":"root","zh":"结束/界限","refId":"root-fin"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"‘How are you?’ ‘Fine, thanks, how are you?’","zh":"“你好吗？”“很好，谢谢，你呢？”"},{"en":"I feel fine, really.","zh":"我感觉很好，真的。"}],"assoc":{"story":"构词:fin(结束/界限) → 好的"}},
 {"id":"financial","word":"financial","phonetic":"faɪ'nænʃl","senses":[{"pos":"adj","zh":"财政的，经济的","en":null}],"breakdown":[{"part":"fin","type":"root","zh":"结束/界限","refId":"root-fin"},{"part":"ancial","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"financial transactions","zh":"财务往来"},{"en":"financial assistance","zh":"财务援助"}],"assoc":{"story":"构词:fin(结束/界限) → 财政的"}},

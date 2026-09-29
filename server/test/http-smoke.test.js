@@ -7,7 +7,7 @@ test('content 公开路由:meta/列表/单词/词根族/404', async () => {
   try {
     const meta = await jfetch(s.base, 'GET', '/api/content/meta');
     assert.equal(meta.status, 200);
-    assert.equal(meta.data.counts.words, 1350);
+    assert.equal(meta.data.counts.words, 1450);   // 绊线:交付集扩词后刻意更新
     const w = await jfetch(s.base, 'GET', '/api/content/words/spectator');
     assert.equal(w.status, 200); assert.equal(w.data.id, 'spectator');
     assert.equal((await jfetch(s.base, 'GET', '/api/content/words/nope')).status, 404);

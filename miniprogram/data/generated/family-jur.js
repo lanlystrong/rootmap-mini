@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"adjust","word":"adjust","phonetic":"ə'dʒʌst","senses":[{"pos":"v","zh":"调整，调节；校正","en":null}],"breakdown":[{"part":"ad","type":"prefix","zh":"朝向/加强","refId":"affix-ad"},{"part":"just","type":"root","zh":"法/公正","refId":"root-jur"}],"tags":["cet4","高频"],"examples":[{"en":"Check and adjust the brakes regularly.","zh":"经常检查并调节刹车装置。"},{"en":"Taste the soup and adjust the seasoning.","zh":"尝尝汤的味道，然后调整佐料用量。"}],"assoc":{"story":"构词:ad(朝向/加强) + just(法/公正) → 调整"}},
 {"id":"injure","word":"injure","phonetic":"'ɪndʒɚ","senses":[{"pos":"v","zh":"使受伤","en":null}],"breakdown":[{"part":"in","type":"prefix","zh":"不/非;向内","refId":"affix-in"},{"part":"jur","type":"root","zh":"法/公正","refId":"root-jur"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Angus injured his leg playing rugby.","zh":"安格斯在打橄榄球时弄伤了腿。"}],"assoc":{"story":"构词:in(不/非;向内) + jur(法/公正) → 使受伤"}},

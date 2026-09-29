@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"bicycle","word":"bicycle","phonetic":"'baɪsɪkl","senses":[{"pos":"n","zh":"自行车","en":null},{"pos":"v","zh":"骑脚踏车","en":null}],"breakdown":[{"part":"bi","type":"prefix","zh":"二/两","refId":"affix-bi"},{"part":"cycle","type":"root","zh":"圆/环","refId":"root-cycl"}],"tags":["cet4","高频"],"examples":[{"en":"Can James ride a bicycle yet?","zh":"詹姆斯会骑自行车了吗？"}],"assoc":{"story":"构词:bi(二/两) + cycle(圆/环) → 自行车"}},
 {"id":"cyclist","word":"cyclist","phonetic":"'saɪklɪst","senses":[{"pos":"n","zh":"骑自行车的人","en":null}],"breakdown":[{"part":"cycl","type":"root","zh":"圆/环","refId":"root-cycl"},{"part":"ist","type":"suffix","zh":"…者(名词)","refId":"affix-ist"}],"tags":["cet4","高频"],"examples":[{"en":"better protection for pedestrians and cyclists.","zh":"…对行人和骑自行车的人的更好保护。"}],"assoc":{"story":"构词:cycl(圆/环) + ist(…者(名词)) → 骑自行车的人"}},

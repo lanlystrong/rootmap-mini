@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"appoint","word":"appoint","phonetic":"ə'pɔɪnt","senses":[{"pos":"v","zh":"任命，委派；约定，确定，指定","en":null}],"breakdown":[{"part":"ap","type":"prefix","zh":"朝向/加强","refId":"affix-ap"},{"part":"point","type":"root","zh":"点","refId":"root-punct"}],"tags":["cet4","高频"],"examples":[{"en":"officials appointed by the government","zh":"政府任命的官员"}],"assoc":{"story":"构词:ap(朝向/加强) + point(点) → 任命"}},
 {"id":"punctual","word":"punctual","phonetic":"'pʌŋtʃʊəl","senses":[{"pos":"adj","zh":"准时的","en":null}],"breakdown":[{"part":"punct","type":"root","zh":"点","refId":"root-punct"},{"part":"ual","type":"suffix","zh":"…的(形容词)","refId":"affix-ual"}],"tags":["cet4","高频"],"examples":[{"en":"She’s always very punctual for appointments.","zh":"她一向准时赴约。"},{"en":"the punctual payment of invoices","zh":"准时结清费用清单"}],"assoc":{"story":"构词:punct(点) + ual(…的(形容词)) → 准时的"}},

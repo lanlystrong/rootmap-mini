@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"stand","word":"stand","phonetic":"stænd","senses":[{"pos":"vi","zh":"站立","en":null},{"pos":"vt","zh":"承担，忍受","en":null},{"pos":"n","zh":"站； 台","en":null}],"breakdown":[{"part":"stan","type":"root","zh":"站","refId":"root-stan"},{"part":"d","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"It looks like we’ll have to stand – there are no seats left.","zh":"看来我们只能站着——没有座位了。"},{"en":"She stood in the doorway.","zh":"她站在门口。"}],"assoc":{"story":"构词:stan(站) → 站立"}},
 {"id":"assist","word":"assist","phonetic":"ə'sɪst","senses":[{"pos":"n","zh":"帮助；助攻","en":null},{"pos":"v","zh":"参加；出席","en":null}],"breakdown":[{"part":"as","type":"prefix","zh":"朝向/加强","refId":"affix-as"},{"part":"sist","type":"root","zh":"站","refId":"root-stan"}],"tags":["cet4","高频"],"examples":[{"en":"He asked us to assist him in carrying through their plan.","zh":"他要我们帮助他实施他们的计划。"}],"assoc":{"story":"构词:as(朝向/加强) + sist(站) → 帮助"}},

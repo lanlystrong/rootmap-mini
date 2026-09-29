@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"equal","word":"equal","phonetic":"'ikwəl","senses":[{"pos":"adj","zh":"平等的；相等的；胜任的","en":null},{"pos":"v","zh":"等于；比得上","en":null},{"pos":"n","zh":"对手；匹敌；同辈；相等的事物","en":null}],"breakdown":[{"part":"equa","type":"root","zh":"相等","refId":"root-equ"},{"part":"l","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Our constitution states that all men are equal.","zh":"我们的宪法规定人人平等。"}],"assoc":{"story":"构词:equa(相等) → 平等的"}},
 {"id":"adequate","word":"adequate","phonetic":"ˈædɪkwət","senses":[{"pos":"adj","zh":"足够的","en":null}],"breakdown":[{"part":"ad","type":"prefix","zh":"朝向/加强","refId":"affix-ad"},{"part":"equa","type":"root","zh":"相等","refId":"root-equ"},{"part":"te","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Farmers have been slow to make adequate provision for their retirement.","zh":"农民们迟迟没有为退休做好适当安排。"},{"en":"Some creams we tested failed to give adequate protection against UV light.","zh":"我们检测的有些防晒霜不能提供足够的防紫外线保护。"}],"assoc":{"story":"构词:ad(朝向/加强) + equa(相等) → 足够的"}},

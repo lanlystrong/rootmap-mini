@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const roots = [
 {"id":"root-spect","root":"spect","variants":["spect","spec","spic"],"zh":"看","group":"看 · 光 · 声","meaning":"看、观察","story":"源自拉丁语 specere「看」→ telescope(望远镜) 里的 scope 与 spect 同源,都离不开「看」。"},
 {"id":"root-vis","root":"vis","variants":["vis","vid","view","vide","vise","visor"],"zh":"看","group":"看 · 光 · 声","meaning":"看、看见;与视觉相关","story":"源自拉丁语 videre「看」→ video(视频)、vision(视觉)都来自它。"},

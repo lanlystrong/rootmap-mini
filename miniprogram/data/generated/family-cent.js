@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"cent","word":"cent","phonetic":"sɛnt","senses":[{"pos":"n","zh":"分；分币；百","en":null}],"breakdown":[{"part":"cent","type":"root","zh":"百","refId":"root-cent"}],"tags":["cet4","高频"],"examples":[{"en":"A cup of rice which cost thirty cents a few weeks ago is now being sold for up to one dollar.","zh":"几周前价值30美分的1杯米如今卖到了1美元。"}],"assoc":{"story":"构词:cent(百) → 分"}},
 {"id":"percent","word":"percent","phonetic":"pɚ'sɛnt","senses":[{"pos":"n","zh":"百分比，百分率；部分；百分数","en":null},{"pos":"adj","zh":"百分之…的","en":null},{"pos":"adv","zh":"以百分之…地","en":null}],"breakdown":[{"part":"per","type":"prefix","zh":"贯穿/透过/每","refId":"affix-per"},{"part":"cent","type":"root","zh":"百","refId":"root-cent"}],"tags":["cet4"],"examples":[{"en":"But there are billions more people out there who are not in the top one percent, and they’re not in the top two or three either.","zh":"但是还有十亿多的人不在其中，他们不在其中的百分之一，也不再其中的两百分之一或者三百分之一的其中。"}],"assoc":{"story":"构词:per(贯穿/透过/每) + cent(百) → 百分比"}},

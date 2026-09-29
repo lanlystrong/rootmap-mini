@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"case","word":"case","phonetic":"kes","senses":[{"pos":"n","zh":"情况；实例；箱","en":null},{"pos":"v","zh":"包围；把…装于容器中","en":null}],"breakdown":[{"part":"cas","type":"root","zh":"落下","refId":"root-cad"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Tom’s career is a case in point.","zh":"汤姆的事业就是个明证。"},{"en":"a classic case of poor design","zh":"蹩脚设计的典型例子"}],"assoc":{"story":"构词:cas(落下) → 情况"}},
 {"id":"decay","word":"decay","phonetic":"dɪ'ke","senses":[{"pos":"v","zh":"腐烂；衰败","en":null},{"pos":"n","zh":"腐烂","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"cay","type":"root","zh":"落下","refId":"root-cad"}],"tags":["cet4","高频"],"examples":[{"en":"Her body was already starting to decay.","zh":"她的尸体已经开始腐烂。"},{"en":"Most archaeological finds are broken, damaged, or decayed.","zh":"大部分考古发现物都已破裂、损坏或腐烂。"}],"assoc":{"story":"构词:de(向下/去除/加强) + cay(落下) → 腐烂"}},

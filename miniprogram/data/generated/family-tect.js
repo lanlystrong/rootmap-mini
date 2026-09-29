@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"detect","word":"detect","phonetic":"dɪ'tɛkt","senses":[{"pos":"v","zh":"觉察;检测","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"tect","type":"root","zh":"盖/覆盖","refId":"root-tect"}],"tags":["cet4","高频"],"examples":[{"en":"Many forms of cancer can be cured if detected early.","zh":"如果发现得早，许多种癌症都可以治愈。"}],"assoc":{"story":"构词:de(向下/去除/加强) + tect(盖/覆盖) → 觉察"}},
 {"id":"detection","word":"detection","phonetic":"dɪ'tɛkʃən","senses":[{"pos":"n","zh":"侦查；察觉","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"tect","type":"root","zh":"盖/覆盖","refId":"root-tect"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4","高频"],"examples":[{"en":"the early detection of breast cancer.","zh":"…乳腺癌的早期发现。"}],"assoc":{"story":"构词:de(向下/去除/加强) + tect(盖/覆盖) + ion(名词后缀(表行为/状态/结果)) → 侦查"}},

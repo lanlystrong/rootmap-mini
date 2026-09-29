@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"college","word":"college","phonetic":"'kɑlɪdʒ","senses":[{"pos":"n","zh":"学院；大学","en":null}],"breakdown":[{"part":"col","type":"prefix","zh":"共同/加强","refId":"affix-col"},{"part":"leg","type":"root","zh":"法律","refId":"root-leg"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"a teacher training college","zh":"师范学院"},{"en":"Donna left school and went to art college.","zh":"唐娜中学毕业后进了艺术学院。"}],"assoc":{"story":"构词:col(共同/加强) + leg(法律) → 学院"}},
 {"id":"delegation","word":"delegation","phonetic":"dɛlɪ'ɡeʃən","senses":[{"pos":"n","zh":"代表团","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"leg","type":"root","zh":"法律","refId":"root-leg"},{"part":"ation","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ation"}],"tags":["cet4","高频"],"examples":[{"en":"A trade delegation will visit Kuwait.","zh":"一个贸易代表团将访问科威特。"}],"assoc":{"story":"构词:de(向下/去除/加强) + leg(法律) + ation(名词后缀(表行为/状态/结果)) → 代表团"}},

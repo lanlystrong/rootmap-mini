@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"course","word":"course","phonetic":"kɔrs","senses":[{"pos":"n","zh":"科目；课程；过程；进程；道路；路线，航向；一道菜","en":null},{"pos":"v","zh":"追赶；跑过","en":null}],"breakdown":[{"part":"cours","type":"root","zh":"跑","refId":"root-cur"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Of course I will come.","zh":"我当然会来。"}],"assoc":{"story":"构词:cours(跑) → 科目"}},
 {"id":"current","word":"current","phonetic":"kɝənt","senses":[{"pos":"adj","zh":"当前的","en":null}],"breakdown":[{"part":"curr","type":"root","zh":"跑","refId":"root-cur"},{"part":"ent","type":"suffix","zh":"…的(形容词)/…者(名词)","refId":"affix-ent"}],"tags":["cet4","高频"],"examples":[{"en":"the current President","zh":"现任总统"},{"en":"In its current state, the car is worth £1,000.","zh":"这辆车按现在的车况来看值1,000英镑。"}],"assoc":{"story":"构词:curr(跑) + ent(…的(形容词)/…者(名词)) → 当前的"}},

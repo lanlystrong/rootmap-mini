@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"defend","word":"defend","phonetic":"dɪ'fɛnd","senses":[{"pos":"v","zh":"辩护；防护","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"fend","type":"root","zh":"打击","refId":"root-fend"}],"tags":["cet4","高频"],"examples":[{"en":"She was always defending her husband in front of their daughter.","zh":"她在女儿面前总是为丈夫辩解。"},{"en":"Students should be ready to explain and defend their views.","zh":"学生应该勇于为自己的观点进行解释和辩护。"}],"assoc":{"story":"构词:de(向下/去除/加强) + fend(打击) → 辩护"}},
 {"id":"defence","word":"defence","phonetic":"di'fens","senses":[{"pos":"n","zh":"防御；防务；辩护","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"fence","type":"root","zh":"打击","refId":"root-fend"}],"tags":["cet4","高频"],"examples":[{"en":"The land was flat, giving no scope for defence.","zh":"土地非常平坦，无法做防卫之用。"}],"assoc":{"story":"构词:de(向下/去除/加强) + fence(打击) → 防御"}},

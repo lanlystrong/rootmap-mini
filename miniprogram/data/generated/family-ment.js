@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"comment","word":"comment","phonetic":"'kɑmɛnt","senses":[{"pos":"vi","zh":"评论","en":null},{"pos":"n","zh":"评论，意见，注释；闲话，议论","en":null}],"breakdown":[{"part":"com","type":"prefix","zh":"共同/加强","refId":"affix-com"},{"part":"ment","type":"root","zh":"心/思考","refId":"root-ment"}],"tags":["cet4","高频"],"examples":[{"en":"So far, Mr. Cook has not commented on these reports.","zh":"到目前为止，库克先生还未对这些报告进行过评论。"}],"assoc":{"story":"构词:com(共同/加强) + ment(心/思考) → 评论"}},
 {"id":"mental","word":"mental","phonetic":"'mɛntl","senses":[{"pos":"adj","zh":"精神的；脑力的；疯的","en":null},{"pos":"n","zh":"精神病患者","en":null}],"breakdown":[{"part":"ment","type":"root","zh":"心/思考","refId":"root-ment"},{"part":"al","type":"suffix","zh":"…的(形容词)/名词","refId":"affix-al"}],"tags":["cet4"],"examples":[{"en":"The centre provides help for people suffering from mental illness.","zh":"该中心对精神病患者提供帮助。"},{"en":"Stress has an effect on both your physical and mental health.","zh":"压力对身体健康和心理健康都有影响。"}],"assoc":{"story":"构词:ment(心/思考) + al(…的(形容词)/名词) → 精神的"}},

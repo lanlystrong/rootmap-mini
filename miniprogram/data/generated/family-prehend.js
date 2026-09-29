@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"comprise","word":"comprise","phonetic":"kəm'praɪz","senses":[{"pos":"v","zh":"包含，包括；构成","en":null}],"breakdown":[{"part":"com","type":"prefix","zh":"共同/加强","refId":"affix-com"},{"part":"prise","type":"root","zh":"抓/取","refId":"root-prehend"}],"tags":["cet4","高频"],"examples":[{"en":"The house comprises two bedrooms, a kitchen, and a living room.","zh":"这座房子有两间卧室、一间厨房和一间起居室。"}],"assoc":{"story":"构词:com(共同/加强) + prise(抓/取) → 包含"}},
 {"id":"comprehension","word":"comprehension","phonetic":"kɑmprɪ'hɛnʃən","senses":[{"pos":"n","zh":"理解，理解力；领悟","en":null}],"breakdown":[{"part":"com","type":"prefix","zh":"共同/加强","refId":"affix-com"},{"part":"prehens","type":"root","zh":"抓/取","refId":"root-prehend"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4","高频"],"examples":[{"en":"Why you let her talk you into doing such a foolish thing is beyond my comprehension.","zh":"你怎么会被她说服去做这种蠢事，我实在是无法理解。"}],"assoc":{"story":"构词:com(共同/加强) + prehens(抓/取) + ion(名词后缀(表行为/状态/结果)) → 理解"}},

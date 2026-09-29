@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"circular","word":"circular","phonetic":"'sɝkjəlɚ","senses":[{"pos":"adj","zh":"圆的；循环的；兜圈子的","en":null},{"pos":"n","zh":"通知， 通告","en":null}],"breakdown":[{"part":"circul","type":"root","zh":"圆/环","refId":"root-circ"},{"part":"ar","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"a circular table","zh":"圆桌"}],"assoc":{"story":"构词:circul(圆/环) → 圆的"}},
 {"id":"circulate","word":"circulate","phonetic":"'sɝkjəlet","senses":[{"pos":"v","zh":"使循环","en":null},{"pos":"v","zh":"循环","en":null}],"breakdown":[{"part":"circul","type":"root","zh":"圆/环","refId":"root-circ"},{"part":"ate","type":"suffix","zh":"(使…)动词后缀","refId":"affix-ate"}],"tags":["cet4","高频"],"examples":[{"en":"Swimming helps to get the blood circulating through the muscles.","zh":"游泳有助于肌肉的血液循环。"},{"en":"Ceiling fans circulated warm air around the room.","zh":"吊扇使暖空气在房间里循环。"}],"assoc":{"story":"构词:circul(圆/环) + ate((使…)动词后缀) → 使循环"}},

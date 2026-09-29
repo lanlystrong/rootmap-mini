@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"attribute","word":"attribute","phonetic":"ə'trɪbjut","senses":[{"pos":"v","zh":"把…归因于","en":null},{"pos":"n","zh":"属性","en":null}],"breakdown":[{"part":"at","type":"prefix","zh":"朝向/加强","refId":"affix-at"},{"part":"tribute","type":"root","zh":"给予","refId":"root-trib"}],"tags":["cet4","高频"],"examples":[{"en":"Women tend to attribute their success to external causes such as luck.","zh":"女性往往把她们的成功归因于外因，如运气。"}],"assoc":{"story":"构词:at(朝向/加强) + tribute(给予) → 把…归因于"}},
 {"id":"contribute","word":"contribute","phonetic":"kən'trɪbjut","senses":[{"pos":"v","zh":"捐款，贡献","en":null}],"breakdown":[{"part":"con","type":"prefix","zh":"共同/加强","refId":"affix-con"},{"part":"tribute","type":"root","zh":"给予","refId":"root-trib"}],"tags":["cet4","高频"],"examples":[{"en":"The three sons also contribute to the family business.","zh":"3个儿子也为家族企业做贡献。"}],"assoc":{"story":"构词:con(共同/加强) + tribute(给予) → 捐款"}},

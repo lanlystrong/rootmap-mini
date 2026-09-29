@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"dialog","word":"dialog","phonetic":"'daɪə","senses":[{"pos":"n","zh":"对话，对白","en":null}],"breakdown":[{"part":"dia","type":"prefix","zh":"相对/相互/穿过","refId":"affix-dia"},{"part":"log","type":"root","zh":"说/学科","refId":"root-log"}],"tags":["cet4","高频"],"examples":[{"en":"In this dialog, you can only open an artifact in the editor.","zh":"在这个对话框中，您只可以在编辑器中打开一个工件。"},{"en":"For other pages/dialogs, it should go back one page or close the dialog.","zh":"至于其他页面/对话框，它应该回退一个页面或者关闭对话框。"}],"assoc":{}},
 {"id":"catalog","word":"catalog","phonetic":"'kætəlɔg","senses":[{"pos":"n","zh":"目录，目录册；一系列","en":null},{"pos":"vt","zh":"将…编入目录， 将编目","en":null}],"breakdown":[{"part":"cata","type":"prefix","zh":"向下/完全","refId":"affix-cata"},{"part":"log","type":"root","zh":"说/学科","refId":"root-log"}],"tags":["cet4","高频"],"examples":[{"en":"I looked up the book in the catalog.","zh":"我在目录里查了这本书。"}],"assoc":{}},

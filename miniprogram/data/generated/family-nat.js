@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"native","word":"native","phonetic":"'netɪv","senses":[{"pos":"adj","zh":"本国的；土著的；天然的；与生俱来的；天赋的","en":null},{"pos":"n","zh":"本地人；土产；当地居民","en":null}],"breakdown":[{"part":"nativ","type":"root","zh":"出生","refId":"root-nat"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"They never saw their native land again.","zh":"他们再也没见到故土。"},{"en":"He spent most of his professional life outside his native Poland.","zh":"他大部分的职业生涯都没在祖国波兰度过。"}],"assoc":{"story":"构词:nativ(出生) → 本国的"}},
 {"id":"natural","word":"natural","phonetic":"'nætʃrəl","senses":[{"pos":"adj","zh":"自然的；物质的；天生的；不做作的","en":null},{"pos":"n","zh":"自然的事情；白痴；本位音","en":null}],"breakdown":[{"part":"nat","type":"root","zh":"出生","refId":"root-nat"},{"part":"ural","type":"none"}],"tags":["cet4"],"examples":[{"en":"the study of the natural world","zh":"对自然界的研究"},{"en":"an area of spectacular natural beauty","zh":"自然风景秀丽的地区"}],"assoc":{"story":"构词:nat(出生) → 自然的"}},

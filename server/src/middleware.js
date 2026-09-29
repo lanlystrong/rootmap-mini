@@ -1,5 +1,6 @@
 // server/src/middleware.js
 const cors = require('cors');
+const { rateLimit: rateLimitLib } = require('express-rate-limit');
 const { logger } = require('./logger');
 
 // 404 处理
@@ -133,7 +134,16 @@ const requestLogger = (req, res, next) => {
 };
 
 // CORS 中间件
-const corsHandler = cors();
+// 生产环境通过 CORS_ORIGIN 配置允许的来源(逗号分隔的 https 域名);不配置时回退为
+// 放行所有来源并输出告警(仅本地联调使用,生产有风险——API 暴露于任意网页)。
+const corsOrigins = (process.env.CORS_ORIGIN || '')
+  .split(',').map((s) => s.trim()).filter(Boolean);
+const corsHandler = corsOrigins.length
+  ? cors({ origin: corsOrigins, credentials: true })
+  : (() => {
+      console.warn('[cors] CORS_ORIGIN 未配置,暂放行所有来源(生产环境请配置白名单)');
+      return cors();
+    })();
 
 // 内容类型检查
 const contentType = (expectedType = 'application/json') => {
@@ -160,15 +170,17 @@ const bodyLimit = (limit = '1mb') => {
   };
 };
 
-// 健康检查中间件
-const healthCheck = (req, res) => {
+// 健康检查中间件。extra 会被合并进响应(app.js 借此把内容来源/计数挂上来 ——
+// 内容降级到构建产物时,光看 status:'ok' 是发现不了的,而那正是最该被看见的时候)。
+const healthCheck = (req, res, extra = {}) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
     version: process.env.npm_package_version || '1.0.0',
     uptime: process.uptime(),
     memory: process.memoryUsage(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    ...extra
   });
 };
 
@@ -180,39 +192,28 @@ const versionHeader = (version = 'v1') => {
   };
 };
 
-// 速率限制（简单实现）
+// 速率限制。
+//
+// 曾经是手写实现:一个 Map 存每个 IP 的请求时间戳数组。问题是它**只重写 value、
+// 从不删 key** —— 见过多少 IP 就永久留多少个 key,每 15 分钟还各自 filter 一遍,
+// 内存无界增长,重启才清。换成 express-rate-limit(v6):MemoryStore 自带周期清扫。
+//
+// 注意 MemoryStore 是**每进程一份**:PM2 多实例时总限额 = max × 实例数。要全局一致
+// 得接 Redis 共享 store,本轮不做(单实例部署够用)。
 const rateLimit = (options = {}) => {
   const { windowMs = 15 * 60 * 1000, max = 100 } = options;
-  const requests = new Map();
-
-  return (req, res, next) => {
-    const key = req.ip;
-    const now = Date.now();
-    const windowStart = now - windowMs;
-
-    if (!requests.has(key)) {
-      requests.set(key, []);
-    }
-
-    const userRequests = requests.get(key);
-    userRequests.push(now);
-
-    // 移除过期的请求
-    const validRequests = userRequests.filter(time => time > windowStart);
-    requests.set(key, validRequests);
-
-    if (validRequests.length > max) {
-      return res.status(429).json({
-        error: {
-          code: 'rate_limit_exceeded',
-          message: '请求过于频繁，请稍后再试'
-        },
-        retryAfter: Math.ceil(windowMs / 1000)
-      });
-    }
-
-    next();
-  };
+  return rateLimitLib({
+    windowMs,
+    max,
+    // 与旧实现的 429 响应体保持一致,客户端不用跟着改。
+    handler: (req, res) => res.status(429).json({
+      error: {
+        code: 'rate_limit_exceeded',
+        message: '请求过于频繁，请稍后再试'
+      },
+      retryAfter: Math.ceil(windowMs / 1000)
+    })
+  });
 };
 
 // 错误日志记录

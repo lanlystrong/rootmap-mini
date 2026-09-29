@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"radio","word":"radio","phonetic":"'redɪo","senses":[{"pos":"n","zh":"收音机；无线电广播设备","en":null},{"pos":"v","zh":"用无线电进行通信","en":null}],"breakdown":[{"part":"radi","type":"root","zh":"射线","refId":"root-radi"},{"part":"o","type":"none"}],"tags":["cet4"],"examples":[{"en":"The last 12 months have been difficult ones for local radio.","zh":"最近的12个月对地方广播电台来说是艰难的。"}],"assoc":{"story":"构词:radi(射线) → 收音机"}},
 {"id":"radium","word":"radium","phonetic":"'redɪəm","senses":[{"pos":"n","zh":"[化学] 镭（88号元素符号Ra）","en":null}],"breakdown":[{"part":"radi","type":"root","zh":"射线","refId":"root-radi"},{"part":"um","type":"none"}],"tags":["cet4"],"examples":[{"en":"Madame Curie discovered radium.","zh":"居里夫人发现了镭。"},{"en":"The radiation radius of the radioactive radium radiator in the stadium is variable.","zh":"放射性的镭暖气装置的辐射半径在体育场是易变的。"}],"assoc":{"story":"构词:radi(射线) → [化学] 镭（88号元素符号Ra）"}},

@@ -1,7 +1,8 @@
-// miniprogram/utils/api.js — 词根地图服务端 HTTP 客户端(本机联调)
+// miniprogram/utils/api.js — 词根地图服务端 HTTP 客户端
 const KEY_TOKEN = 'rm_token_v1';
 const KEY_USER = 'rm_user_v1';
-const BASE = 'http://127.0.0.1:3000'; // 本机服务端地址,改这里或按环境注入
+const { BASE_URL } = require('../config');
+const BASE = BASE_URL;
 
 function hasWx() { return typeof wx !== 'undefined'; }
 function getToken() { return hasWx() ? (wx.getStorageSync(KEY_TOKEN) || '') : ''; }

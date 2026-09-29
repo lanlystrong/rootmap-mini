@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"coordination","word":"coordination","phonetic":"ko","senses":[{"pos":"n","zh":"同等； 调和","en":null}],"breakdown":[{"part":"co","type":"prefix","zh":"共同","refId":"affix-co"},{"part":"ordin","type":"root","zh":"顺序","refId":"root-ordin"},{"part":"ation","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ation"}],"tags":["cet4","高频"],"examples":[{"en":"Too much alcohol affects your coordination.","zh":"喝酒太多会影响你动作的协调。"}],"assoc":{"story":"构词:co(共同) + ordin(顺序) + ation(名词后缀(表行为/状态/结果)) → 同等"}},
 {"id":"extraordinary","word":"extraordinary","phonetic":"ɛkˈstrɔrdənˌɛri","senses":[{"pos":"adj","zh":"非凡的","en":null}],"breakdown":[{"part":"extra","type":"prefix","zh":"超出/额外","refId":"affix-extra"},{"part":"ordin","type":"root","zh":"顺序","refId":"root-ordin"},{"part":"ary","type":"suffix","zh":"…的/与…有关(形容词/名词)","refId":"affix-ary"}],"tags":["cet4","高频"],"examples":[{"en":"a woman of extraordinary beauty","zh":"容貌出众的女子"},{"en":"an extraordinary talent","zh":"非凡的才华"}],"assoc":{"story":"构词:extra(超出/额外) + ordin(顺序) + ary(…的/与…有关(形容词/名词)) → 非凡的"}},

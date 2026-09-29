@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"signal","word":"signal","phonetic":"'sɪgnl","senses":[{"pos":"adj","zh":"显著的， 重大的","en":null},{"pos":"n","zh":"信号，暗号；标志，表示","en":null},{"pos":"vt","zh":"发信号；标志着","en":null}],"breakdown":[{"part":"signa","type":"root","zh":"标记","refId":"root-sign"},{"part":"l","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"He pressed the red alarm signal to see if it was on or off.","zh":"他按了一下红色报警信号钮，检查一下它是开著的还是关著的。"}],"assoc":{"story":"构词:signa(标记) → 显著的"}},
 {"id":"assign","word":"assign","phonetic":"ə'saɪn","senses":[{"pos":"v","zh":"分配，布置","en":null}],"breakdown":[{"part":"as","type":"prefix","zh":"朝向/加强","refId":"affix-as"},{"part":"sign","type":"root","zh":"标记","refId":"root-sign"}],"tags":["cet4","高频"],"examples":[{"en":"When I taught, I would assign a topic to children that they would write about.","zh":"教书时，我会给孩子们布置个写作题。"}],"assoc":{"story":"构词:as(朝向/加强) + sign(标记) → 分配"}},

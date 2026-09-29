@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"execute","word":"execute","phonetic":"'ɛksɪkjut","senses":[{"pos":"v","zh":"将…处死；实施","en":null}],"breakdown":[{"part":"ex","type":"prefix","zh":"出/向外","refId":"affix-ex"},{"part":"ecut","type":"root","zh":"跟随","refId":"root-sequ"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"13 people were summarily executed by the guerrillas.","zh":"有13人被游击队员就地处决。"}],"assoc":{"story":"构词:ex(出/向外) + ecut(跟随) → 将…处死"}},
 {"id":"executive","word":"executive","phonetic":"ɪɡ'zɛkjətɪv","senses":[{"pos":"adj","zh":"执行的","en":null},{"pos":"n","zh":"执行者","en":null}],"breakdown":[{"part":"ex","type":"prefix","zh":"出/向外","refId":"affix-ex"},{"part":"ecut","type":"root","zh":"跟随","refId":"root-sequ"},{"part":"ive","type":"suffix","zh":"有…性质的(形容词/名词)","refId":"affix-ive"}],"tags":["cet4","高频"],"examples":[{"en":"a commission with executive powers","zh":"有执行权的委员会"}],"assoc":{"story":"构词:ex(出/向外) + ecut(跟随) + ive(有…性质的(形容词/名词)) → 执行的"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"confuse","word":"confuse","phonetic":"kən'fjʊz","senses":[{"pos":"v","zh":"使混淆，迷惑","en":null}],"breakdown":[{"part":"con","type":"prefix","zh":"共同/加强","refId":"affix-con"},{"part":"fuse","type":"root","zh":"倾倒/融合","refId":"root-fus"}],"tags":["cet4","高频"],"examples":[{"en":"People might well confuse the two products.","zh":"人们很容易混淆这两种产品。"}],"assoc":{"story":"构词:con(共同/加强) + fuse(倾倒/融合) → 使混淆"}},
 {"id":"refusal","word":"refusal","phonetic":"rɪ'fjuzl","senses":[{"pos":"n","zh":"拒绝","en":null}],"breakdown":[{"part":"re","type":"prefix","zh":"再次/向后","refId":"affix-re"},{"part":"fus","type":"root","zh":"倾倒/融合","refId":"root-fus"},{"part":"al","type":"suffix","zh":"…的(形容词)/名词","refId":"affix-al"}],"tags":["cet4","高频"],"examples":[{"en":"Her country suffered through her refusal to accept change.","zh":"她的国家因为她拒绝接受变革而受了害。"}],"assoc":{"story":"构词:re(再次/向后) + fus(倾倒/融合) + al(…的(形容词)/名词) → 拒绝"}},

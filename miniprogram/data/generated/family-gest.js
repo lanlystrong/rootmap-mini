@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"digest","word":"digest","phonetic":"daɪ'dʒɛst","senses":[{"pos":"v","zh":"消化；领会","en":null},{"pos":"n","zh":"文摘","en":null}],"breakdown":[{"part":"di","type":"prefix","zh":"分开/离开","refId":"affix-di"},{"part":"gest","type":"root","zh":"携带/传送","refId":"root-gest"}],"tags":["cet4","高频"],"examples":[{"en":"Most babies can digest a wide range of food easily.","zh":"大多数婴儿能轻易地消化很多种食物。"}],"assoc":{"story":"构词:di(分开/离开) + gest(携带/传送) → 消化"}},
 {"id":"gesture","word":"gesture","phonetic":"'dʒɛstʃɚ","senses":[{"pos":"v","zh":"做手势","en":null},{"pos":"n","zh":"姿势，手势，姿态","en":null}],"breakdown":[{"part":"gest","type":"root","zh":"携带/传送","refId":"root-gest"},{"part":"ure","type":"suffix","zh":"名词后缀(表行为/结果)","refId":"affix-ure"}],"tags":["cet4","高频"],"examples":[{"en":"I gestured toward the boathouse, and he looked inside.","zh":"我朝停船小屋打手势，他在里面看了看。"}],"assoc":{"story":"构词:gest(携带/传送) + ure(名词后缀(表行为/结果)) → 做手势"}},

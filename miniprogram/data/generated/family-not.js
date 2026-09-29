@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"notify","word":"notify","phonetic":"'notə'fai","senses":[{"pos":"vt","zh":"通知， 告知， 报告","en":null}],"breakdown":[{"part":"noti","type":"root","zh":"标记/知道","refId":"root-not"},{"part":"fy","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The skipper notified the coastguard of the tragedy.","zh":"船长通知了海岸警卫队这一灾难。"}],"assoc":{"story":"构词:noti(标记/知道) → 通知"}},
 {"id":"note","word":"note","phonetic":"not","senses":[{"pos":"n","zh":"笔记；音符；票据；注解；纸币；便笺；照会；调子","en":null},{"pos":"v","zh":"注意；记录；注解","en":null}],"breakdown":[{"part":"note","type":"root","zh":"标记/知道","refId":"root-not"}],"tags":["cet4"],"examples":[{"en":"Can I borrow your lecture notes?","zh":"我能不能借用一下你的课堂笔记？"}],"assoc":{"story":"构词:note(标记/知道) → 笔记"}},

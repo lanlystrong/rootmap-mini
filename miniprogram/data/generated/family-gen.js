@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"gentle","word":"gentle","phonetic":"'dʒɛntl","senses":[{"pos":"adj","zh":"温和的；文雅的","en":null},{"pos":"v","zh":"使温和，使驯服","en":null},{"pos":"n","zh":"蛆，饵","en":null}],"breakdown":[{"part":"gent","type":"root","zh":"生/产生","refId":"root-gen"},{"part":"le","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Arthur was a very gentle, caring person.","zh":"阿瑟是一个非常温柔体贴的人。"}],"assoc":{"story":"构词:gent(生/产生) → 温和的"}},
 {"id":"generosity","word":"generosity","phonetic":"dʒɛnə'rɑsəti","senses":[{"pos":"n","zh":"慷慨，大方","en":null}],"breakdown":[{"part":"gener","type":"root","zh":"生/产生","refId":"root-gen"},{"part":"osity","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"an act of great generosity","zh":"十分慷慨的行为"},{"en":"I shall never forget the generosity shownby the people of Bastaisk.","zh":"我永远也不会忘记巴斯泰斯克人的慷慨大方。"}],"assoc":{"story":"构词:gener(生/产生) → 慷慨"}},

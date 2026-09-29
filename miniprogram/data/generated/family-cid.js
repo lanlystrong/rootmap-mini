@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"decide","word":"decide","phonetic":"dɪ'saɪd","senses":[{"pos":"v","zh":"决定，决心；解决","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"cide","type":"root","zh":"切/杀","refId":"root-cid"}],"tags":["cet4","高频"],"examples":[{"en":"Has anything been decided yet?","zh":"已经作出什么决定了吗？"},{"en":"The trainees decide among themselves what programs to take.","zh":"受训者自行选择课程。"}],"assoc":{"story":"构词:de(向下/去除/加强) + cide(切/杀) → 决定"}},
 {"id":"decision","word":"decision","phonetic":"dɪ'sɪʒn","senses":[{"pos":"n","zh":"决定，决心；果断","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"cis","type":"root","zh":"切/杀","refId":"root-cid"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4","高频"],"examples":[{"en":"Do you ever wonder if you made the right decision?","zh":"你怀疑过自己所作的决定是否正确吗？"},{"en":"The judges’ decision is final.","zh":"法官的裁决是最终判决。"}],"assoc":{"story":"构词:de(向下/去除/加强) + cis(切/杀) + ion(名词后缀(表行为/状态/结果)) → 决定"}},

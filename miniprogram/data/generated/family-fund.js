@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"fund","word":"fund","phonetic":"fʌnd","senses":[{"pos":"n","zh":"基金，储备；","en":null},{"pos":"v","zh":"提供资金","en":null}],"breakdown":[{"part":"fund","type":"root","zh":"底/倒","refId":"root-fund"}],"tags":["cet4","高频"],"examples":[{"en":"The fund was set up to try to save the cathedral.","zh":"设立基金以挽救大教堂。"}],"assoc":{"story":"构词:fund(底/倒) → 基金"}},
 {"id":"founding","word":"founding","phonetic":"'faʊndɪŋ","senses":[{"pos":"adj","zh":"创办的；发起的","en":null},{"pos":"v","zh":"[机] 铸造；建造；以…为基础（found的ing形式）","en":null},{"pos":"n","zh":"[机] 铸造；溶解","en":null}],"breakdown":[{"part":"found","type":"root","zh":"底/倒","refId":"root-fund"},{"part":"ing","type":"suffix","zh":"现在分词/动名词后缀","refId":"affix-ing"}],"tags":["cet4","高频"],"examples":[{"en":"He was one of the founding members.","zh":"他是创始人之一。"}],"assoc":{"story":"构词:found(底/倒) + ing(现在分词/动名词后缀) → 创办的"}},

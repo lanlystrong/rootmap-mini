@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"majority","word":"majority","phonetic":"mə'dʒɔrəti","senses":[{"pos":"n","zh":"多数","en":null}],"breakdown":[{"part":"maj","type":"root","zh":"大","refId":"root-magn"},{"part":"or","type":"suffix","zh":"…者/…物(名词)","refId":"affix-or"},{"part":"ity","type":"suffix","zh":"名词后缀(表性质/状态)","refId":"affix-ity"}],"tags":["cet4","高频"],"examples":[{"en":"The Labour Party won a huge majority at the last general election.","zh":"工党在上次大选中以巨大的票数优势获胜。"}],"assoc":{"story":"构词:maj(大) + or(…者/…物(名词)) + ity(名词后缀(表性质/状态)) → 多数"}},
 {"id":"magnet","word":"magnet","phonetic":"'mægnɪt","senses":[{"pos":"n","zh":"磁铁，磁石，磁体","en":null}],"breakdown":[{"part":"magn","type":"root","zh":"大","refId":"root-magn"},{"part":"et","type":"none"}],"tags":["cet4"],"examples":[{"en":"It's possible to hang a nail from a magnet and then use that nail to pick up another nail.","zh":"把一颗钉子挂在一个磁体上再用这颗钉子去吸起另一颗钉子是可能的。"}],"assoc":{"story":"构词:magn(大) → 磁铁"}},

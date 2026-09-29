@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"prime","word":"prime","phonetic":"praɪm","senses":[{"pos":"adj","zh":"首要的；最好的","en":null},{"pos":"n","zh":"青春；全盛时期","en":null},{"pos":"vt","zh":"使准备好","en":null}],"breakdown":[{"part":"prim","type":"root","zh":"第一/首要","refId":"root-prim"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Smoking is the prime cause of lung disease.","zh":"抽烟是引发肺部疾病的首要原因。"},{"en":"Our prime concern is providing jobs for all young school leavers.","zh":"我们的头等大事是为所有的年轻毕业生提供工作。"}],"assoc":{"story":"构词:prim(第一/首要) → 首要的"}},
 {"id":"primarily","word":"primarily","phonetic":"praɪ'mɛrəli","senses":[{"pos":"adv","zh":"主要地，首先","en":null}],"breakdown":[{"part":"primar","type":"root","zh":"第一/首要","refId":"root-prim"},{"part":"ily","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The advertisement is aimed primarily at children.","zh":"这则广告的对象主要是儿童。"}],"assoc":{"story":"构词:primar(第一/首要) → 主要地"}},

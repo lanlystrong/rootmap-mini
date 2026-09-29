@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"commerce","word":"commerce","phonetic":"'kɑmɝs","senses":[{"pos":"n","zh":"商业，贸易；社交","en":null}],"breakdown":[{"part":"com","type":"prefix","zh":"共同/加强","refId":"affix-com"},{"part":"merce","type":"root","zh":"商业","refId":"root-mer"}],"tags":["cet4","高频"],"examples":[{"en":"measures promoting local commerce and industry","zh":"促进地方工商业发展的措施"}],"assoc":{"story":"构词:com(共同/加强) + merce(商业) → 商业"}},
 {"id":"commercial","word":"commercial","phonetic":"kə'mɝʃəl","senses":[{"pos":"adj","zh":"商业的；营利的；靠广告收入的","en":null},{"pos":"n","zh":"商业广告","en":null}],"breakdown":[{"part":"com","type":"prefix","zh":"共同/加强","refId":"affix-com"},{"part":"merc","type":"root","zh":"商业","refId":"root-mer"},{"part":"ial","type":"suffix","zh":"…的(形容词)","refId":"affix-ial"}],"tags":["cet4","高频"],"examples":[{"en":"Our top priorities must be profit and commercial growth.","zh":"我们必须把利润和贸易增长作为我们的第一要务。"}],"assoc":{"story":"构词:com(共同/加强) + merc(商业) + ial(…的(形容词)) → 商业的"}},

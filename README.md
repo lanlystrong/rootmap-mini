@@ -5,8 +5,8 @@
 ## 特性
 
 - **首页仪表盘**:落地首页,一屏展示连续打卡、今日待复习、继续学习(上次学到哪个词根)、
-  总体进度环(已学 X/1350)与快捷入口,一键直达学习/复习。
-- **词根地图**:213 个词根按字母序浏览,每族展示词根变体、含义与家族单词进度。
+  总体进度环(已学 X/1450)与快捷入口,一键直达学习/复习。
+- **词根地图**:223 个词根按字母序浏览,每族展示词根变体、含义与家族单词进度。
 - **词缀索引**:151 个前后缀列表,展开可见关联词,点击直达单词页。
 - **构词拆解着色**:单词按 前缀(青)/ 词根(蓝)/ 后缀(紫)分段着色,段可点跳转。
 - **同族联想与辨析**:同族词、近义/反义、形近易混、词源助记分组展示。
@@ -30,11 +30,14 @@
 
 ## 测试与校验
 
-- `npm test` —— Node 内置 test runner,`72/72` 通过(服务端 28 + 小程序 44:内容不变量 /
-  日期 / SM-2 / store / stats / 数据集保真)。
+- `npm test` —— Node 内置 test runner,`74/74` 通过(服务端 28 + 小程序 46:内容不变量 /
+  日期 / SM-2 / store / stats / 数据集保真 / 事件上报分块)。
 - `npm run validate` —— 内容校验,输出
-  `✓ 内容通过: 213 roots / 151 affixes / 1350 words`,0 错误。
+  `✓ 内容通过: 223 roots / 151 affixes / 1450 words`,0 错误。
 - `npm run test:server` / `npm run test:mini` —— 只跑其中一套。
+  ⚠️ 服务端用例每个文件建/删一个临时 MySQL 库,再把 1450 词灌进去,单个文件约 30s、
+  全套约 4 分钟 —— **跑它要给 ≥400s 超时**。超时不够时 `auth` / `events` 会被 SIGTERM
+  掐掉并误报成失败。
 - `npm run audit` —— 内容质检(硬红线非零即退出码 1);`npm run generate:cet4` ——
   第 1 段:语料 → 可拆解词表(仅在改形态学词典/拆解算法时需要);`npm run generate:content` ——
   第 2 段:从 CET4 语料重新装配交付集;`npm run seed` —— 校验通过后清空并重灌 6 张内容表;
@@ -64,11 +67,11 @@
 以**词根为中心**组织:每个词都恰好归入一个词根家族(词条的拆解里恰有 1 个词根段),
 前缀后缀作为辅助拆解段参与着色与跳转。
 
-- **213 个词根** —— 30 个手写精选根(spect/vis/dict/scrib/port/duc/mit/struct/tract/vert/…)
-  + 183 个从 CET4 语料倒排得到的根,共 213 族。中位族大小 5,均值 6.3,最大 47(`root-stan`),
-  最小 1(`root-verb`,靠手写词 adverb 存活;另有 30 个根同样是单薄族)。
+- **223 个词根** —— 40 个手写精选根(spect/vis/dict/scrib/port/duc/mit/struct/tract/vert/…)
+  + 183 个从 CET4 语料倒排得到的根,共 223 族。中位族大小 5,均值 6.5,最大 47(`root-stan`),
+  最小 1,共 31 个单薄族。
 - **151 个词缀**(前后缀)。
-- **1350 个单词** —— 201 条手写精选词 + 1149 条从 CET4 语料生成,落在 **CET-4/6 与通用高频**
+- **1450 个单词** —— 325 条手写精选词 + 1125 条从 CET4 语料生成,落在 **CET-4/6 与通用高频**
   范畴,每词配构词拆解、释义、1~2 条双语例句与可选联想关系;词根家族内按
   「高频 → 拆解段数少 → 词短」排序,手写词排在各族最前。
 
@@ -78,7 +81,13 @@
 > `server/scripts/generate-cet4.js` 的 `NO_DECOMPOSE`,由 `server/test/dataset-merge.test.js`
 > 的 ⑧⑩ 两条回归钉住。新增词的音标/释义/例句**全部取自语料**,零新写内容、零伪数据。
 
-数据分两层,`miniprogram/data/index.js` 在运行时合并:
+**运行时真源是 MySQL,不是这些文件。** 内容分两层(手写精选 + CET4 生成),由生成器合并
+写进 `data/index.js` —— 那只是**构建产物**;再经 `npm run content:import` 灌进 MySQL 的 6 张
+内容表,**服务端运行时只读库**(`server/src/content.js`):
+
+```
+data/(手写+生成) ──generate-content.js──▶ data/index.js ──content-import──▶ MySQL ◀── 运行时读这里
+```
 
 | 层 | 位置 | 维护方式 |
 |---|---|---|
@@ -86,13 +95,16 @@
 | 生成层 | `data/generated/` | **自动产出**。由 `npm run generate:content` 从 CET4 语料装配,勿手改 |
 | 合并入口 | `data/index.js` | 由生成器写出,手写条目整条优先,词根 `variants` 取并集 |
 
-> ⚠️ **生成层 `data/generated/`(209 个文件)目前尚未纳入版本控制**,而 `data/index.js` 已经
-> `require('./generated')` —— 此刻直接提交会让**新克隆加载交付集时抛异常**。提交前请先
-> `git add miniprogram/data/generated miniprogram/data/index.js`(已暂存,待提交)。
-> 这两处还需固定 LF 行尾,根目录 `.gitattributes` 已声明 —— 原因见 `server/README.md`「重建前提」。
+改内容的正常流程:**改库 → 等一次热重载(默认 60s)→ 客户端凭 checksum 重新拉取**,不用重新
+生成文件、不用重启服务。`data/index.js` 在运行时只剩一个用途:MySQL 读不到内容(库空/连不上)
+时的**降级兜底**,这时 `/health` 的 `content.source` 会显式报 `file(db-error)` 或
+`file(empty-db)`,不会让你以为自己在跑库里的内容。
 
-合并后的每一族在运行时由词条的根段 `refId` 反查(`rootWords()`),族文件只是 `words` 扁平数组的
-分区,因此同一词根的词可以同时出现在两层里,运行时零影响。
+`data/generated/`(212 个文件)与 `data/index.js` 均已纳入版本控制;这两处固定 LF 行尾,
+根目录 `.gitattributes` 已声明 —— 原因见 `server/README.md`「重建前提」。
+
+族不是存储结构:每一族在运行时由词条的根段 `refId` 反查(`rootWords()`),族文件只是
+`words` 扁平数组的分区,运行时零影响。
 
 ## 项目结构
 

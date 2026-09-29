@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { adminConnect } = require('./src/db');
-require('dotenv').config();
+require('./src/loadEnv'); // 替代未安装的 dotenv
 
 async function initDatabase() {
   const cfg = {

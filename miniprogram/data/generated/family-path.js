@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"passion","word":"passion","phonetic":"'pæʃən","senses":[{"pos":"n","zh":"热情，激情","en":null}],"breakdown":[{"part":"pass","type":"root","zh":"感受/病","refId":"root-path"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4","高频"],"examples":[{"en":"The issue arouses strong passions.","zh":"那件事激起了人们强烈的情绪。"}],"assoc":{"story":"构词:pass(感受/病) + ion(名词后缀(表行为/状态/结果)) → 热情"}},
 {"id":"sympathy","word":"sympathy","phonetic":"'sɪmpəθi","senses":[{"pos":"n","zh":"同情心","en":null}],"breakdown":[{"part":"sym","type":"prefix","zh":"共同/一起","refId":"affix-sym"},{"part":"pathy","type":"root","zh":"感受/病","refId":"root-path"}],"tags":["cet4","高频"],"examples":[{"en":"Our sympathies are with the families of the victims.","zh":"我们向受害者家庭表示慰问。"}],"assoc":{"story":"构词:sym(共同/一起) + pathy(感受/病) → 同情心"}},

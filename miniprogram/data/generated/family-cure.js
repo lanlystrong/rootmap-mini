@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"cure","word":"cure","phonetic":"kjʊr","senses":[{"pos":"v","zh":"治疗；治愈；使硫化；加工处理","en":null},{"pos":"n","zh":"治疗；治愈；[临床] 疗法","en":null}],"breakdown":[{"part":"cure","type":"root","zh":"关心/治疗","refId":"root-cure"}],"tags":["cet4","高频"],"examples":[{"en":"Many types of cancer can now be cured.","zh":"现在许多癌症都可以治好。"},{"en":"an operation that can cure short-sightedness in 15 minutes","zh":"15分钟就可治愈近视的一种手术"}],"assoc":{"story":"构词:cure(关心/治疗) → 治疗"}},
 {"id":"curiosity","word":"curiosity","phonetic":"kjʊrɪ'ɑsəti","senses":[{"pos":"n","zh":"好奇心","en":null}],"breakdown":[{"part":"curi","type":"root","zh":"关心/治疗","refId":"root-cure"},{"part":"osity","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"I opened the packet just to satisfy my curiosity.","zh":"我打开包裹只是为了满足我的好奇心。"},{"en":"The news aroused a lot of curiosity among local people.","zh":"这条消息在当地人中间引起了很大的好奇心。"}],"assoc":{"story":"构词:curi(关心/治疗) → 好奇心"}},

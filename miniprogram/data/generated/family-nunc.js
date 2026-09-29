@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"announce","word":"announce","phonetic":"ə'naʊns","senses":[{"pos":"v","zh":"宣布，声称","en":null}],"breakdown":[{"part":"an","type":"prefix","zh":"朝向/加强","refId":"affix-an"},{"part":"nounce","type":"root","zh":"说/宣布","refId":"root-nunc"}],"tags":["cet4","高频"],"examples":[{"en":"They announced their engagement in ‘The Times’.","zh":"他们在《泰晤士报》上宣布了订婚的消息。"},{"en":"At the end of their meeting, it was announced that an agreement had been reached.","zh":"会议最后宣布已达成一项协议。"}],"assoc":{"story":"构词:an(朝向/加强) + nounce(说/宣布) → 宣布"}},
 {"id":"announcer","word":"announcer","phonetic":"ə'naʊnsɚ","senses":[{"pos":"n","zh":"宣告者；播音员","en":null}],"breakdown":[{"part":"an","type":"prefix","zh":"朝向/加强","refId":"affix-an"},{"part":"nounce","type":"root","zh":"说/宣布","refId":"root-nunc"},{"part":"r","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The radio announcer said it was nine o'clock.","zh":"电台播音员报了9点。"}],"assoc":{"story":"构词:an(朝向/加强) + nounce(说/宣布) → 宣告者"}},

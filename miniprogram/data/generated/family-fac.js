@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"face","word":"face","phonetic":"fes","senses":[{"pos":"n","zh":"脸；表面；面子；面容；外观；威信","en":null},{"pos":"v","zh":"向；朝","en":null}],"breakdown":[{"part":"fac","type":"root","zh":"做/制作","refId":"root-fac"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"She had a beautiful face.","zh":"她面容秀美。"},{"en":"Her face was white with fear.","zh":"她吓得脸煞白。"}],"assoc":{"story":"构词:fac(做/制作) → 脸"}},
 {"id":"fact","word":"fact","phonetic":"fækt","senses":[{"pos":"n","zh":"事实；实际，实情","en":null}],"breakdown":[{"part":"fac","type":"root","zh":"做/制作","refId":"root-fac"},{"part":"t","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Our decision to build the museum in Hartlepool was influenced by the fact that there were no national museums in the North East.","zh":"我们之所以决定在哈特尔浦建造博物馆，是因为东北地区没有国家级的博物馆。"}],"assoc":{"story":"构词:fac(做/制作) → 事实"}},

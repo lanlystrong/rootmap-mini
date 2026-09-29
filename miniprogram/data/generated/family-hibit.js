@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"prohibit","word":"prohibit","phonetic":"prə'hɪbɪt","senses":[{"pos":"v","zh":"禁止，阻止，防止","en":null}],"breakdown":[{"part":"pro","type":"prefix","zh":"向前/预先","refId":"affix-pro"},{"part":"hibit","type":"root","zh":"持/拥有","refId":"root-hibit"}],"tags":["cet4","高频"],"examples":[{"en":"Smoking is strictly prohibited inside the factory.","zh":"厂区严禁吸烟。"}],"assoc":{"story":"构词:pro(向前/预先) + hibit(持/拥有) → 禁止"}},
 {"id":"exhibition","word":"exhibition","phonetic":"ɛksɪ'bɪʃən","senses":[{"pos":"n","zh":"展览","en":null}],"breakdown":[{"part":"ex","type":"prefix","zh":"出/向外","refId":"affix-ex"},{"part":"hibit","type":"root","zh":"持/拥有","refId":"root-hibit"},{"part":"ion","type":"suffix","zh":"名词后缀(表行为/状态/结果)","refId":"affix-ion"}],"tags":["cet4","高频"],"examples":[{"en":"an exhibition of expressionist art.","zh":"…一场印象主义艺术展览会。"}],"assoc":{"story":"构词:ex(出/向外) + hibit(持/拥有) + ion(名词后缀(表行为/状态/结果)) → 展览"}},

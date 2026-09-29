@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"flexibility","word":"flexibility","phonetic":"flɛksə'bɪləti","senses":[{"pos":"n","zh":"灵活性；适应性","en":null}],"breakdown":[{"part":"flex","type":"root","zh":"弯曲","refId":"root-flect"},{"part":"ibility","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"Employees expect flexibility in the workplace.","zh":"员工们盼望工作安排有弹性。"}],"assoc":{"story":"构词:flex(弯曲) → 灵活性"}},
 {"id":"reflect","word":"reflect","phonetic":"rɪ'flɛkt","senses":[{"pos":"v","zh":"反映","en":null}],"breakdown":[{"part":"re","type":"prefix","zh":"再次/向后","refId":"affix-re"},{"part":"flect","type":"root","zh":"弯曲","refId":"root-flect"}],"tags":["cet4","高频"],"examples":[{"en":"The drop in consumer spending reflects concern about the economy.","zh":"消费支出的下降反映出人们对经济的担忧。"}],"assoc":{"story":"构词:re(再次/向后) + flect(弯曲) → 反映"}},

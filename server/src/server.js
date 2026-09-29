@@ -1,3 +1,4 @@
+require('./src/loadEnv'); // 尽早加载 .env(仅补充缺失键,不覆盖真实环境变量)
 const { createApp } = require('./app');
 const { buildCode2Session } = require('./authRouter');
 

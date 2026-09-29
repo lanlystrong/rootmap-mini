@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"grace","word":"grace","phonetic":"ɡres","senses":[{"pos":"n","zh":"优美，优雅；风度，魅力；宽限，缓期","en":null},{"pos":"vt","zh":"使优美","en":null}],"breakdown":[{"part":"grac","type":"root","zh":"感激/愉悦","refId":"root-grat"},{"part":"e","type":"none"}],"tags":["cet4"],"examples":[{"en":"Lena moved with the grace of a dancer.","zh":"莉娜走路姿势有着舞者般的优美。"}],"assoc":{"story":"构词:grac(感激/愉悦) → 优美"}},
 {"id":"graceful","word":"graceful","phonetic":"'ɡresfl","senses":[{"pos":"adj","zh":"优美的，优雅的","en":null}],"breakdown":[{"part":"grace","type":"root","zh":"感激/愉悦","refId":"root-grat"},{"part":"ful","type":"suffix","zh":"充满…的(形容词)","refId":"affix-ful"}],"tags":["cet4"],"examples":[{"en":"Her movements were graceful and elegant.","zh":"她举手投足优雅而高贵。"},{"en":"The branches formed a graceful curve.","zh":"那些树枝形成一条优美的曲线。"}],"assoc":{"story":"构词:grace(感激/愉悦) + ful(充满…的(形容词)) → 优美的"}},

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"faith","word":"faith","phonetic":"feθ","senses":[{"pos":"n","zh":"信任","en":null}],"breakdown":[{"part":"faith","type":"root","zh":"信任","refId":"root-fid"}],"tags":["cet4","高频"],"examples":[{"en":"People have lost faith in the government.","zh":"人们已失去了对政府的信心。"}],"assoc":{"story":"构词:faith(信任) → 信任"}},
 {"id":"faithful","word":"faithful","phonetic":"'feθfəl","senses":[{"pos":"adj","zh":"忠诚的；如实的","en":null}],"breakdown":[{"part":"faith","type":"root","zh":"信任","refId":"root-fid"},{"part":"ful","type":"suffix","zh":"充满…的(形容词)","refId":"affix-ful"}],"tags":["cet4","高频"],"examples":[{"en":"a faithful friend","zh":"忠诚的朋友"},{"en":"years of faithful service to the company","zh":"为公司多年忠诚的服务"}],"assoc":{"story":"构词:faith(信任) + ful(充满…的(形容词)) → 忠诚的"}},

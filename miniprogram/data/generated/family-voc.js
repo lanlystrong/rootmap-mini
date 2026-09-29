@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"devote","word":"devote","phonetic":"dɪ'vot","senses":[{"pos":"v","zh":"奉献，致力于","en":null}],"breakdown":[{"part":"de","type":"prefix","zh":"向下/去除/加强","refId":"affix-de"},{"part":"vot","type":"root","zh":"喊/叫","refId":"root-voc"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"He decided to devote the rest of his life to scientific investigation.","zh":"他决定把余生奉献给科学研究。"}],"assoc":{"story":"构词:de(向下/去除/加强) + vot(喊/叫) → 奉献"}},
 {"id":"provoke","word":"provoke","phonetic":"prə'vok","senses":[{"pos":"v","zh":"激起，挑起","en":null}],"breakdown":[{"part":"pro","type":"prefix","zh":"向前/预先","refId":"affix-pro"},{"part":"vok","type":"root","zh":"喊/叫","refId":"root-voc"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"The novel has provoked fierce debate in the US.","zh":"那部小说在美国引发了激烈的争论。"}],"assoc":{"story":"构词:pro(向前/预先) + vok(喊/叫) → 激起"}},

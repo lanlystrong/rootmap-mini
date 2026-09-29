@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"range","word":"range","phonetic":"rendʒ","senses":[{"pos":"n","zh":"范围","en":null},{"pos":"v","zh":"在范围内变化","en":null}],"breakdown":[{"part":"rang","type":"root","zh":"排列","refId":"root-rang"},{"part":"e","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"a temperature range of 72-85˚","zh":"72 度到85度之间的温度范围"},{"en":"Even the cheapest property was out of our price range.","zh":"即使是最便宜的房子也超出了我们能承受的价格范围。"}],"assoc":{"story":"构词:rang(排列) → 范围"}},
 {"id":"arrange","word":"arrange","phonetic":"ə'rendʒ","senses":[{"pos":"v","zh":"安排， 准备， 整理","en":null}],"breakdown":[{"part":"ar","type":"prefix","zh":"朝向/加强","refId":"affix-ar"},{"part":"range","type":"root","zh":"排列","refId":"root-rang"}],"tags":["cet4","高频"],"examples":[{"en":"Contact your local branch to arrange an appointment.","zh":"请联络当地分部安排预约。"},{"en":"I’d like to arrange a business loan.","zh":"我想办理一笔商业贷款。"}],"assoc":{"story":"构词:ar(朝向/加强) + range(排列) → 安排"}},

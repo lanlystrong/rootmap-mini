@@ -122,7 +122,7 @@ const NO_DECOMPOSE = new Set([
   // 高频变体(sta / cou / mar / lig / tin / cit / lat …)落在**无关词的词干内部**,
   // 结构完全合法、词源完全无关。这正是「短变体滥交」——与上面黑名单同一个病根。
   // 根因在 server/src/morphology.js 的 extraRoots 变体表(如 root-cur 收了 'cou'),
-  // 修变体表比堆黑名单更根治,但会波及全部 213 个根,留作后续单独处理。
+  // 修变体表比堆黑名单更根治,但会波及全部 223 个根,留作后续单独处理。
 
   // —— 变体切进了词干内部:root 段不是该词真正的词根语素 ——
   'install', 'installation', 'installment', 'stale', // in+stall(畜栏/位置),真语素是 stall 不是 sta

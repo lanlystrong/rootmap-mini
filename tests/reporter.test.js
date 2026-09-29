@@ -81,3 +81,39 @@ test('OVERFLOW:队列超 1000 丢最旧,保留 w1..w1000 FIFO 有序', () => {
     assert.equal(q[999].wordId, 'w1000', '最新 w1000 保留,FIFO 有序');
   } finally { clearWx(); }
 });
+test('CHUNK:队列 450 条分 3 批(200/200/50)发出,不触发服务端截断且队列清空', async () => {
+  const store = installWx();
+  try {
+    api.setSession('tok', { id: 1, username: 'u' });
+    const calls = [];
+    api.postEvents = async (arg) => { calls.push(arg); return { accepted: arg.length, ignored: 0 }; };
+    for (let i = 0; i < 450; i++) reporter.recordStudy('w' + i);
+    assert.equal(store['rm_events_pending_v1'].length, 450);
+    await reporter.flush();
+    assert.equal(calls.length, 3, '450 条应切成 3 批,而不是一次发 450 触发服务端截断');
+    assert.deepEqual(calls.map(c => c.length), [200, 200, 50]);
+    assert.ok(calls.every(c => c.length <= 200), '单批不得超过服务端 MAX_BATCH,否则尾部会被静默丢弃');
+    // 顺序不能乱:三批拼起来必须正好是原队列
+    assert.deepEqual(calls.flat().map(e => e.wordId), Array.from({ length: 450 }, (_, i) => 'w' + i));
+    assert.equal(store['rm_events_pending_v1'].length, 0, '全部确认入库后队列清空');
+  } finally { clearWx(); }
+});
+test('TRUNCATED:服务端只收下前 N 条时,只移除 N 条,余下留在队列待下次', async () => {
+  const store = installWx();
+  try {
+    api.setSession('tok', { id: 1, username: 'u' });
+    // 假装服务端上限被下调到 100(200 条一批会被截断)
+    let call = 0;
+    api.postEvents = async (arg) => {
+      call++;
+      const n = Math.min(100, arg.length);
+      return { accepted: n, ignored: 0, truncated: arg.length > n };
+    };
+    for (let i = 0; i < 450; i++) reporter.recordStudy('w' + i);
+    await reporter.flush();
+    assert.equal(call, 1, '首批被截断后应停止继续发后续批次(否则会按错位的前缀删队列)');
+    const left = store['rm_events_pending_v1'];
+    assert.equal(left.length, 350, '只应移除服务端确认的 100 条,其余 350 条必须留在队列');
+    assert.equal(left[0].wordId, 'w100', '留下的必须是从未送达处接续的,不能重复发已入库的');
+  } finally { clearWx(); }
+});

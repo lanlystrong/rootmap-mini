@@ -35,6 +35,16 @@ const familyMob = require('./families/family-mob');
 const familyNov = require('./families/family-nov');
 const familyNorm = require('./families/family-norm');
 const familyNumer = require('./families/family-numer');
+const familyTheo = require('./families/family-theo');
+const familyPhil = require('./families/family-phil');
+const familyArch = require('./families/family-arch');
+const familyBibl = require('./families/family-bibl');
+const familyCosm = require('./families/family-cosm');
+const familyNeur = require('./families/family-neur');
+const familyLith = require('./families/family-lith');
+const familyLingu = require('./families/family-lingu');
+const familyAgon = require('./families/family-agon');
+const familyTox = require('./families/family-tox');
 
 // 词根:手写字段全胜,variants 取并集 —— 生成词的根段可能落在手写 variants 之外
 // (实测 41 例:visor/view/vide(vis)、cap/capt(cept)、pose/posit(pos)…)。
@@ -93,6 +103,16 @@ const handFamilies = [
   familyNov,
   familyNorm,
   familyNumer,
+  familyTheo,
+  familyPhil,
+  familyArch,
+  familyBibl,
+  familyCosm,
+  familyNeur,
+  familyLith,
+  familyLingu,
+  familyAgon,
+  familyTox,
 ];
 const rootById = new Map(roots.map((r) => [r.id, r]));
 const groups = new Map();

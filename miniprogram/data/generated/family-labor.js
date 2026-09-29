@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"laborious","word":"laborious","phonetic":"lə'bɔrɪəs","senses":[{"pos":"adj","zh":"费力的","en":null}],"breakdown":[{"part":"labor","type":"root","zh":"工作","refId":"root-labor"},{"part":"ious","type":"suffix","zh":"…的(形容词)","refId":"affix-ious"}],"tags":["cet4","高频"],"examples":[{"en":"the laborious business of drying the crops","zh":"把收获的庄稼晒干这一艰苦的工作"}],"assoc":{"story":"构词:labor(工作) + ious(…的(形容词)) → 费力的"}},
 {"id":"collaborative","word":"collaborative","phonetic":"kə'læbəretɪv","senses":[{"pos":"adj","zh":"合作的， 协作的， 协力完成的","en":null}],"breakdown":[{"part":"col","type":"prefix","zh":"共同/加强","refId":"affix-col"},{"part":"laborat","type":"root","zh":"工作","refId":"root-labor"},{"part":"ive","type":"suffix","zh":"有…性质的(形容词/名词)","refId":"affix-ive"}],"tags":["cet4","高频"],"examples":[{"en":"a collaborative research project.","zh":"…一个合作研究项目。"}],"assoc":{"story":"构词:col(共同/加强) + laborat(工作) + ive(有…性质的(形容词/名词)) → 合作的"}},

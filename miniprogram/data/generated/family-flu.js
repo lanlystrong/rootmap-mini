@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"influential","word":"influential","phonetic":"ɪnflu'ɛnʃl","senses":[{"pos":"adj","zh":"有影响力的","en":null}],"breakdown":[{"part":"in","type":"prefix","zh":"不/非;向内","refId":"affix-in"},{"part":"flu","type":"root","zh":"流","refId":"root-flu"},{"part":"ent","type":"suffix","zh":"…的(形容词)/…者(名词)","refId":"affix-ent"},{"part":"ial","type":"suffix","zh":"…的(形容词)","refId":"affix-ial"}],"tags":["cet4","高频"],"examples":[{"en":"He had influential friends.","zh":"他有一些有影响力的朋友。"},{"en":"a highly influential art magazine","zh":"一本极有影响力的艺术杂志"}],"assoc":{"story":"构词:in(不/非;向内) + flu(流) + ent(…的(形容词)/…者(名词)) + ial(…的(形容词)) → 有影响力的"}},
 {"id":"flu","word":"flu","phonetic":"flu","senses":[{"pos":"n","zh":"流行性感冒","en":null}],"breakdown":[{"part":"flu","type":"root","zh":"流","refId":"root-flu"}],"tags":["cet4"],"examples":[{"en":"Steven’s still in bed with flu.","zh":"史蒂文患了流感，仍卧病在床。"},{"en":"She’s got the flu.","zh":"她得了流感。"}],"assoc":{"story":"构词:flu(流) → 流行性感冒"}},

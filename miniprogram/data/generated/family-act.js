@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"act","word":"act","phonetic":"ækt","senses":[{"pos":"v","zh":"行动；见效","en":null},{"pos":"n","zh":"行为","en":null}],"breakdown":[{"part":"act","type":"root","zh":"做/驱动","refId":"root-act"}],"tags":["cet4","高频"],"examples":[{"en":"The company acted correctly in sacking him.","zh":"公司解雇他做得对。"},{"en":"The jury decided that Walker had acted in self-defence.","zh":"陪审团裁定沃克的行为属于自卫。"}],"assoc":{"story":"构词:act(做/驱动) → 行动"}},
 {"id":"actress","word":"actress","phonetic":"'æktrɪs","senses":[{"pos":"n","zh":"女演员","en":null}],"breakdown":[{"part":"act","type":"root","zh":"做/驱动","refId":"root-act"},{"part":"ress","type":"none"}],"tags":["cet4","高频"],"examples":[{"en":"She's not only a great dramatic actress but she's also very funny.","zh":"她不仅是一位伟大的女戏剧演员，而且也很幽默。"}],"assoc":{"story":"构词:act(做/驱动) → 女演员"}},

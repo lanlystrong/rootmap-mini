@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"minor","word":"minor","phonetic":"'maɪnɚ","senses":[{"pos":"vi","zh":"辅修","en":null},{"pos":"adj","zh":"较小的，较少的；次要的","en":null},{"pos":"n","zh":"未成年人；辅修科目","en":null}],"breakdown":[{"part":"min","type":"root","zh":"小","refId":"root-min"},{"part":"or","type":"suffix","zh":"…者/…物(名词)","refId":"affix-or"}],"tags":["cet4","高频"],"examples":[{"en":"What are your major subject and minor subject?","zh":"你的主修科目和辅修科目是什么?。"}],"assoc":{"story":"构词:min(小) + or(…者/…物(名词)) → 辅修"}},
 {"id":"minus","word":"minus","phonetic":"'maɪnəs","senses":[{"pos":"adj","zh":"负的","en":null},{"pos":"prep","zh":"减","en":null},{"pos":"n","zh":"负数；减号","en":null}],"breakdown":[{"part":"min","type":"root","zh":"小","refId":"root-min"},{"part":"us","type":"none"}],"tags":["cet4"],"examples":[{"en":"‘Any minus points?’ ‘Well, the engine is rather noisy.’","zh":"“有什么毛病吗？”“嗯，发动机噪音很大。”"},{"en":"On the minus side, there is no free back-up service if things go wrong.","zh":"不足之处是出了问题没有免费的技术支持服务。"}],"assoc":{"story":"构词:min(小) → 负的"}},

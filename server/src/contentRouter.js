@@ -1,6 +1,18 @@
 // server/src/contentRouter.js
 const express = require('express');
 
+// 将 senses[].pos 的多样写法(n./v/vi/vt/adj/adv/conj/prep 等)归一到分组桶。
+// 交付集单词无顶层 pos,词性只在 senses[0].pos,且取值杂乱,故按首字母稳健分桶。
+function bucketPos(p) {
+  if (!p) return 'other';
+  const s = String(p).toLowerCase().replace(/\./g, '').replace(/\s/g, '');
+  const lead = s[0];
+  if (lead === 'n') return 'noun';
+  if (lead === 'v') return 'verb';
+  if (lead === 'a') return s.startsWith('adj') ? 'adjective' : 'adverb';
+  return 'other';
+}
+
 // 内容路由
 function contentRouter(content) {
   const router = express.Router();
@@ -272,15 +284,9 @@ function contentRouter(content) {
     };
 
     words.forEach(word => {
-      if (word.pos) {
-        if (byPos[word.pos]) {
-          byPos[word.pos].push(word);
-        } else {
-          byPos.other.push(word);
-        }
-      } else {
-        byPos.other.push(word);
-      }
+      const pos = word.senses && word.senses.length ? word.senses[0].pos : null;
+      const bucket = bucketPos(pos);
+      byPos[bucket].push(word);
     });
 
     // 构建家族树

@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"close","word":"close","phonetic":"kloz","senses":[{"pos":"adj","zh":"紧密的；亲密的；亲近的","en":null},{"pos":"v","zh":"关；结束；使靠近","en":null},{"pos":"adv","zh":"紧密地","en":null},{"pos":"n","zh":"结束","en":null}],"breakdown":[{"part":"close","type":"root","zh":"关闭","refId":"root-clud"}],"tags":["cet4","高频"],"examples":[{"en":"If you need to buy bread or milk, the closest shop is about a mile away.","zh":"如果你需要买面包或牛奶，最近的商店大概有一英里远。"},{"en":"His eyes were small and close together.","zh":"他眼睛很小，而且挨得很近。"}],"assoc":{"story":"构词:close(关闭) → 紧密的"}},
 {"id":"closely","word":"closely","phonetic":"'klosli","senses":[{"pos":"adv","zh":"紧密地，接近地","en":null}],"breakdown":[{"part":"close","type":"root","zh":"关闭","refId":"root-clud"},{"part":"ly","type":"suffix","zh":"…地(副词)","refId":"affix-ly"}],"tags":["cet4","高频"],"examples":[{"en":"The detective watched him closely, waiting for a reply.","zh":"侦探紧盯着他看，等着他回答。"},{"en":"Details of the program are a closely-guarded secret.","zh":"该项目的细节是严格保密的。"}],"assoc":{"story":"构词:close(关闭) + ly(…地(副词)) → 紧密地"}},

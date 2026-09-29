@@ -1,5 +1,5 @@
 // 由 server/scripts/generate-content.js 生成,请勿手改;手写内容见 ../roots.js ../affixes.js ../families/
-// 输入指纹: 手写层 fe2415b761e473caa0cf4ef61ff4ab5bfb42dd83 / 产物 1f39f69c0e154fbdcf50aaad410584b5524fdc8e
+// 输入指纹: 手写层 465c3c8fb5eb3a1f627f57ee19a89c14ca931b80 / 产物 26d51f6b8add60535535a5fffc75dbb5089db90e
 const words = [
 {"id":"vacuum","word":"vacuum","phonetic":"'vækjʊəm","senses":[{"pos":"v","zh":"用吸尘器清扫","en":null},{"pos":"n","zh":"真空；真空吸尘器","en":null}],"breakdown":[{"part":"vacu","type":"root","zh":"空","refId":"root-vac"},{"part":"um","type":"none"}],"tags":["cet4"],"examples":[{"en":"I vacuumed the carpets today.","zh":"我今天用吸尘器清洁地毯了。"}],"assoc":{"story":"构词:vacu(空) → 用吸尘器清扫"}},
 {"id":"vacant","word":"vacant","phonetic":"'vekənt","senses":[{"pos":"adj","zh":"空虚的；空的；空缺的；空闲的；茫然的","en":null},{"pos":"n","zh":"(Vacant)人名；(法)瓦康","en":null}],"breakdown":[{"part":"vac","type":"root","zh":"空","refId":"root-vac"},{"part":"ant","type":"suffix","zh":"…的(形容词)/…者(名词)","refId":"affix-ant"}],"tags":["cet4"],"examples":[{"en":"Only a few apartments were still vacant.","zh":"只有几套公寓仍然空着。"},{"en":"There was only a vacant lot where her house used to be.","zh":"她以前房子所在的地方只剩下一块空地了。"}],"assoc":{"story":"构词:vac(空) + ant(…的(形容词)/…者(名词)) → 空虚的"}},

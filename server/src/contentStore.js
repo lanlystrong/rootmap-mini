@@ -179,7 +179,7 @@ async function writeCandidates(conn, words) {
 // 内容版本:按**行数据**现算,不存计数器。
 //
 // 原实现只哈希 id 列表 —— 改释义、音标、例句都不变,拿它做缓存失效判断是错的。
-// 现算的代价是每次启动做一次全量哈希(1350 词,约 10 毫秒),换来的是:有人用裸 SQL
+// 现算的代价是每次启动做一次全量哈希(1450 词,约 10 毫秒),换来的是:有人用裸 SQL
 // 改过库,客户端也不会读到陈旧内容。
 function contentVersion(dataset) {
   const payload = {
