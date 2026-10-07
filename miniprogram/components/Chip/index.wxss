@@ -1,6 +1,10 @@
 /* Chip 专属色系类:叠加在 app.wxss .chip 之上。
-   用 .chip.chip-* 双类提升优先级,确保覆盖 app.wxss 的 .chip 底灰/灰字。 */
-.chip.chip-cyan { background: #E0F2FE; color: #06B6D4; }     /* 浅蓝底青字(变体/前缀系) */
-.chip.chip-blue { background: #DBEAFE; color: #3B82F6; }     /* 浅蓝底蓝字(词根系) */
-.chip.chip-purple { background: #EDE9FE; color: #8B5CF6; }   /* 浅紫底紫字(后缀系) */
-.chip.chip-green { background: #D1FAE5; color: #059669; }    /* 浅绿底绿字(完成/熟悉) */
+   用 .chip.chip-* 双类提升优先级,确保覆盖 app.wxss 的 .chip 底灰/灰字。
+
+   文字色不是随手挑的:chip 是 12px 小字,按 WCAG AA 需 ≥4.5:1。
+   实测原值 —— 青 #06B6D4/2.12、蓝 #3B82F6/3.01、紫 #8B5CF6/3.57、绿 #059669/3.32,
+   全部不达标。压深后分别为 4.67 / 5.49 / 4.80 / 4.84,色相不变、只是更沉一点。 */
+.chip.chip-cyan { background: #E0F2FE; color: #0E7490; }     /* 浅蓝底青字(变体/前缀系) */
+.chip.chip-blue { background: #DBEAFE; color: #1D4ED8; }     /* 浅蓝底蓝字(词根系) */
+.chip.chip-purple { background: #EDE9FE; color: #7C3AED; }   /* 浅紫底紫字(后缀系) */
+.chip.chip-green { background: #D1FAE5; color: #047857; }    /* 浅绿底绿字(完成/熟悉) */

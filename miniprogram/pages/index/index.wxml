@@ -1,5 +1,6 @@
 <navbar title="学习" />
-<view class="page">
+<content-gate state="{{contentState}}" err="{{contentErr}}" bind:retry="onRetryContent"></content-gate>
+<view class="page" wx:if="{{contentReady}}">
   <!-- 顶部搜索框 -->
   <view class="search-wrap">
     <view class="search-box">

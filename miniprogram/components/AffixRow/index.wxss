@@ -16,8 +16,10 @@
   margin-right: 16rpx;
 }
 
-.affix-text.is-pre { color: #06B6D4; }
-.affix-text.is-suf { color: #8B5CF6; }
+/* 前缀青 / 后缀紫 —— 与 BreakdownBar、Chip 同一套,改一处要改三处。
+   32rpx/700 = 16px 粗体,还没到 WCAG 大字门槛(18.66px 粗体),按小字算 4.5:1。 */
+.affix-text.is-pre { color: #0E7490; }
+.affix-text.is-suf { color: #7C3AED; }
 
 .affix-zh {
   font-size: 28rpx;
@@ -25,6 +27,7 @@
 
 .affix-arrow {
   font-size: 22rpx;
+  color: #5F7089; /* 原 #94A3B8 只有 2.6:1,这个「›」几乎看不见 */
 }
 
 .affix-note {

@@ -125,7 +125,7 @@
 .hm-cont-btn-txt {
   font-size: 28rpx;
   font-weight: 600;
-  color: #3B82F6;
+  color: #2563EB;
 }
 
 .hm-cont-arrow {

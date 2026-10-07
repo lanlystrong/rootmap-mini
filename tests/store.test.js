@@ -83,3 +83,28 @@ test('pruneCards 清掉已下架词的卡片,保留在架词与 log', () => {
   // 数组入参同样可用
   assert.equal(s.pruneCards(['inspect']), 1);
 });
+
+// 进度现在在内存里缓存一份解析结果(复习时每点一次自评原本要 parse+stringify
+// 整份进度)。缓存挂在 **storage 对象**上,所以同一个 storage 上开两个 store
+// 实例也必须看到同一份内存态 —— 否则 A 写完 B 还在用旧缓存读,互相覆盖。
+test('同一 storage 上的两个 store 实例共享内存态,不会丢写', () => {
+  const mem = memStorage();
+  const a = createStore(mem);
+  const b = createStore(mem);
+  a.markStudied('inspect', '2026-09-04');
+  assert.ok(b.getProgress().cards.inspect, 'B 必须看到 A 刚写的卡片');
+  b.markStudied('spectator', '2026-09-05');
+  assert.equal(Object.keys(a.getProgress().cards).length, 2, 'A 必须看到 B 刚写的卡片');
+  assert.equal(b.applyReview('inspect', 5, '2026-09-05').applied, true);
+  assert.equal(a.getProgress().cards.inspect.srs.dueDate, '2026-09-11', 'A 看到的是复习后的到期日(SM-2 首个间隔 6 天)');
+});
+
+test('reset 会连缓存一起清,否则重置后仍读到旧进度', () => {
+  const mem = memStorage();
+  const s = createStore(mem);
+  s.markStudied('inspect', '2026-09-04');
+  s.reset();
+  assert.deepStrictEqual(s.getProgress().cards, {});
+  // 盘上也必须真的空了(缓存清了但没落盘的话,下次冷启动进度会自己长回来)
+  assert.deepStrictEqual(createStore(mem).getProgress().cards, {});
+});

@@ -1,4 +1,4 @@
-const { getContent, ensureContent, isLoaded } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded, attachTo, retry } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { todayISO } = require('../../utils/date');
 const reporter = require('../../utils/reporter');
@@ -19,15 +19,31 @@ Page({
     groupOpen: {},
     popAffix: null,
     popWords: [],
+    // 词库加载态,由 content.attachTo 统一维护
+    contentState: 'idle',
+    contentErr: '',
+    contentReady: false,
   },
 
   onLoad(options) {
     this._opts = options || {};
     if (!isLoaded()) {
-      ensureContent().then(() => { if (isLoaded()) this.onLoad(this._opts); }).catch(() => {});
+      // 词库未就绪:订阅加载态后就绪重入本页(等价老代码的 then 递归),
+      // 失败不再被 catch 吞掉 —— <content-gate> 会渲染错误与重试入口。
+      attachTo(this, function () { this.onLoad(this._opts); });
+      ensureContent();
       return;
     }
-    const o = options || {};
+    this.render();
+  },
+
+  onRetryContent() {
+    retry();
+  },
+
+  // 从 this._opts 渲染当前词。onLoad 拆分出来是为了让 attachTo 的回调能安全重入。
+  render() {
+    const o = this._opts;
     const c = getContent();
     const word = o.wordId ? c.byId(o.wordId) : null;
     let rootId = o.rootId || null;
@@ -151,6 +167,13 @@ Page({
     wx.navigateBack();
   },
 
+  // 跳过:翻到下一个词,但**不**记为已学。
+  // 之前底部只有「再看看 / 记住了」,想「先翻翻看」也被迫把每个词标记成学会了 ——
+  // 逛一个 47 词的大家族(root-stan)就能把进度刷满,那这个进度也就没意义了。
+  skip() {
+    this.next(true);
+  },
+
   lookBack() {
     this.prev();
   },
@@ -161,7 +184,7 @@ Page({
     this.showAt(i - 1);
   },
 
-  next() {
+  next(skipped) {
     const family = this._family;
     const i = this._cur;
     if (!family || !family.length) return;
@@ -169,7 +192,8 @@ Page({
       this.showAt(i + 1);
     } else {
       wx.navigateBack();
-      wx.showToast({ title: '本族已学完', icon: 'none' });
+      // 跳着看完最后一个词不等于学完,文案要说实话
+      wx.showToast({ title: skipped ? '已到本族末尾' : '本族已学完', icon: 'none' });
     }
   },
 

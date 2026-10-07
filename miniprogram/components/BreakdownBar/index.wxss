@@ -18,13 +18,16 @@
   flex-shrink: 0;
 }
 
-.bp-pre  { color: #06B6D4; }
-.bp-root { color: #3B82F6; }
-.bp-suf  { color: #8B5CF6; }
+/* 拆解条三段的着色。14px/500 属小字,按 WCAG AA 全部 ≥4.5:1(白底实测
+   5.36 / 5.17 / 5.70)。原来是 #06B6D4 / #3B82F6 / #8B5CF6 —— 只有 2.4~3.7:1,
+   青色的「前缀」段在白卡片上几乎看不见,而这正是要靠颜色区分的关键信息。 */
+.bp-pre  { color: #0E7490; }
+.bp-root { color: #2563EB; }
+.bp-suf  { color: #7C3AED; }
 
 /* 长 none 残段(词典未收的派生后缀,如 -ation/-ology/-ific):灰色补全,
    不参与着色、不可点,但必须显示——否则拆解条拼不回完整单词。 */
 .bp-none {
-  color: #9CA3AF;
+  color: #5F7089; /* 原 #9CA3AF 只有 2.6:1,补全段读不出来就等于没显示 */
   font-weight: 400;
 }

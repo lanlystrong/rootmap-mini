@@ -42,11 +42,14 @@
   margin-bottom: 3rpx;
 }
 
+/* 横轴日期标签。原来 16rpx = iPhone 上 8px,是全项目最小的字 —— 14 天柱状图
+   唯一的横轴信息,8px 读不出来。提到 22rpx(11px),是这个密度下能塞进
+   14 列的最小值。 */
 .sb-x {
   margin-top: 10rpx;
-  font-size: 16rpx;
+  font-size: 22rpx;
   line-height: 1;
-  color: #94A3B8;
+  color: #5F7089; /* 原 #94A3B8 只有 2.56:1 */
 }
 
 .sb-x-today {

@@ -1,4 +1,4 @@
-const { getContent, ensureContent, isLoaded } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded, attachTo, retry } = require('../../utils/content');
 const { makeWxStore } = require('../../utils/store');
 const { todayISO } = require('../../utils/date');
 const reporter = require('../../utils/reporter');
@@ -15,16 +15,25 @@ Page({
     shown: false,    // 是否已翻面(自评按钮只在翻面后出现)
     cur: null,       // 当前词「展示副本」(computeView 拼好,直接喂 ReviewCard)
     done: null,      // 完成态汇总 { total, dueLeft }
+    // 词库加载态,由 content.attachTo 统一维护
+    contentState: 'idle',
+    contentErr: '',
+    contentReady: false,
   },
 
   onLoad() {
     this._store = makeWxStore();
+    attachTo(this, function () { this.onShow(); });
+  },
+
+  onRetryContent() {
+    retry();
   },
 
   // Tab 每次进入:idle 态都重算当天到期(可能学新词后第二天才到期)
   onShow() {
     if (!isLoaded()) {
-      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      ensureContent();
       return;
     }
     this._c = getContent();
@@ -97,7 +106,15 @@ Page({
     const today = todayISO();
     const id = queue[this.data.i];
     const applied = store && id ? store.applyReview(id, q, today).applied : false;
-    if (applied) { wx.vibrateShort && wx.vibrateShort({ type: 'light', fail: () => {} }); reporter.recordReview(id, q); reporter.flush(); }
+    if (applied) {
+      wx.vibrateShort && wx.vibrateShort({ type: 'light', fail: () => {} });
+      reporter.recordReview(id, q); reporter.flush();
+    } else {
+      // 卡片已经不在 store 里了(被 pruneCards 清掉,或进度刚被重置)。
+      // 原来这里静默什么都不做就翻下一张:用户看到的是「点了记得,卡片是会动的,
+      // 但这个词没进任何队列」—— 自评丢了,而且完全无从察觉。说出来。
+      wx.showToast({ title: '该词已不在复习队列,已跳过', icon: 'none' });
+    }
     const ni = this.data.i + 1;
     if (ni >= queue.length) {
       // 已到期的词可能因本轮自评被重新推后 → 完成汇总按最新 dueWords 为准

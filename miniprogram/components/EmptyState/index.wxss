@@ -9,11 +9,12 @@
 .empty-ico {
   font-size: 72rpx;
   line-height: 1;
-  color: #CBD5E1;
+  color: #708096; /* 图标属 UI 图形,门槛 3:1。取 4.03:1 —— 明显比下面 5.04 的正文
+                     弱一档(空态图标本就该让位给文字),但不能弱到看不见。 */
   margin-bottom: 20rpx;
 }
 
 .empty-txt {
   font-size: 26rpx;
-  color: #94A3B8;
+  color: #5F7089; /* 原 #94A3B8 只有 2.56:1 —— 空态提示读不清就没起到引导作用 */
 }

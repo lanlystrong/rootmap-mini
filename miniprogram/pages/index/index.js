@@ -1,4 +1,4 @@
-const { getContent, ensureContent, isLoaded } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded, attachTo, retry } = require('../../utils/content');
 const { familyProgressOf } = require('../../utils/stats');
 const { makeWxStore } = require('../../utils/store');
 
@@ -20,17 +20,41 @@ Page({
     searching: false,
     rootHits: [],
     wordHits: [],
+    // 词库加载态,由 content.attachTo 统一维护
+    contentState: 'idle',
+    contentErr: '',
+    contentReady: false,
+  },
+
+  onLoad() {
+    attachTo(this, function () { this.onShow(); });
+  },
+
+  onRetryContent() {
+    retry();
   },
 
   onShow() {
     if (!isLoaded()) {
-      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      ensureContent();
       return;
     }
-    this.refresh();
+    // 第一次进来才重置视图状态。之前每次 onShow 都 reset,于是「点进词根详情 →
+    // 学完返回」会把用户展开的分组、选中的筛选、输入到一半的搜索词全抹掉 ——
+    // 内容其实一个字没变,却要重新展开一遍。
+    if (!this._booted) {
+      this._booted = true;
+      this.refresh(true);
+      return;
+    }
+    this.refresh(false);
   },
 
-  refresh() {
+  onUnload() {
+    if (this._searchTimer) { clearTimeout(this._searchTimer); this._searchTimer = null; }
+  },
+
+  refresh(resetView) {
     const c = getContent();
     const store = makeWxStore();
     const cards = (store && store.getProgress().cards) || {};
@@ -55,16 +79,18 @@ Page({
       })),
     }));
 
-    // 折叠态:词根首组展开、其余收起;前后缀默认全收起。
-    this._collapsed = { root: {}, affix: {} };
-    this._rootGroups.forEach((g, i) => { this._collapsed.root[g.key] = i !== 0; });
-    this._affixSections.forEach(sec => sec.groups.forEach(g => { this._collapsed.affix[g.key] = true; }));
-
-    this.setData({
-      filter: 'all',
-      expanded: false,
-      searching: false, kw: '', rootHits: [], wordHits: [],
-    });
+    // 折叠态:首次进入用默认值(词根首组展开、其余收起;前后缀全收起);
+    // 之后进入保留用户上次的手动折叠/展开。
+    const prev = this._collapsed || { root: {}, affix: {} };
+    this._collapsed = { root: { ...prev.root }, affix: { ...prev.affix } };
+    if (resetView) {
+      this._rootGroups.forEach((g, i) => { this._collapsed.root[g.key] = i !== 0; });
+      this._affixSections.forEach(sec => sec.groups.forEach(g => { this._collapsed.affix[g.key] = true; }));
+      this.setData({ filter: 'all', expanded: false, searching: false, kw: '', rootHits: [], wordHits: [] });
+    } else {
+      // 内容变了的话,正在搜的关键词要按新内容重算一遍命中,否则命中列表是旧的。
+      if (this.data.kw) this.runSearch(this.data.kw);
+    }
     this.render();
   },
 
@@ -137,19 +163,33 @@ Page({
     this.render();
   },
 
+  // 搜索:每敲一个字符都要扫 1450 词 + 223 词根,还要把整棵命中结果 setData 回去。
+  // 中文输入法组字期间会连着触发好几次 input(拼音串越来越长),不防抖就是十几轮
+  // 全表扫描叠加,低端机上输入框会明显发涩。200ms 是手感与开销的折中。
   onSearchInput(e) {
-    const kw = (e.detail.value || '').trim();
+    this._kwRaw = e.detail.value || ''; // 留着原始输入:全空格时 kw 为空,回车时要用原文兜底
+    const kw = this._kwRaw.trim();
+    if (this._searchTimer) { clearTimeout(this._searchTimer); this._searchTimer = null; }
     if (!kw) {
       this.setData({ kw: '', searching: false, rootHits: [], wordHits: [] });
       return;
     }
+    this._searchTimer = setTimeout(() => {
+      this._searchTimer = null;
+      this.runSearch(kw);
+    }, 200);
+  },
+
+  runSearch(kw) {
     const c = getContent();
+    if (!c) return;
     const rootHits = c.searchRoot(kw).map(r => ({ ...r, variants: r.variants || [] }));
     const wordHits = c.searchWord(kw);
     this.setData({ kw, searching: true, rootHits, wordHits });
   },
 
   clearSearch() {
+    if (this._searchTimer) { clearTimeout(this._searchTimer); this._searchTimer = null; }
     this.setData({ kw: '', searching: false, rootHits: [], wordHits: [] });
   },
 
@@ -171,6 +211,14 @@ Page({
   },
 
   onSearchConfirm() {
+    // 回车时把还挂在防抖窗口里的那次搜索立刻跑掉,不然用户会看到「打完字按回车,
+    // 结果列表又晚 200ms 才出」。
+    if (this._searchTimer) {
+      clearTimeout(this._searchTimer);
+      this._searchTimer = null;
+      const kw = (this.data.kw || '').trim() || (this._kwRaw || '').trim();
+      if (kw) this.runSearch(kw);
+    }
     if (wx.hideKeyboard) wx.hideKeyboard();
   },
 });

@@ -1,0 +1,56 @@
+/* ContentGate —— 加载中 / 出错了(+重试)的居中大态。 */
+.cg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  /* 上下留出导航栏与 TabBar 的位置,免得整块内容看着顶头 */
+  min-height: 60vh;
+  padding: 64rpx 48rpx;
+}
+
+.cg-txt {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cg-sub {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.cg-ico {
+  font-size: 80rpx;
+  line-height: 1;
+}
+
+.cg-btn {
+  margin-top: 36rpx;
+  width: 280rpx;
+  height: 88rpx;
+}
+
+/* 加载转圈:纯 border 旋转,不依赖任何动画库 */
+.cg-spin {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  border: 6rpx solid #DBEAFE;
+  border-top-color: #2563EB;
+  animation: cg-rotate 0.9s linear infinite;
+}
+
+@keyframes cg-rotate {
+  to { transform: rotate(360deg); }
+}
+
+.cg-tip {
+  margin-top: 24rpx;
+  font-size: 22rpx;
+  opacity: 0.85;
+}

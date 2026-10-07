@@ -1,5 +1,6 @@
 <navbar title="复习" />
-<view class="rv-page">
+<content-gate state="{{contentState}}" err="{{contentErr}}" bind:retry="onRetryContent"></content-gate>
+<view class="rv-page" wx:if="{{contentReady}}">
   <!-- ===== idle & 今天有到期 ===== -->
   <view wx:if="{{phase === 'idle' && dueTotal > 0}}" class="rv-idle">
     <view class="card rv-summary">

@@ -4,6 +4,7 @@
     "chip": "/components/Chip/index",
     "progress-ring": "/components/ProgressRing/index",
     "empty-state": "/components/EmptyState/index",
-    "breakdown-bar": "/components/BreakdownBar/index"
+    "breakdown-bar": "/components/BreakdownBar/index",
+    "content-gate": "/components/ContentGate/index"
   }
 }

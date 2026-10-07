@@ -27,7 +27,7 @@ App({
 
   // 交付集更新后,把已被移除的词的 SRS 卡片从本地进度里清掉。
   // 卡片按 wordId 索引,computeStats 的 learned 直接数卡片条数,孤儿卡片会让
-  // 「已学 X/1350」的 X 超过总数。内容就绪(后端已拉到)后才能清,离线时跳过。
+  // 「已学 X/总词数」的 X 超过总数。内容就绪(后端已拉到)后才能清,离线时跳过。
   pruneStaleCards() {
     try {
       const s = store.makeWxStore();

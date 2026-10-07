@@ -1,4 +1,4 @@
-const { getContent, ensureContent, isLoaded } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded, attachTo, retry } = require('../../utils/content');
 const { familyProgressOf } = require('../../utils/stats');
 const { makeWxStore } = require('../../utils/store');
 
@@ -10,22 +10,33 @@ Page({
     rows: [],
     expandedStory: false,
     firstUnlearned: '',
+    // 词库加载态,由 content.attachTo 统一维护
+    contentState: 'idle',
+    contentErr: '',
+    contentReady: false,
   },
 
   onLoad(options) {
     this._opts = options || {};
     this._rootId = (options && options.rootId) || '';
     if (!isLoaded()) {
-      ensureContent().then(() => { if (isLoaded()) this.onLoad(this._opts); }).catch(() => {});
+      // 词库未就绪:订阅加载态后就绪重入本页(等价老代码的 then 递归),
+      // 失败由 <content-gate> 呈现,不再被 catch 吞掉。
+      attachTo(this, function () { this.onLoad(this._opts); });
+      ensureContent();
       return;
     }
     this.render();
   },
 
+  onRetryContent() {
+    retry();
+  },
+
   onShow() {
     // 从 word 页学完返回时刷新进度;内容未就绪时先等后端,避免空索引崩。
     if (!isLoaded()) {
-      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      ensureContent();
       return;
     }
     if (this._rootId) this.render();

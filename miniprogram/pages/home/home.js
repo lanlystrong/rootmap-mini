@@ -1,4 +1,5 @@
-const { getContent, ensureContent, isLoaded } = require('../../utils/content');
+const content = require('../../utils/content');
+const { getContent, ensureContent, isLoaded, attachTo, retry } = content;
 const { makeWxStore } = require('../../utils/store');
 const { computeStats } = require('../../utils/stats');
 const { todayISO } = require('../../utils/date');
@@ -16,18 +17,29 @@ Page({
     continueRoot: null,   // { rootId, wordId, root, zh } | null(全部学完为 null)
     continueText: '从第一个词根开始学习',
     continueBtn: '开始学习',
+    // 词库加载态。由 content.attachTo 统一维护,wxml 顶部交给 <content-gate>。
+    contentState: 'idle',
+    contentErr: '',
+    contentReady: false,
   },
 
   onLoad() {
     this._store = makeWxStore();
+    // 订阅加载态:从「不可用」变「可用」时重入本页刷新(等价老代码的 then 重入)。
+    attachTo(this, function () { this.onShow(); });
+  },
+
+  // 错误态里的「重试」
+  onRetryContent() {
+    retry();
   },
 
   // Tab 页每次进入都重算(刚从学单词页/复习页回来,进度可能已变)
   onShow() {
-    // 内容只来自后端:未就绪则异步预载,完成后重入本页刷新;离线/后端未就绪时
-    // 保持空态,不重试(ensureContent 失败返回 null,不会进入递归)。
+    // 内容只来自后端:未就绪则异步预载,完成后由 attachTo 回调重入本页。
+    // 失败不再静默 —— contentState 会变 'error',wxml 渲染重试入口。
     if (!isLoaded()) {
-      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      ensureContent();
       return;
     }
     this._c = getContent();

@@ -84,7 +84,7 @@
   text-align: center;
   margin-top: 32rpx;
   font-size: 24rpx;
-  color: #94A3B8;
+  color: #5F7089; /* 原 #94A3B8 只有 2.56:1 */
 }
 
 .rv-actions {
@@ -110,6 +110,10 @@
   margin-left: 20rpx;
 }
 
-.rv-forgot { background: #EF4444; }  /* 忘了 q=1 */
-.rv-hazy   { background: #F59E0B; }  /* 模糊 q=3 */
-.rv-good   { background: #10B981; }  /* 记得 q=5 */
+/* 复习三键是本应用最核心的操作,白字压在底色上必须 ≥4.5:1。
+   原值 红 #EF4444 / 琥珀 #F59E0B / 绿 #10B981 实测只有 3.76 / 2.15 / 2.54 ——
+   "模糊"那个琥珀尤其糟,白字几乎糊在底色里。压深后 4.83 / 5.02 / 5.48,
+   仍是清晰的 红=忘了 / 琥珀=模糊 / 绿=记得。 */
+.rv-forgot { background: #DC2626; }  /* 忘了 q=1 */
+.rv-hazy   { background: #B45309; }  /* 模糊 q=3 */
+.rv-good   { background: #047857; }  /* 记得 q=5 */

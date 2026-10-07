@@ -1,5 +1,6 @@
 <navbar title="首页" />
-<view class="hm-page">
+<content-gate state="{{contentState}}" err="{{contentErr}}" bind:retry="onRetryContent"></content-gate>
+<view class="hm-page" wx:if="{{contentReady}}">
   <!-- ===== 顶部 hero:问候 + 连续打卡 ===== -->
   <view class="hm-hero grad">
     <view class="hm-hero-top">

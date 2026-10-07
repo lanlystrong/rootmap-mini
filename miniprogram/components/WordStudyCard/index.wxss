@@ -21,7 +21,7 @@
   align-self: flex-start;
   font-size: 22rpx;
   font-weight: 600;
-  color: #10B981;
+  color: #047857; /* #10B981 在 #ECFDF5 上只有 3.0:1,11px 小字不够 */
   background: #ECFDF5;
   border: 1rpx solid rgba(16, 185, 129, 0.4);
   border-radius: 999rpx;

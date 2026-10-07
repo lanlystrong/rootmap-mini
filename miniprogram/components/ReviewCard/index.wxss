@@ -41,7 +41,7 @@
 
 .rc-hint-txt {
   font-size: 26rpx;
-  color: #94A3B8;
+  color: #5F7089; /* 原 #94A3B8 只有 2.56:1 */
 }
 
 /* ===== 背面 ===== */
@@ -90,7 +90,8 @@
 .rc-root {
   font-size: 36rpx;
   font-weight: 700;
-  color: #3B82F6;
+  color: #2563EB; /* 18px 粗体,够到 WCAG 大字下限(18.66px 粗体)只差一线,
+                     按小字口径取 5.17:1 更稳。色相仍是主蓝。 */
 }
 
 .rc-rootzh {
@@ -102,7 +103,7 @@
   display: block;
   font-size: 28rpx;
   font-weight: 600;
-  color: #3B82F6;
+  color: #2563EB; /* 原 #3B82F6 只有 3.68:1,例句英文是主要阅读内容 */
   line-height: 1.5;
 }
 

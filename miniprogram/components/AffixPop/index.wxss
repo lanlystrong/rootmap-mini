@@ -46,16 +46,27 @@
   margin-right: 16rpx;
 }
 
-.affix-text.is-pre { color: #06B6D4; }
-.affix-text.is-suf { color: #8B5CF6; }
+/* 前缀青 / 后缀紫 —— 与 AffixRow、BreakdownBar、Chip 同一套。 */
+.affix-text.is-pre { color: #0E7490; }
+.affix-text.is-suf { color: #7C3AED; }
 
 .affix-zh {
   font-size: 30rpx;
 }
 
+/* 关闭键:原来是 font-size:34rpx + padding:0 8rpx,实际可点区只有约 17px ——
+   半屏弹层的 ✕ 是高频点击目标,低于 44px 基本点不准。
+   撑成 88rpx 见方的隐形热区,glyph 本身仍是 34rpx 不变粗。 */
 .affix-x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 88rpx;
+  height: 88rpx;
+  margin: -16rpx -20rpx -16rpx 0;
   font-size: 34rpx;
-  padding: 0 8rpx;
+  color: #5F7089;
 }
 
 .affix-note {

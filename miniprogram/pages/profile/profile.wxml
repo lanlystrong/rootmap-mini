@@ -1,5 +1,6 @@
 <navbar title="我的" />
-<view class="pf-page">
+<content-gate state="{{contentState}}" err="{{contentErr}}" bind:retry="onRetryContent"></content-gate>
+<view class="pf-page" wx:if="{{contentReady}}">
   <!-- ===== 用户信息:头像 + 昵称(云端) ===== -->
   <view class="card pf-profile">
     <button class="pf-avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
@@ -83,16 +84,37 @@
       <text class="pf-cloud-loading t-3" wx:if="{{cloud.loading}}">加载中…</text>
     </view>
     <text class="pf-cloud-err" wx:if="{{cloud.err}}">{{cloud.err}}</text>
+    <!-- 会话过期:本地学习进度不受影响(那是本地的),只有云端这块要重新登录一次 -->
+    <view class="pf-relogin" wx:if="{{cloud.expired}}">
+      <text class="pf-relogin-txt t-3">登录已过期,重新登录后继续同步云端数据</text>
+      <view class="btn-ghost pf-relogin-btn" bindtap="onRelogin" hover-class="hover-dim">重新登录</view>
+    </view>
     <block wx:if="{{cloud.overview}}">
       <view class="pf-ov">
         <view class="pf-ov-item"><text class="pf-ov-num grad">{{cloud.overview.totalStudied}}</text><text class="pf-ov-txt t-3">累计学习词</text></view>
         <view class="pf-ov-item"><text class="pf-ov-num">{{cloud.overview.reviewEvents}}</text><text class="pf-ov-txt t-3">云端复习</text></view>
         <view class="pf-ov-item"><text class="pf-ov-num">{{cloud.overview.accTxt}}</text><text class="pf-ov-txt t-3">正确率</text></view>
       </view>
-      <view class="pf-gd" wx:if="{{cloud.overview.reviewEvents > 0}}">
-        <view class="pf-gd-bar pf-gd-1" style="width:{{cloud.gdPct.q1}}%"></view>
-        <view class="pf-gd-bar pf-gd-3" style="width:{{cloud.gdPct.q3}}%"></view>
-        <view class="pf-gd-bar pf-gd-5" style="width:{{cloud.gdPct.q5}}%"></view>
+      <view wx:if="{{cloud.overview.reviewEvents > 0}}">
+        <view class="pf-gd">
+          <view class="pf-gd-bar pf-gd-1" style="width:{{cloud.gdPct.q1}}%"></view>
+          <view class="pf-gd-bar pf-gd-3" style="width:{{cloud.gdPct.q3}}%"></view>
+          <view class="pf-gd-bar pf-gd-5" style="width:{{cloud.gdPct.q5}}%"></view>
+        </view>
+        <view class="pf-gd-legend">
+          <view class="pf-legend-item">
+            <view class="pf-dot" style="background:#DC2626"></view>
+            <text class="pf-legend-txt t-3">忘了 {{cloud.gdPct.q1}}%</text>
+          </view>
+          <view class="pf-legend-item">
+            <view class="pf-dot" style="background:#B45309"></view>
+            <text class="pf-legend-txt t-3">模糊 {{cloud.gdPct.q3}}%</text>
+          </view>
+          <view class="pf-legend-item">
+            <view class="pf-dot" style="background:#047857"></view>
+            <text class="pf-legend-txt t-3">记得 {{cloud.gdPct.q5}}%</text>
+          </view>
+        </view>
       </view>
       <text class="pf-hint t-3" wx:else>暂无云端数据,先学几个词吧</text>
     </block>

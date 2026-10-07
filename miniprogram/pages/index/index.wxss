@@ -27,13 +27,13 @@
 }
 
 .search-ph {
-  color: #94A3B8;
+  color: #5F7089; /* 原 #94A3B8 只有 2.56:1 —— 搜索框空态时唯一的提示文字 */
 }
 
 .search-clear {
-  color: #94A3B8;
+  color: #5F7089;
   font-size: 30rpx;
-  padding: 0 0 0 20rpx;
+  padding: 16rpx 0 16rpx 20rpx; /* 上下补足热区:清除键原本只有字那么高 */
 }
 
 /* ===== 模式切换 ===== */
@@ -46,17 +46,22 @@
   box-shadow: 0 2rpx 12rpx rgba(15, 23, 42, 0.05);
 }
 
+/* 模式切换:原来是 line-height:60rpx,可点区只有 ~30px。改成 flex 居中 + 88rpx
+   见方,视觉高度不变(mode-bar padding 6rpx 撑着),手指好按。 */
 .mode-item {
   flex: 1;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 88rpx;
   font-size: 28rpx;
   color: #64748B;
-  line-height: 60rpx;
   border-radius: 999rpx;
 }
 
 .mode-item.mode-on {
-  background: linear-gradient(135deg, #3B82F6, #4F46E5);
+  background: linear-gradient(135deg, #2563EB, #4F46E5);
   color: #FFFFFF;
   font-weight: 600;
 }
@@ -130,11 +135,12 @@
   margin-bottom: 16rpx;
 }
 
+/* 进度筛选:原来 height:64rpx(~32px),不到 44px 的一半,容易误触相邻项。 */
 .filter-chip {
   flex: 1;
   text-align: center;
-  height: 64rpx;
-  line-height: 64rpx;
+  height: 88rpx;
+  line-height: 88rpx;
   background: #FFFFFF;
   color: #64748B;
   font-size: 26rpx;
@@ -148,7 +154,7 @@
 }
 
 .filter-chip.filter-on {
-  background: linear-gradient(135deg, #3B82F6, #4F46E5);
+  background: linear-gradient(135deg, #2563EB, #4F46E5);
   color: #FFFFFF;
   font-weight: 600;
 }
@@ -192,12 +198,13 @@
 
 .group-progress {
   font-size: 24rpx;
-  color: #3B82F6;
+  color: #2563EB;
   margin-left: 16rpx;
 }
 
 .group-chevron {
   font-size: 24rpx;
+  color: #5F7089; /* 原 #94A3B8 2.56:1,展开箭头看不见就不知道这行能点 */
   margin-left: 12rpx;
 }
 

@@ -35,6 +35,18 @@ test('回归:search?mode=word 支持中文释义查询且不 500', async () => {
   } finally { await s.close(); }
 });
 
+// /api/content/words 是全量词库 JSON(871 KB),小程序冷启动首屏就靠这一条。
+// compression 依赖装了但一直没 require,于是每个用户都在裸下三倍流量。
+test('/api/content/words 走 gzip', async () => {
+  const s = await startServer();
+  try {
+    const r = await fetch(s.base + '/api/content/words', { headers: { 'Accept-Encoding': 'gzip' } });
+    assert.equal(r.status, 200);
+    assert.equal(r.headers.get('content-encoding'), 'gzip', '未压缩:冷启动要下全量明文');
+    assert.ok((await r.arrayBuffer()).byteLength > 100000, '词库应远大于 100 KB');
+  } finally { await s.close(); }
+});
+
 // 回归:/recommended?type=popular 曾用 content.roots.sort() 原地排序,把「按热度」的顺序
 // 泄漏到之后所有 /roots 响应上 —— 用户看到的词根地图顺序会随请求历史变化。
 test('回归:recommended 不得改动 /roots 的返回顺序', async () => {

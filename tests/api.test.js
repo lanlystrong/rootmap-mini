@@ -38,6 +38,24 @@ test('401 自动清登录态并 reject {code:unauthorized}', async () => {
   } finally { clearWx(); }
 });
 
+// 带 token 的 401 = 会话过期,页面要能据此显示「重新登录」而不是笼统的加载失败
+test('带 token 的 401 标记 expired:true', async () => {
+  installWx({ respond: () => ({ statusCode: 401, data: { error: { code: 'unauthorized' } } }) });
+  try {
+    api.setSession('tok', { id: 1 });
+    await assert.rejects(() => api.me(), (e) => e.expired === true);
+  } finally { clearWx(); }
+});
+
+// 反过来:wxLogin 自己的 401 是 code2session 失败,本地本来就没 token,
+// 那种 401 不是「过期」,不该把用户引去重新登录(会变成死循环)
+test('未带 token 的 401(code2session 失败)不算 expired', async () => {
+  installWx({ respond: () => ({ statusCode: 401, data: { error: { code: 'wx_login_failed' } } }) });
+  try {
+    await assert.rejects(() => api.wxLogin(), (e) => e.code === 'wx_login_failed' && e.expired === false);
+  } finally { clearWx(); }
+});
+
 test('postEvents 载荷约定:body.events 为数组(不二次包装)', async () => {
   let captured;
   installWx({ respond: (opt) => { captured = opt.data; return { statusCode: 200, data: { accepted: 1, ignored: 0 } }; } });

@@ -11,20 +11,42 @@ function getSession() { return hasWx() ? { token: getToken(), user: wx.getStorag
 function setSession(token, user) { if (!hasWx()) return; wx.setStorageSync(KEY_TOKEN, token); wx.setStorageSync(KEY_USER, user); }
 function clearSession() { if (!hasWx()) return; wx.removeStorageSync(KEY_TOKEN); wx.removeStorageSync(KEY_USER); }
 
-function request(method, path, { auth = false, body } = {}) {
+// 微信的 wx.request 默认要等 60s 才放弃。弱网下用户点「重试」之后对着空白页
+// 干等一分钟,体验上跟卡死没区别。15s 足够覆盖正常请求,超时会被归到「拿不到服务端」。
+const DEFAULT_TIMEOUT = 15000;
+
+function request(method, path, { auth = false, body, timeout = DEFAULT_TIMEOUT } = {}) {
   return new Promise((resolve, reject) => {
     if (!hasWx()) return reject({ offline: true });
     const header = { 'content-type': 'application/json' };
-    if (auth) { const t = getToken(); if (t) header.authorization = 'Bearer ' + t; }
+    let hadToken = false;
+    if (auth) { const t = getToken(); if (t) { header.authorization = 'Bearer ' + t; hadToken = true; } }
     wx.request({
-      url: BASE + path, method, data: body, header,
+      url: BASE + path, method, data: body, header, timeout,
       success(res) {
         if (res.statusCode >= 200 && res.statusCode < 300) return resolve(res.data);
-        if (res.statusCode === 401) clearSession();
+        // 401 且请求**带着** token = 会话过期(服务端认不出这个 token)。
+        // 只带 token 的请求才是「过期」:wxLogin 自己的 401 是 code2session 失败,
+        // 那种情况本地本来就没有 token,不该被当成需要重新登录。
+        // 之前这里无条件清登录态然后 reject,页面只知道「云端统计加载失败」——
+        // 用户看到的是一个错字,而不是「登录过期了,点这重登」。
+        const expired = res.statusCode === 401 && hadToken;
+        if (expired) clearSession();
         const code = (res.data && res.data.error && res.data.error.code) || ('http_' + res.statusCode);
-        reject({ code, status: res.statusCode, message: res.data && res.data.error && res.data.error.message });
+        reject({
+          code, expired, status: res.statusCode,
+          message: res.data && res.data.error && res.data.error.message,
+        });
       },
-      fail() { reject({ offline: true }); },
+      fail(err) {
+        // 超时和断网都归到「拿不到服务端」,但分开报:提示语不一样,
+        // 而且 content.js 会据此给不同的错误文案。
+        const msg = (err && err.errMsg) || '';
+        if (msg.indexOf('timeout') >= 0) {
+          return reject({ code: 'timeout', message: '请求超时,请检查网络后重试' });
+        }
+        reject({ offline: true });
+      },
     });
   });
 }

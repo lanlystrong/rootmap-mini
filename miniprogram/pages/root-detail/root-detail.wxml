@@ -1,5 +1,6 @@
 <navbar title="{{navTitle}}" />
-<view class="rd-page" wx:if="{{root}}">
+<content-gate state="{{contentState}}" err="{{contentErr}}" bind:retry="onRetryContent"></content-gate>
+<view class="rd-page" wx:if="{{contentReady && root}}">
   <!-- 头部:字根 + 词源故事 -->
   <view class="card rd-hero">
     <text class="rd-root">{{root.root}}</text>
@@ -54,6 +55,8 @@
   </view>
 </view>
 
-<view class="rd-page" wx:else>
+<!-- 注意:这里必须再判一次 contentReady。原 wx:else 会在「词库没加载出来」时
+     也命中,于是加载失败被显示成「未找到该词根」—— 同样是故障伪装成结论。 -->
+<view class="rd-page" wx:elif="{{contentReady}}">
   <empty-state class="es" text="未找到该词根"></empty-state>
 </view>

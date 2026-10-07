@@ -1,5 +1,6 @@
 <navbar title="{{navTitle}}" />
-<view class="w-page" wx:if="{{w && view}}">
+<content-gate state="{{contentState}}" err="{{contentErr}}" bind:retry="onRetryContent"></content-gate>
+<view class="w-page" wx:if="{{contentReady && w && view}}">
   <!-- 1. 词头条:大字 + 音标 + tags + 已在词库角标 + 可交互拆解 -->
   <word-study-card word="{{w}}" inPool="{{inPool}}" bind:tapbreak="onBreak"></word-study-card>
 
@@ -75,6 +76,7 @@
   <!-- 5. 底部固定操作条(给滚动内容留 padding) -->
   <view class="w-actions">
     <view class="w-act {{isFirst ? 'act-off' : ''}} btn-ghost" bindtap="lookBack" hover-class="hover-dim">再看看</view>
+    <view class="w-act w-act-skip" wx:if="{{!inPool}}" bindtap="skip" hover-class="hover-dim">跳过</view>
     <view class="w-act btn-primary" bindtap="onMainAction" hover-class="hover-dim">{{inPool ? '完成 · 返回' : '记住了'}}</view>
   </view>
 
@@ -83,6 +85,6 @@
     bind:close="onAffixClose"></affix-pop>
 </view>
 
-<view class="w-page" wx:elif="{{emptyFamily}}">
+<view class="w-page" wx:elif="{{contentReady && emptyFamily}}">
   <empty-state class="es" text="该词不属于任何词根家族,暂无可学内容"></empty-state>
 </view>

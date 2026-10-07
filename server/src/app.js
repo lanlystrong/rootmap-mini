@@ -1,5 +1,6 @@
 // server/src/app.js
 const express = require('express');
+const compression = require('compression');
 const { createDb } = require('./db');
 const { createContent, applyDataset, loadContentFromDb, loadContentFromFile } = require('./content');
 const { contentRouter } = require('./contentRouter');
@@ -94,6 +95,11 @@ async function createApp({ dbConfig, wx = {} } = {}) {
   // 中间件顺序很重要！
   app.use(corsHandler); // 跨域支持
   app.use(securityHeaders); // 安全头设置
+  // gzip。/api/content/words 是 871 KB 的 JSON,微信开发者工具和网络代理都默认
+  // 带 Accept-Encoding,压缩后约 1/5 —— 冷启动首屏全靠这一条,没开就是白下三倍流量。
+  // 放在 json 解析**之前**:压缩的是响应体,顺序上只要求在写响应之前挂上即可,
+  // 放最前面顺带把 404/错误响应也一起压了。
+  app.use(compression());
   app.use(express.json({ limit: '5mb' })); // JSON 解析(头像 base64 上传)
   app.use(express.urlencoded({ extended: true })); // URL 编码
   app.use(requestLogger); // 请求日志

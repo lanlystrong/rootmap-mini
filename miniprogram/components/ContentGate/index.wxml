@@ -1,0 +1,16 @@
+<!-- ready:什么都不渲染,让页面正文透出来 -->
+<block wx:if="{{state === 'ready'}}"></block>
+
+<view wx:elif="{{state === 'loading'}}" class="cg">
+  <view class="cg-spin"></view>
+  <text class="cg-txt t-2">正在加载词库…</text>
+  <text class="cg-sub t-3">首次进入需要下载全部词根与单词</text>
+</view>
+
+<view wx:elif="{{state === 'error'}}" class="cg">
+  <text class="cg-ico">📡</text>
+  <text class="cg-txt t-1">词库没加载出来</text>
+  <text class="cg-sub t-3">{{err || '连不上服务器'}}</text>
+  <view class="btn-primary cg-btn" bindtap="onRetry" hover-class="hover-dim">重试</view>
+  <text class="cg-tip t-3">学习进度已存在本地,不会丢</text>
+</view>

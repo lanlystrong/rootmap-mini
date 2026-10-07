@@ -1,4 +1,4 @@
-const { getContent, ensureContent, isLoaded } = require('../../utils/content');
+const { getContent, ensureContent, isLoaded, attachTo, retry } = require('../../utils/content');
 const api = require('../../utils/api');
 const { makeWxStore } = require('../../utils/store');
 const { computeStats } = require('../../utils/stats');
@@ -34,22 +34,34 @@ Page({
     // 用户头像/昵称(云端,来自服务端 users 表)
     profile: { ...DEFAULT_PROFILE },
     // 云端统计(静默登录后展示;云端数据不影响本地进度)
-    cloud: { authed: false, err: '', loading: false,
+    // expired: 会话过期(401 且请求带着 token)。和 err 分开是因为处置方式不同:
+    // err 是「服务端没起/网络不通」,重试没用;expired 是「重新登录一下就好」。
+    cloud: { authed: false, err: '', loading: false, expired: false,
              overview: null, daily: [], roots: [], gdPct: { q1: 0, q3: 0, q5: 0 } },
+    // 词库加载态,由 content.attachTo 统一维护
+    contentState: 'idle',
+    contentErr: '',
+    contentReady: false,
   },
 
   onLoad() {
     this._store = makeWxStore();
+    // 订阅加载态:就绪后重入本页(等价老代码的 then 重入),失败则由 <content-gate> 呈现重试。
+    attachTo(this, function () { this.onShow(); });
     const app = getApp();
     if (app && app.globalData && app.globalData.version) {
       this.setData({ version: app.globalData.version });
     }
   },
 
+  onRetryContent() {
+    retry();
+  },
+
   // Tab 页每次进入都重算(可能刚从学单词页/复习页回来);登录态/云端统计也一并刷新
   onShow() {
     if (!isLoaded()) {
-      ensureContent().then(() => { if (isLoaded()) this.onShow(); }).catch(() => {});
+      ensureContent();
       return;
     }
     this._c = getContent();
@@ -172,13 +184,30 @@ Page({
     const authed = api.isAuthed();
     if (!authed) {
       this.setData({
-        cloud: { authed: false, err: '', loading: false,
+        cloud: { authed: false, err: '', loading: false, expired: false,
                  overview: null, daily: [], roots: [], gdPct: { q1: 0, q3: 0, q5: 0 } },
       });
       return;
     }
-    this.setData({ 'cloud.authed': true, 'cloud.err': '' });
+    this.setData({ 'cloud.authed': true, 'cloud.err': '', 'cloud.expired': false, 'cloud.loading': true });
     this.loadCloud();
+  },
+
+  // 会话过期后的重登。app.silentLogin 只在**冷启动**跑,同一个会话里 token 过期
+  // 就再没人登录了 —— 这里给用户一个明确出口,而不是让统计区永远空着。
+  onRelogin() {
+    if (this.data.cloud.loading) return;
+    this.setData({ 'cloud.loading': true, 'cloud.err': '' });
+    api.wxLogin()
+      .then(() => {
+        this.setData({ 'cloud.loading': false, 'cloud.expired': false });
+        this.refreshProfile();
+        this.loadCloud();
+      })
+      .catch(() => {
+        this.setData({ 'cloud.loading': false });
+        wx.showToast({ title: '重新登录失败,请稍后再试', icon: 'none' });
+      });
   },
 
   // 拉取 overview/daily/roots,并在 js 侧预拼 accTxt / gdPct(wxml 不做算术)。
@@ -200,6 +229,11 @@ Page({
         'cloud.err': '',
       });
     }).catch((e) => {
+      // 会话过期:api 层已清掉本地 token。给「重新登录」,而不是一句「加载失败」。
+      if (e && e.expired) {
+        this.setData({ 'cloud.loading': false, 'cloud.expired': true, 'cloud.err': '' });
+        return;
+      }
       // offline/未就绪静默;服务端错误显示一行
       this.setData({
         'cloud.loading': false,

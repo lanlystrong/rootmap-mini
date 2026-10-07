@@ -5,6 +5,7 @@
     "root-card": "/components/RootCard/index",
     "affix-row": "/components/AffixRow/index",
     "chip": "/components/Chip/index",
-    "empty-state": "/components/EmptyState/index"
+    "empty-state": "/components/EmptyState/index",
+    "content-gate": "/components/ContentGate/index"
   }
 }
