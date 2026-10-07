@@ -6,6 +6,6 @@
 //   3) 不能使用 IP 地址或 localhost。
 // 因此下列 BASE_URL 在域名申请通过后,改为 https://你的备案域名 即可,无需改动其他代码。
 // (服务端 TLS/HTTPS 由前置 nginx 反代提供,见 server/AUDIT-GOLIVE.md 的部署示例。)
-const BASE_URL = 'http://127.0.0.1:3000'; // TODO(上线):替换为 https://你的备案域名
+const BASE_URL = 'https://www.infoq.online'; // TODO(上线):替换为 https://你的备案域名
 
 module.exports = { BASE_URL };
