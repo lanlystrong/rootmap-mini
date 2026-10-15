@@ -42,6 +42,15 @@ Page({
     contentState: 'idle',
     contentErr: '',
     contentReady: false,
+    // 反馈弹窗态。feedback 在每次打开时重置,避免残留上一次输入。
+    feedbackVisible: false,
+    submitting: false,
+    feedbackCats: [
+      { value: 'suggestion', label: '建议' },
+      { value: 'bug', label: '问题' },
+      { value: 'other', label: '其他' },
+    ],
+    feedback: { category: 'suggestion', content: '', contact: '' },
   },
 
   onLoad() {
@@ -112,6 +121,62 @@ Page({
     const store = this._store;
     if (store) store.saveSettings({ expandAssoc: val });
     this.setData({ 'settings.expandAssoc': val });
+  },
+
+  // ===== 意见反馈 =====
+  // 打开即重置输入(分类默认"建议"),避免上次没提交的内容残留。
+  onFeedbackTap() {
+    this.setData({
+      feedbackVisible: true,
+      submitting: false,
+      feedback: { category: 'suggestion', content: '', contact: '' },
+    });
+  },
+
+  // 提交中不允许关闭,防止请求没回来就误关。
+  onFeedbackClose() {
+    if (this.data.submitting) return;
+    this.setData({ feedbackVisible: false });
+  },
+
+  // 弹窗内容层点击不冒泡到 mask(否则会触发关闭)。
+  noop() {},
+
+  onFeedbackCat(e) {
+    this.setData({ 'feedback.category': e.currentTarget.dataset.value });
+  },
+
+  onFeedbackInput(e) {
+    this.setData({ 'feedback.content': e.detail.value });
+  },
+
+  onFeedbackContact(e) {
+    this.setData({ 'feedback.contact': e.detail.value });
+  },
+
+  onFeedbackSubmit() {
+    if (this.data.submitting) return;
+    if (!api.isAuthed()) {
+      wx.showToast({ title: '请先登录后反馈', icon: 'none' });
+      return;
+    }
+    const { category, content, contact } = this.data.feedback;
+    const text = (content || '').trim();
+    if (!text) {
+      wx.showToast({ title: '请先填写反馈内容', icon: 'none' });
+      return;
+    }
+    this.setData({ submitting: true });
+    api.feedback({ category, content: text, contact: (contact || '').trim() })
+      .then(() => {
+        this.setData({ submitting: false, feedbackVisible: false });
+        wx.showToast({ title: '感谢你的反馈', icon: 'success' });
+      })
+      .catch((e) => {
+        this.setData({ submitting: false });
+        const offline = e && e.offline;
+        wx.showToast({ title: offline ? '网络不可用,请稍后重试' : '提交失败,请稍后重试', icon: 'none' });
+      });
   },
 
   // 二次确认后重置:store.reset 只清 rm_progress_v1,rm_settings_v1 保留

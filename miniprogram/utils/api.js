@@ -78,6 +78,8 @@ const postEvents = (events) => request('POST', '/api/events', { auth: true, body
 const overview = () => request('GET', '/api/stats/overview', { auth: true });
 const daily = (days = 14) => request('GET', '/api/stats/daily?days=' + days, { auth: true });
 const roots = (days = 30, limit = 15) => request('GET', '/api/stats/roots?days=' + days + '&limit=' + limit, { auth: true });
+// 提交用户反馈(受鉴权):category ∈ suggestion|bug|other,content 必填,contact 选填
+const feedback = (payload) => request('POST', '/api/feedback', { auth: true, body: payload });
 
 // ===== 内容下发(无需鉴权)=====
 // 内容元数据:含 checksum/version/counts,用于增量判断是否需要重新拉全量。
@@ -90,4 +92,4 @@ const fetchContent = () => Promise.all([
   request('GET', '/api/content/words'),
 ]).then(([roots, affixes, words]) => ({ roots, affixes, words }));
 
-module.exports = { BASE, isAuthed, getSession, setSession, clearSession, wxLogin, logout, me, saveProfile, postEvents, overview, daily, roots, contentMeta, fetchContent };
+module.exports = { BASE, isAuthed, getSession, setSession, clearSession, wxLogin, logout, me, saveProfile, postEvents, overview, daily, roots, feedback, contentMeta, fetchContent };

@@ -204,6 +204,19 @@ const TABLE_DDL = [
     KEY idx_events_word (word_id)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
 
+  // 用户反馈表 —— 意见/建议/问题收集,受鉴权,落库备查。
+  // 服务端只存原文与提交人,不做统计;后续看板/导出是独立特性。
+  `CREATE TABLE IF NOT EXISTS feedback (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    category ENUM('suggestion','bug','other') NOT NULL DEFAULT 'other',
+    content TEXT NOT NULL,
+    contact VARCHAR(128) NULL COMMENT '可选联系方式(微信/邮箱),便于回访',
+    created_at VARCHAR(25) NOT NULL,
+    KEY idx_feedback_user (user_id),
+    KEY idx_feedback_created (created_at)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4`,
+
   // 内容表(词根/词缀/单词/释义/拆解/例句)
   ...CONTENT_DDL
 ];

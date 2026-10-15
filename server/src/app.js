@@ -7,6 +7,7 @@ const { contentRouter } = require('./contentRouter');
 const { authRouter, authRequired } = require('./authRouter');
 const { eventsRouter } = require('./eventsRouter');
 const { statsRouter } = require('./statsRouter');
+const { feedbackRouter } = require('./feedbackRouter');
 const {
   notFound,
   errorHandler,
@@ -131,6 +132,7 @@ async function createApp({ dbConfig, wx = {} } = {}) {
   // 需要认证的路由
   app.use('/api/events', authRequired(db), eventsRouter(db, content));
   app.use('/api/stats', authRequired(db), statsRouter(db, content));
+  app.use('/api/feedback', authRequired(db), feedbackRouter(db));
 
   // API 文档（可选）
   if (process.env.NODE_ENV === 'development') {

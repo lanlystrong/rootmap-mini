@@ -19,14 +19,12 @@ Page({
   onLoad(options) {
     this._opts = options || {};
     this._rootId = (options && options.rootId) || '';
-    if (!isLoaded()) {
-      // 词库未就绪:订阅加载态后就绪重入本页(等价老代码的 then 递归),
-      // 失败由 <content-gate> 呈现,不再被 catch 吞掉。
-      attachTo(this, function () { this.onLoad(this._opts); });
-      ensureContent();
-      return;
-    }
-    this.render();
+    // 必须始终订阅加载态:attachTo 负责把 contentReady 同步成 true。
+    // 原先只在「内容未就绪」时才订阅,于是预加载完成后(从词根列表/拆解条点进来)
+    // 这一支走不到,contentReady 永远为 false,正文被 wx:if 挡住 → 整页空白。
+    // 就绪回调直接重渲染(不递归 onLoad),避免重复订阅。
+    if (!isLoaded()) ensureContent();
+    attachTo(this, function () { this.render(); });
   },
 
   onRetryContent() {

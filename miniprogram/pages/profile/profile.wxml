@@ -75,6 +75,11 @@
       <text class="pf-label t-2">学习页默认展开联想</text>
       <switch checked="{{settings.expandAssoc}}" color="#3B82F6" bindchange="onExpandChange" />
     </view>
+    <view class="pf-divider"></view>
+    <view class="pf-row flex-between" bindtap="onFeedbackTap" hover-class="hover-dim">
+      <text class="pf-label t-2">意见反馈</text>
+      <text class="pf-caret t-3">›</text>
+    </view>
   </view>
 
   <!-- ===== 云端统计(仅登录)===== -->
@@ -143,5 +148,29 @@
     </view>
     <view class="pf-about-desc t-3">内置 {{counts.roots}} 词根 / {{counts.affixes}} 词缀 /
       {{counts.words}} 单词 · 进度本地 · 账号云端同步</view>
-  </view>
-</view>
+    </view>
+
+    <!-- ===== 反馈弹窗 ===== -->
+    <view class="fb-mask" wx:if="{{feedbackVisible}}" bindtap="onFeedbackClose">
+      <view class="fb-sheet" catchtap="noop">
+        <view class="fb-head">
+          <text class="fb-title t-1">意见反馈</text>
+          <view class="fb-close t-3" bindtap="onFeedbackClose">✕</view>
+        </view>
+        <view class="fb-cats">
+          <view wx:for="{{feedbackCats}}" wx:key="value"
+                class="fb-cat {{feedback.category === item.value ? 'fb-cat-on' : ''}}"
+                data-value="{{item.value}}" bindtap="onFeedbackCat">{{item.label}}</view>
+        </view>
+        <textarea class="fb-text" maxlength="2000" placeholder="请描述你的建议或遇到的问题…"
+                  placeholder-class="fb-ph" value="{{feedback.content}}" bindinput="onFeedbackInput" />
+        <view class="fb-count t-3">{{feedback.content.length}}/2000</view>
+        <input class="fb-contact" type="text" placeholder="联系方式(选填,便于回访)"
+               placeholder-class="fb-ph" value="{{feedback.contact}}" bindinput="onFeedbackContact" />
+        <view class="fb-actions">
+          <view class="btn-ghost fb-btn" bindtap="onFeedbackClose" hover-class="hover-dim">取消</view>
+          <view class="btn-primary fb-btn {{submitting ? 'fb-disabled' : ''}}" bindtap="onFeedbackSubmit" hover-class="hover-dim">{{submitting ? '提交中…' : '提交'}}</view>
+        </view>
+      </view>
+    </view>
+    </view>
